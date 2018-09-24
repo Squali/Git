@@ -7,6 +7,7 @@
 __all__ = ["selectConfig", "updateSet"]
 
 
+# Compare two configurations
 def compare(config1, config2):
     whiteScore = 0
     redScore = 0
