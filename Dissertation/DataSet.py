@@ -31,7 +31,7 @@ def generateDataSet():
     Monk8 = Monk8.reshape((18,18)).T
     Monk9 = Monk9.reshape((18,18)).T
     Monk10 = Monk10.reshape((18,18)).T
-    return [Monk1,Monk2,Monk3,Monk4,Monk5,Monk6,Monk7,Monk8,Monk9,Monk10]
+    return ([Monk1,Monk2,Monk3,Monk4,Monk5,Monk6,Monk7,Monk8,Monk9,Monk10], [10, 5, 9, 6, 4, 11, 8, 12, 1, 2, 14, 15, 7, 16, 13, 3, 17, 18])
 
 
 # In[ ]:
