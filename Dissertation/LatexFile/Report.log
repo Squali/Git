@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  25 NOV 2018 18:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  3 DEC 2018 14:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -63,9 +63,14 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (./Report.aux
-(./dedication.aux) (./acknowlegements.aux) (./abstract.aux) (./chapter1.aux)
-(./chapter2.aux) (./conclusions.aux) (./appendix1.aux) (./appendix2.aux))
+)) (./bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
+)
+(./Report.aux)
 \openout1 = `Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
@@ -158,12 +163,12 @@ Package epstopdf Info: Source file: <oxlogo.eps>
 (epstopdf)                    size: 354881 bytes
 (epstopdf)             Command: <repstopdf --outfile=oxlogo-eps-converted-to.pd
 f oxlogo.eps>
-(epstopdf)             \includegraphics on input line 34.
+(epstopdf)             \includegraphics on input line 26.
 Package epstopdf Info: Output file is already uptodate.
 <oxlogo-eps-converted-to.pdf, id=1, 284.06125pt x 284.06125pt>
 File: oxlogo-eps-converted-to.pdf Graphic file (type pdf)
 <use oxlogo-eps-converted-to.pdf>
-Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 34.
+Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 26.
 (pdftex.def)             Requested size: 91.04881pt x 91.04881pt.
 
 [1
@@ -171,88 +176,58 @@ Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 34.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./oxlogo-eps-converted-to.
 pdf>]
-\openout2 = `dedication.aux'.
+LaTeX Font Info:    Try loading font information for U+msa on input line 37.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 37.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (17.33202pt too wide) in paragraph at lines 37--38
+[]$\OML/cmm/m/it/12 l\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 w\OT1/cmr/m/n/12 ); \OM
+L/cmm/m/it/12 D\OT1/cmr/m/n/12 ) = [][] [][](\OML/cmm/m/it/12  \OMS/cmsy/m/n/1
+2 ^^@ \OT1/cmr/m/n/12 1)\OML/cmm/m/it/12 ln\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 w[
+]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 ^^Lln\OT1/cmr/m/n/12 (
+\OML/cmm/m/it/12 w[]\OT1/cmr/m/n/12 ) + [][] [][] \OML/cmm/m/it/12 ln\OT1/cmr/m
+/n/12 (\OML/cmm/m/it/12 ^^U[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/
+it/12 ln\OT1/cmr/m/n/12 ([][] \OML/cmm/m/it/12 ^^U[] \OMS/cmsy/m/n/12 ^^@
+ []
 
 
-No file dedication.tex.
-\openout2 = `acknowlegements.aux'.
+Overfull \hbox (38.76344pt too wide) in paragraph at lines 50--52
+[]$\OT1/cmr/m/n/12 + [][] [] [][] \OML/cmm/m/it/12 w[] \OT1/cmr/m/n/12 + [][] [
+][] [] [][] 1[]\OML/cmm/m/it/12 w[]$ 
+ []
 
-No file acknowlegements.tex.
-\openout2 = `abstract.aux'.
-
-No file abstract.tex.
-(./Report.toc)
-\tf@toc=\write3
-\openout3 = `Report.toc'.
-
- [1
-
-
-
-
-
-
-
-
-] (./Report.lof)
-\tf@lof=\write4
-\openout4 = `Report.lof'.
-
- [2
-
-]
-\openout2 = `chapter1.aux'.
-
-
-No file chapter1.tex.
-\openout2 = `chapter2.aux'.
-
-No file chapter2.tex.
-\openout2 = `conclusions.aux'.
-
-No file conclusions.tex.
-\openout2 = `appendix1.aux'.
-
-No file appendix1.tex.
-\openout2 = `appendix2.aux'.
-
-No file appendix2.tex.
-(./Report.bbl
-
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
-
-) [1
-
-
-
-
-
-
-
-
-
-
-
-
-] (./Report.aux (./dedication.aux) (./acknowlegements.aux) (./abstract.aux) (./
-chapter1.aux) (./chapter2.aux) (./conclusions.aux) (./appendix1.aux)
-(./appendix2.aux)) ) 
+[2] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 1863 strings out of 494923
- 25303 string characters out of 6180741
- 75384 words of memory out of 5000000
- 5122 multiletter control sequences out of 15000+600000
- 5795 words of font info for 21 fonts, out of 8000000 for 9000
+ 1868 strings out of 494923
+ 25377 string characters out of 6180741
+ 76571 words of memory out of 5000000
+ 5152 multiletter control sequences out of 15000+600000
+ 10142 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,4n,26p,273b,251s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,4n,26p,314b,251s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Report.pdf (4 pages, 354007 bytes).
+cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cme
+x10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ti12.pfb>
+Output written on Report.pdf (2 pages, 438935 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 72 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

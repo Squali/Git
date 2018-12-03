@@ -4,7 +4,7 @@
 
 %load any additional packages
 \usepackage{amssymb}
-
+\usepackage{bbm}
 %input macros (i.e. write your own macros file called mymacros.tex 
 %and uncomment the next line)
 %\include{mymacros}
@@ -22,40 +22,36 @@
 %end the preamble and start the document
 \begin{document}
 	
-	%this baselineskip gives sufficient line spacing for an examiner to easily
-	%markup the thesis with comments
-	\baselineskip=18pt plus1pt
-	
-	%set the number of sectioning levels that get number and appear in the contents
-	\setcounter{secnumdepth}{3}
-	\setcounter{tocdepth}{3}
-	
 	
 	\maketitle                  % create a title page from the preamble info
-	\include{dedication}        % include a dedication.tex file
-	\include{acknowlegements}   % include an acknowledgements.tex file
-	\include{abstract}          % include the abstract
 	
-	\begin{romanpages}          % start roman page numbering
-		\tableofcontents            % generate and include a table of contents
-		\listoffigures              % generate and include a list of figures
-	\end{romanpages}            % end roman page numbering
+	
 	
 	%now include the files of latex for each of the chapters etc
-	\include{chapter1}
-	\include{chapter2}
-	\include{conclusions}
+	\section{Introduction}
+	Hi How are you bruh?
 	
-	%now enable appendix numbering format and include any appendices
-	\appendix
-	\include{appendix1}
-	\include{appendix2}
+	\section{Posterior}
+	Let's define the posterior of the community representation.
 	
-	%next line adds the Bibliography to the contents page
-	\addcontentsline{toc}{chapter}{Bibliography}
-	%uncomment next line to change bibliography name to references
-	%\renewcommand{\bibname}{References}
-	\bibliography{refs}        %use a bibtex bibliography file refs.bib
-	\bibliographystyle{plain}  %use the plain bibliography style
+	$l((w);D) = \sum_{i = 1}^{n} \sum_{k = 1}^{p} (\alpha - 1)ln(w_{i,k}) - \beta ln(w_{i,k}) + \sum_{i = 1}^{n} \sum_{j = 1}^{K} ln(\lambda_{i,\rho_{j}}) - ln(\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j-1} \lambda_{i,\rho_{l}})$
+	
+	To make the optimization easier, we can compute the gradient of the posterior according to the parameter $w_{r,s}$
+	
+	With $\frac{\partial \lambda_{i,j}}{\partial w_{r,s}} = 1_{i = r} w_{j,s} + 1_{j = r} w_{i,s}$
+	
+	We have :
+	$\frac{\partial l((w);D)}{\partial w_{r,s}} = \frac{a-1}{w_{r,s}} - b 
+	+ \sum_{j = 1}^{K} \frac{1}{\lambda_{r,\rho^{(r)}_{j}}} w_{\rho^{(r)}_{j},s} 
+	+ \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\lambda_{i,r}} w_{i,s} 1_{\rho^{(r)}_{j} = r}
+	- \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{j \neq r} w_{j,s}
+	- \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} w_{i,s}$
+	
+	$ + \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{l = 1}^{j-1} w_{\rho^{(r)}_{l},s}
+	+ \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} \sum_{l = 1}^{j - 1} 1_{\rho^{(i)}_{l} = r} w_{i,s}$
+	
+	
+	
+	
 	
 \end{document}
