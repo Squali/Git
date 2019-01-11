@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  3 DEC 2018 14:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  11 JAN 2019 21:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -73,18 +73,18 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 (./Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -163,12 +163,12 @@ Package epstopdf Info: Source file: <oxlogo.eps>
 (epstopdf)                    size: 354881 bytes
 (epstopdf)             Command: <repstopdf --outfile=oxlogo-eps-converted-to.pd
 f oxlogo.eps>
-(epstopdf)             \includegraphics on input line 26.
+(epstopdf)             \includegraphics on input line 28.
 Package epstopdf Info: Output file is already uptodate.
 <oxlogo-eps-converted-to.pdf, id=1, 284.06125pt x 284.06125pt>
 File: oxlogo-eps-converted-to.pdf Graphic file (type pdf)
 <use oxlogo-eps-converted-to.pdf>
-Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 26.
+Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 28.
 (pdftex.def)             Requested size: 91.04881pt x 91.04881pt.
 
 [1
@@ -176,58 +176,174 @@ Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 26.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./oxlogo-eps-converted-to.
 pdf>]
-LaTeX Font Info:    Try loading font information for U+msa on input line 37.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+Chapter 1.
+[2
+
+]
+Chapter 2.
+LaTeX Font Info:    Try loading font information for U+msa on input line 41.
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 37.
+LaTeX Font Info:    Try loading font information for U+msb on input line 41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (17.33202pt too wide) in paragraph at lines 37--38
-[]$\OML/cmm/m/it/12 l\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 w\OT1/cmr/m/n/12 ); \OM
-L/cmm/m/it/12 D\OT1/cmr/m/n/12 ) = [][] [][](\OML/cmm/m/it/12  \OMS/cmsy/m/n/1
-2 ^^@ \OT1/cmr/m/n/12 1)\OML/cmm/m/it/12 ln\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 w[
-]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 ^^Lln\OT1/cmr/m/n/12 (
-\OML/cmm/m/it/12 w[]\OT1/cmr/m/n/12 ) + [][] [][] \OML/cmm/m/it/12 ln\OT1/cmr/m
-/n/12 (\OML/cmm/m/it/12 ^^U[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/
-it/12 ln\OT1/cmr/m/n/12 ([][] \OML/cmm/m/it/12 ^^U[] \OMS/cmsy/m/n/12 ^^@
- []
+<./images/heatMap.png, id=18, 433.62pt x 289.08pt>
+File: ./images/heatMap.png Graphic file (type png)
+<use ./images/heatMap.png>
+Package pdftex.def Info: ./images/heatMap.png  used on input line 64.
+(pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
+<./images/heatMapCorrection.png, id=20, 433.62pt x 289.08pt>
+File: ./images/heatMapCorrection.png Graphic file (type png)
+<use ./images/heatMapCorrection.png>
+Package pdftex.def Info: ./images/heatMapCorrection.png  used on input line 72.
 
+(pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
+ [3
 
-Overfull \hbox (38.76344pt too wide) in paragraph at lines 50--52
+] [4 <./images/heatMap.png> <./images/heatMapCorrection.png>]
+Overfull \hbox (38.76344pt too wide) in paragraph at lines 94--96
 []$\OT1/cmr/m/n/12 + [][] [] [][] \OML/cmm/m/it/12 w[] \OT1/cmr/m/n/12 + [][] [
 ][] [] [][] 1[]\OML/cmm/m/it/12 w[]$ 
  []
 
-[2] (./Report.aux) ) 
+<./images/CoordinateWiseFunction.png, id=35, 433.62pt x 289.08pt>
+File: ./images/CoordinateWiseFunction.png Graphic file (type png)
+<use ./images/CoordinateWiseFunction.png>
+Package pdftex.def Info: ./images/CoordinateWiseFunction.png  used on input lin
+e 100.
+(pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
+[5 <./images/CoordinateWiseFunction.png>]
+<./images/LambdaEstimation.png, id=45, 578.16pt x 433.62pt>
+File: ./images/LambdaEstimation.png Graphic file (type png)
+<use ./images/LambdaEstimation.png>
+Package pdftex.def Info: ./images/LambdaEstimation.png  used on input line 121.
+
+(pdftex.def)             Requested size: 433.61893pt x 325.2142pt.
+<./images/OriginalPlot.png, id=46, 602.25pt x 602.25pt>
+File: ./images/OriginalPlot.png Graphic file (type png)
+<use ./images/OriginalPlot.png>
+Package pdftex.def Info: ./images/OriginalPlot.png  used on input line 138.
+(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
+<./images/OptimizationPlot.png, id=47, 602.25pt x 602.25pt>
+File: ./images/OptimizationPlot.png Graphic file (type png)
+<use ./images/OptimizationPlot.png>
+Package pdftex.def Info: ./images/OptimizationPlot.png  used on input line 146.
+
+(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
+ [6 <./images/LambdaEstimation.png>]
+[7 <./images/OriginalPlot.png>] [8 <./images/OptimizationPlot.png>]
+<./images/OriginalPlotDegreeCorrection.png, id=59, 602.25pt x 602.25pt>
+File: ./images/OriginalPlotDegreeCorrection.png Graphic file (type png)
+<use ./images/OriginalPlotDegreeCorrection.png>
+Package pdftex.def Info: ./images/OriginalPlotDegreeCorrection.png  used on inp
+ut line 158.
+(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
+<./images/OptimizationPlotDegreeCorrection.png, id=60, 602.25pt x 602.25pt>
+File: ./images/OptimizationPlotDegreeCorrection.png Graphic file (type png)
+<use ./images/OptimizationPlotDegreeCorrection.png>
+Package pdftex.def Info: ./images/OptimizationPlotDegreeCorrection.png  used on
+ input line 166.
+(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ô in font cmr12!
+ [9]
+[10 <./images/OriginalPlotDegreeCorrection.png>] [11 <./images/OptimizationPlot
+DegreeCorrection.png>]
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ¢ in font cmr12!
+ [12]
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmbx12!
+Missing character: There is no Ä in font cmbx12!
+Missing character: There is no ô in font cmbx12!
+ [13]
+<./images/OptimizationPlotSam.png, id=77, 602.25pt x 602.25pt>
+File: ./images/OptimizationPlotSam.png Graphic file (type png)
+<use ./images/OptimizationPlotSam.png>
+Package pdftex.def Info: ./images/OptimizationPlotSam.png  used on input line 2
+95.
+(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
+ [14] [15 <./images/OptimizationPlotSam.png>]
+(./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 1868 strings out of 494923
- 25377 string characters out of 6180741
- 76571 words of memory out of 5000000
- 5152 multiletter control sequences out of 15000+600000
- 10142 words of font info for 38 fonts, out of 8000000 for 9000
+ 1926 strings out of 494923
+ 27062 string characters out of 6180741
+ 78669 words of memory out of 5000000
+ 5200 multiletter control sequences out of 15000+600000
+ 10756 words of font info for 40 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,4n,26p,314b,251s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cme
-x10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ti12.pfb>
-Output written on Report.pdf (2 pages, 438935 bytes).
+ 41i,6n,26p,805b,254s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
+pfb>
+Output written on Report.pdf (15 pages, 885555 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 132 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
