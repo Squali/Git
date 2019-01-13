@@ -4,6 +4,7 @@
 
 %load any additional packages
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{bbm}
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
@@ -175,7 +176,7 @@
 	
 	To evaluate the performance of the models, we make prediction on the preferences for individuals who have not indicated their preferences, provide further preferences from individuals who did, or extract from the lists interpretable information about the structure of the underlying friendship network, e.g. in terms of latent communities. For this we will use different metrics. The ranking gap between latent appreciation, the absolute error in the strengths and the missed community. To do that, we will sample the strengths between individuals $\lambda_{i,j}$ and then sample full rankings from it. From this ranking we then hide a certain part of it, we feed the remaining parts to our model and then compute the error in terms of metrics previously defined to evaluate the performance.
 	
-	\section{Model with Covariates}
+	\chapter{Model with Covariates}
 	
 	The purpose of ERGMs, in a nutshell, is to describe parsimoniously the local selection forces
 	that shape the global structure of a network. To this end, a network dataset, like those
@@ -190,7 +191,7 @@
 	Goodreau, and Morris (2008) say more about the purpose of modeling with ERGMs; yet in
 	this article, we focus primarily on technical details.
 	
-	\subsection{Notation}
+	\section{Notation}
 	Let $N$ be the set of nodes in the network of interest, indexed $\{ 1,...,n\}$ The relationships in
 	the network may be directed (e.g., friendship nominations, messages) or undirected (e.g., sexual
 	partnerships, conversations). In the former case, we define the set of dyads (here used to refer
@@ -206,7 +207,7 @@
 	whether a relationship of interest is present between i and j in a binary network context.
 	
 	
-	\subsection{ERGM model}
+	\section{ERGM model}
 	In the ERGM model (exponential-family random graph models), the distribution of $\textbf{Y}$ can be parameterized in the form:
 	
 	\resizebox{7cm}{!}{$P_{\theta}(Y = y) = \frac{exp((\eta(\theta)) ^{T}*z(x))}{\chi(\theta)}, y \in \mathcal{Y}$}
@@ -219,71 +220,153 @@
 	a feather flock together”), and triad-closure bias (i.e., “a friend of a friend is a
 	friend”) . (Morris, Handcock and Hunter, 2008)
 	
-	\subsection{The p1 Model}
+	\section{The $p1$ Model}
 	
 	The $p_{1}$ model is the first to propose log-linear models for social
-	networks. Suppose that we take Y to be the set of all directed graphs, with independent dyads [i.e., the pairs (Y ij , Y ji ) are independent for different choices of {i, j}] and the following model for tie probabilities:
+	networks. Suppose that we take $\mathcal{Y}$ to be the set of all directed graphs, with independent dyads [i.e., the pairs ($Y_{i,j}$ , $Y_{j,i}$ ) are independent for different choices of $\{i, j\}$] and the following model for tie probabilities:
 	
-	1) 
-	1) ERGM models
-	2) Bernouilli model
-	3) p1 Model
-	4) 
+	\resizebox{15cm}{!}{$P(Y_{i,j} = y_{1}, Y_{j,i} = y_{2}) = exp \{ y_{1}(\mu + \alpha_{i} + \beta_{j}) + y_{2}(\mu + \alpha_{j} + \beta_{i}) + y_{1}y_{2} \rho\} \backslash k_{ij}  $} with $y_{1}, y_{2} = 0,1 ; i,j = 1,...,n; i \neq j $
 	
-	ERGM models • As described, models work very poorly
-	• Learned parameters do not generate data that resembles the input
-	• Tend toward wholly connected or completely empty graphs
+	In this model, we can interpret $\mu$ as a density parameter, constituting an overall mean, $\alpha_{i}$ as a productivity parameter, characterizing i as a sender, $\beta_{j}$ as an attractiveness parameter, characterizing j as a receiver, and $\rho$ as a parameter indicating the force of reciprocation.
 	
+	\section{The $p2$ Model}
 	
+	While ERGMs are useful for modeling global network characteristics, models based on conditional independence (given latent variables) are useful for multiple reasons. First, ERGMs are not well understood and sometimes possess undesirable properties, e.g., model degeneracy. Second, the likelihood function of ERGMs is intractable, complicating statistical computing. Third, there may be unobserved heterogeneity or unobserved structure.
+	Models based on independence conditional on latent variables: random effects models and mixed effects models and extensions; stochastic block models and extensions, including mixed membership models; and latent space models and extensions.
 	
+	The aim of the $p_{2}$ model is to relate binary network data to covariates while taking into account the specific network structure. This requires a kind of bivariate logistic regression model capable of handling the dependence of network data.
+	The $p_{2}$ model is based on the same formula. The density and reciprocity parameters, however, are allowed to vary over dyads, and are therefore denoted $μ_{ij} $ and $\rho_{ij}$. Moreover, parameters $\alpha_{i}$ , $\beta_{j}$ , $\mu_{ij}$ , and $\rho_{ij}$ are further modelled using covariates.
+	We first consider the node-specific parameters $\alpha_{i}$ and $\beta_{j}$. Covariates and random effects are included in a linear regression model for the productivity and attractiveness parameters.
 	
+	$\alpha = X_{1} \gamma_{1} + A$
 	
+	$\beta = X_{2} \gamma_{2} + B$
 	
-	
-	
-	
-	
-	
-	
-	
-	P1 Model : Original exponential family graph, with dyadic independence (facilitate the expression of the likelihood) and $P(Y_{i,j} = y_{1}, Y_{j,i} = y_{2}) \propto exp\{  y_{1}(\mu + \alpha_{i} + \beta_{j}) + y_{2}(\mu + \alpha_{j} + \beta_{i}) + y_{1}y_{2}\rho \}   $
-	
-	
-	Problem : Model degeneracy had proposed tend to, as the network size increases, concentrate an increasingly
-	large probability mass on an increasingly small fraction of possible networks.
-	
-	Models based on independence conditional on latent
-	variables: random
-	effects models and mixed effects models and extensions; stochastic block models and extensions,
-	including mixed membership models; and latent space models and extensions.
-	
-	Assume dyads conditional independent given some latent variables. i.e
-	$P_{\theta}(Y = y | Z = z) = \prod_{(i,j) \in u(\mathbb{Y})} P_{\theta}(Y_{i,j} = y_{i,j}, Y_{j,i} = y_{j,i} | Z = z)$ Except the p2 model, we even assume $Y_{i,j}$ and $Y_{j,i}$ independant given $Z$.
-	Those models can capture network dependencies of interest and are easier to work with in terms of computation.
-	
-	Paper studied uses p2 model and add in a likelihood that take ranking into account. And compare it to other likelihood that do not and compare and draws conditions in wich ranking provide information.
+	This formulation expresses the plausible idea that attractiveness (or popularity) and productivity (or sociability) depend on actor attributes (denoted by $X_{1}$ and $X_{2}$ , respectively, where the same or different attributes may be used for attractiveness and productivity) with corresponding weights $\gamma_{1}$ and $\gamma_{1}$ . Naturally, the attributes do not explain all variation in attractiveness and productivity parameters, as is represented by the residual terms A and B, n $\times$ 1 vectors with components $A_{i}$ and $B_{i}$ . The residuals are modeled as normally distributed random variables with expectation 0 and variances $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ , respectively. Parameters $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ can be interpreted as unexplained variance, that is, the variance of the $\alpha$’s and $\beta$’s that is left after taking into account the effect of the covariates $X_{1}$ and $X_{2}$ . The productivity and attractiveness parameters of the same node
+	are correlated:$\forall i,  cov(A_{i} , B_{i} ) = \sigma_{AB}$. Independence is assumed for parameters of different actors by setting $cov(A_{i} , A_{j} )=cov(B_{i} , B_{j} )=cov(A_{i} , B_{j} ) = 0$ for
+	$i \neq j$ (cf. Wong, 1987).
+	If no external information on actors is available, the terms $X_{1} \gamma_{1}$ and $X_{2} \gamma_{2}$ vanish and $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ denote the variances of the $\alpha$ and $\beta$ parameters, respectively. Then a pure random effects model results with, apart from the density and reciprocity parameters, only two variance parameters and one covariance parameter. Thus, the $p_{2}$ model without covariates is a more parsimonious model than the $p_{1}$ model with well-interpretable parameters. Obviously, the fit of $p_{1}$
+	will be better than the fit of $p_{2}$ without covariates.
 	
 	
+	\section{The SRM Model}
 	
-	These sufficient statistics typically embody the
-	features of the network of interest that are believed to be significant to the social
-	process which had produced it, such as degree distribution (e.g., propensity
-	towards monogamy in sexual partnership networks), homophily (i.e., “birds of
-	a feather flock together”), and triad-closure bias (i.e., “a friend of a friend is a
-	friend”) . (Morris, Handcock and Hunter, 2008)
-	A major limitation of ERGMs to date has been t
+	ERGM models models work very poorly, the learned parameters do not generate data that resembles the input and tend toward wholly connected or completely empty graphs. Similarly, Since a binary random graph model does not accommodate rank data, analysis of these data with such a model typically begins by reducing all positive ranked relations to “ones,” and all negative ranked relations to “zeros,” leaving unranked relations as zeros as well. Such a data analysis essentially throws away some of the information in the data. Furthermore, the support of most binary random graph models consists of all possible graphs on the node set. In contrast, the data collection scheme used by Sampson (1969) was censored, as no graph with more than three outgoing edges per node could have been observed.
+	
+	We take the same formulation as for the community representation. Latent variable $\textbf{Y}$ representing the strength of affiliation between individuals. And $\textbf{S}$ the sociomatrix given in data. $\textbf{S}$ =
+	$\{ s_{i,j} : i \neq j\}$, coded so that si,j = 0 if j is not nominated by i, si,j = 1 if j is i’s least favored
+	nomination, and so on. Under this coding, $s_{i,j}$ > $s_{i,k}$ if $i$ scores $j$ “more highly” than $k$, or if $i$
+	nominates $j$ but not $k$. Letting $a_{i} = \{1, ..., n\} \backslash \{i\}$ be the set of individuals whom person $i$ may potentially nominate, each observed outdegree $d_{i} = \sum_{j \in a_{i}} 1(s_{i,j} > 0)$ satisfies $d_{i} \leq m$.
+	
+	We then write
+	
+	$s_{i,j} = [(m-rank_{i}(y_{i,j} + 1) \wedge 0)] \times 1(y_{i,j} > 0 )$
+	
+	and its inverse:
+	
+	$s_{i,j} > 0 \Rightarrow y_{i,j} > 0$
+	
+	$s_{i,j} > s_{i,k} \Rightarrow y_{i,j} > y_{i,k}$
+	
+	$s_{i,j} = 0$ and $d_{i} < m \Rightarrow y_{i,j} \leq 0$
+	
+	Given a statistical model $\{p(Y|\theta) : \theta \in \Theta \}$ for the underlying social relations Y, inference for
+	the parameter θ can be based on a likelihood derived from the observed scores S. The
+	likelihood is, as usual, the probability of the observed data S as a function of the parameter
+	θ. To obtain this probability, let F(S) denote the set of Y-values that are consistent with S in
+	terms of associations (2)–(4) above. Since the entries of S are the observed scores if and
+	only if Y ∈ F(S), the likelihood is given by
+	
+	$L_{F}(\theta : \textbf{S}) = Pr(Y \in F(S) | \theta) = \int_{F(S)} p(Y|\theta) d\mu(Y)$ where μ is a measure that dominates the probability densities $\{p(Y|\theta) : \theta \in \Theta \}$.
 	
 	
-	\subsection{Random effects and mixed effects models}
-	p2 modelp1 model can be
-	represented as a generalized linear model and the p2 model as a generalized linear mixed model
+	Given current values of $(\theta, Y)$, one step of the Gibbs sampler for the FRN likelihood proceeds by updating the values as follows:
+	
+	1) Simulate $\theta \sim p(Y|\theta)$
+	2) For each $i \neq j$, simulate $y_{i,j} \sim p(y_{i,j}|\theta, Y_{-(i,j)}, Y \in F(S))$ as follows:
+	
+	a) if $s_{i,j} > 0$, simulate
+	
+	$y_{i,j} \sim p(y_{i,j}| Y_{-(i,j)},\theta) \times 1(max \{ y_{i,k} : s_{i,k} < s_{i,j} \} \leq y_{i,j} \leq min \{ y_{i,k} : s_{i,k} > s_{i,j} \} ); $
+	
+	b)  if $s_{i,j} = 0$, and $d_{i} < m$ simulate $y_{i,j} \sim p(y_{i,j}| Y_{-(i,j)}, \theta) \times 1(y_{i,j} \leq 0)$;
+	
+	c) if $s_{i,j} = 0$, and $d_{i} = m$ simulate $y_{i,j} \sim p(y_{i,j}| Y_{-(i,j)}, \theta) \times 1(y_{i,j} \leq min \{ y_{i,k} : s_{i,k} > 0 \})$;
+	
+	In the above steps, $"y \sim f(y)"$ means $"$ simulate $y$ from a distribution with density proportional
+	to $f(y)$.$ " $ For each ordered pair (i, j), step 2 of this algorithm will generate a value of $y_{i,j}$ from
+	its full conditional distribution, constrained so that conditions (2)–(4) that define the FRN likelihood are met.
+	
+	TO deal with the previous remarks, we apply a model in the case where $\theta$  represents the parameters in the following standard regression model for relational data:
+	
+	$y_{i,j} = $ \boldmath $\beta^{T} {x_{i,j}}$ \unboldmath + $a_{i} + b_{i} + \epsilon_{i,j}$
+	
+	\(
+	\begin{pmatrix}
+	a_{i} \\
+	b_{i}
+	\end{pmatrix}
+	\), i = 1,...,n $\sim $ i.i.d normal(0,$\Sigma_{ab}$)
+	
+	\(
+	\begin{pmatrix}
+	\epsilon_{i,j} \\
+	\epsilon_{j,i}
+	\end{pmatrix}
+	\), i = 1,...,n $\sim $ i.i.d normal(0,$\sigma^{2}$ $\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}$)
+	
+	The additive row effect $a_{i}$ is often interpreted as a measure of person $i$’s "sociability" whereas the additive column effect $b_{i}$ is taken as a measure of $i$’s "popularity.". The parameter $\rho$ represents potential correlation between $y_{i,j} $ and $y_{j,i}$. In a mixed-effects version
+	of this model, the possibility that a person’s sociability $a_{i}$ is correlated with their popularity $b_{i}$ can be represented with a covariance matrix $\Sigma_{ab}$. The covariance among the elements of $Y = {y_{i,j} : i \neq j}$ induced by $\Sigma_{ab}$ and is called the SRM (Warner et al. ,1979).
+	\chapter{Test on simulated Data}
+	
+	\section{Fixed Community representation}
+	
+	We draw a simulation of a network with $n = 25$, $ p = 3$, $k = 4$, $a = 2$, $b = 2$, optimized it. We obtain the graph with ranking gap of 5.83 for a mean of 8.32 and AE of 0.013
+		
+	\begin{figure}
+		\centering
+		%		\textbf{Your title}\par\medskip
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{LambdaEstimationFixedPrior}
+		\caption{Lambda Estimation Fixed Prior}
+		\label{label-image9}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		%		\textbf{Your title}\par\medskip
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OriginalPlotFixedPrior}
+		\caption{Original Graph}
+		\label{label-image10}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		%		\textbf{Your title}\par\medskip
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OptimizationPlotFixedPrior}
+		\caption{Inferred Graph}
+		\label{label-image11}
+	\end{figure}
+	
+	Now we made a simulation of 10 networks and measured the mean Absolute Error and Ranking Gap.
+	
+	\begin{figure}
+		\centering
+		%		\textbf{Your title}\par\medskip
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SimulationGap}
+		\caption{Inferred Graph}
+		\label{label-image12}
+	\end{figure}
+	
+	We have a mean ranking gap of $2.8871111111111114$ compared to a mean of 5. A a mean AE of $0.022484955968703896$
 	
 	
-	\subsection{Stochastic block models}
+	\section{Model With Degree Correction}
 	
-	\subsection{Latent space models}
 	
-	\section{Simulations on the Sampson’s monk dataset}
+	
+	
+	
+	\chapter{Simulations on the Sampson’s monk dataset}
 	In this part we use the The data set collected by Sampson (1968) this is a classic data set in social network analysis. The data set summarizes relationships, observed at three distinct time points, among 18 monks who were about to enter a monastery when a conflict erupted. We use here the directed network where $y_{i,j} = 1$ denotes that monk i ranked monk j among his top three preferred individuals and $y_{i,j} = 0$ otherwise. The directed network is shown in Figure \ref{label-image4} , where circles represent monks and directed edges are oriented from i to j whenever $y_{i,j} = 1$. The monks are divided by Sampson into three groups: Loyal Opposition, Turks, and Outcasts.
 	
 	We applied the same method as for the simulated data and obtained the following community. We can observe that our model identifies exactly the same clustering of communities as the ones observed by Sampson. Namely the Loyal Opposition (Red community), Turks (Green Community), and Outcasts (Blue Community). In this graph the individuals are labeled according to their number provided with their names in the data set package and not according to their rank in the data-frame.
