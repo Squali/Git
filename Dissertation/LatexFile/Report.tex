@@ -34,6 +34,16 @@
 	\chapter{Introduction}
 	This paper aims at performing inference on social network through partial ranking of the individuals
 	
+	We use the Placket-Luce model: $p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}  } $ where $K$ is the number of ranked individuals.
+	
+	The first thing to do is to prove that Plackett-Luce is well defined as a probability distribution. It is easy to prove it by induction over $K \leq n$.
+	
+	We denote $\Omega_{K,n} = \{ \rho : \{1,...,k\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}  \}$ 
+	
+	For $K = 1 :$
+	
+	$\sum_{\rho \in \Omega_{1,n} }p(\rho | (\lambda)) = \sum_{k \neq i}\frac{\lambda_{i,k}}{\sum_{j \neq i}\lambda_{i,j}} = 1$
+	
 	
 	\chapter{Community representation}
 	\section{Mathematic Formulation}
@@ -58,21 +68,20 @@
 	In this \ref{label-image7}
 	
 	The main issue regarding this geometric approach is that having a bigger affiliation means that the community points have a greater scalar product, but doesn't mean those points are nearer. If we wanted to use a clustering approach to this problem, we should build a space in which the mapping to this space make it equivalent having great scalar product in the input space and being near in the output space
-	
 	\begin{figure}
 		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{heatMap}
-		\caption{Topography of the community space for the same gamma distribution}
-		\label{label-image7}
-	\end{figure}
-
-	\begin{figure}
-		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{heatMapCorrection}
-		\caption{Topography of the community space for different gamma distribution}
-		\label{label-image8}
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{heatMap} % first figure itself
+			\caption{Topography of the community space for the same gamma distribution}
+			\label{label-image7}
+		\end{minipage}\hfill
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{heatMapCorrection} % second figure itself
+			\caption{Topography of the community space for different gamma distribution}
+			\label{label-image8}
+		\end{minipage}
 	\end{figure}
 
 
@@ -136,7 +145,7 @@
 	\begin{figure}
 		\centering
 		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OriginalPlot}
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio,scale=0.5]{OriginalPlot}
 		\caption{Original Community description}
 		\label{label-image2}
 	\end{figure}
@@ -299,7 +308,7 @@
 	
 	TO deal with the previous remarks, we apply a model in the case where $\theta$  represents the parameters in the following standard regression model for relational data:
 	
-	$y_{i,j} = $ \boldmath $\beta^{T} {x_{i,j}}$ \unboldmath + $a_{i} + b_{i} + \epsilon_{i,j}$
+	$y_{i,j} = $ \boldmath $\beta^{T} {x_{i,j}}$ \unboldmath + $a_{i} + b_{j} + \epsilon_{i,j}$
 	
 	\(
 	\begin{pmatrix}
@@ -317,6 +326,67 @@
 	
 	The additive row effect $a_{i}$ is often interpreted as a measure of person $i$’s "sociability" whereas the additive column effect $b_{i}$ is taken as a measure of $i$’s "popularity.". The parameter $\rho$ represents potential correlation between $y_{i,j} $ and $y_{j,i}$. In a mixed-effects version
 	of this model, the possibility that a person’s sociability $a_{i}$ is correlated with their popularity $b_{i}$ can be represented with a covariance matrix $\Sigma_{ab}$. The covariance among the elements of $Y = {y_{i,j} : i \neq j}$ induced by $\Sigma_{ab}$ and is called the SRM (Warner et al. ,1979).
+	
+	\section{Plackett-Luce Model with Covariates}
+	
+	To adapt a model with covariates to the Bradley-Terry likelihood wi will model the strength matrix as follow:
+	
+	$log(y_{i,j}) = $ \boldmath $\beta^{T} {x_{i,j}}$ \unboldmath + $a_{i} + b_{j} + \epsilon_{i,j}$
+	
+	\(
+	\begin{pmatrix}
+	\epsilon_{i,j} \\
+	\epsilon_{j,i}
+	\end{pmatrix}
+	\), i = 1,...,n $\sim $ i.i.d normal(0,$\sigma^{2}$ $\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}$)
+	
+	
+	We will treat \boldmath $\beta$ \unboldmath, \boldmath $a$ \unboldmath \boldmath $b$ \unboldmath and $\Sigma_{\epsilon}$ as parameters.
+	
+	To perform bayesian inference, we need to compute an integral over a high dimensional, and intractable set of $(\lambda)$.
+	
+	$L(\theta | (\rho)) \propto p(\theta)p((\rho) | \theta) = p(\theta)\int_{(\lambda)}p((\lambda) | \theta)p((\rho) | (\lambda)  $
+	
+	
+	Given the observed ranks $(\rho)$ and a prior distribution $p(\theta)$ over the parameter space, the joint posterior distribution with density $p(\theta, (\lambda)|(\rho)$ can be approximated by generating a Markov chain whose stationary distribution is that of $(\theta, (\lambda)) | (\rho)$. The values of $\theta$ simulated from this chain provide an approximation to the (marginal) posterior distribution of $\theta$ given by the information from $(\rho)$.
+	
+	One such MCMC algorithm is the Metropolis Hasting Algorithm.
+	
+	Given current values of $(\theta, Y)$, one step of the Metropolis - Hasting for the Plackett-Luce likelihood proceeds by updating the values as follows:
+	\begin{enumerate}
+	
+	\item Define the target distribution $\pi(.)$. As we sample from the joint distribution, we can take the following target distribution.
+	
+	$p(\theta, (\lambda)|(\rho) \propto p(\theta) \times p((\lambda) | \theta)\times p((\rho)|(\lambda)) = \pi(\theta, (\lambda))$ with :
+	\begin{enumerate}
+	\item $p(\theta)$ prior over the parameters.
+	
+	\item 
+	\(
+	\begin{pmatrix}
+	log(\lambda_{i,j}) \\
+	log(\lambda_{j,i})
+	\end{pmatrix}
+	\) $|\theta$ , $i < j$ $\sim $ i.i.d $\mathcal{N}$($\begin{pmatrix} \beta^{T}x_{i,j} + a_{i} + b_{j} \\  \beta^{T}x_{j,i} + a_{j} + b_{i} \end{pmatrix}$,$\sigma^{2}$ $\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}$)
+	
+	\item $p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{p_{i}}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}  } $
+	\end{enumerate}
+	\item Choose a proposal distribution $q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))$. It needs to be easy to simulate and determine an irreducible chain. We can take a log-normal distribution for each element of $log(\lambda)^{*}$ with median $log(\lambda_{i,j})$. A normal distribution for \boldmath $\beta, a, b$ \unboldmath, and finally $\mathcal{U}[\rho - a, \rho + a]$ and $\mathcal{U}[\sigma - a, \sigma + a]$ for $\rho^{*}$ and $\sigma^{*}$ with $a$ not decided yet but try small as noise.
+	
+	\item Write down the algorithm. Given $(\theta, (\lambda))$ :
+	\begin{enumerate}
+	\item Sample $(\theta^{*}, (\lambda)^{*})$ from the $q(.|\theta, (\lambda))$ previous distribution.
+	
+	\item Sample $u \sim \mathcal{U}[0,1]$
+	
+	\item If $u < \alpha = min\{ 1, \frac{\pi(\theta^{*}, (\lambda)^{*})q(\theta, (\lambda) |\theta^{*}, (\lambda)^{*})}{\pi(\theta, (\lambda))q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))}   \}$ then set $(\theta, (\lambda)) = (\theta^{*}, (\lambda)^{*})$ else keep the same value.
+	
+	
+	
+	\end{enumerate}
+	
+\end{enumerate}
+	
 	\chapter{Test on simulated Data}
 	
 	\section{Fixed Community representation}
@@ -360,8 +430,51 @@
 	We have a mean ranking gap of $2.8871111111111114$ compared to a mean of 5. A a mean AE of $0.022484955968703896$
 	
 	
+	We run for 100 networks with the same parameters.
+	We have mean ranking gap of 2.9304888888888896 and mean AE of 0.02122157183931606
+	
+	\begin{figure}
+		\centering
+		%		\textbf{Your title}\par\medskip
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SimulationGap100}
+		\caption{Ranking Gap Community Representation}
+		\label{label-image13}
+	\end{figure}
+	
+	
 	\section{Model With Degree Correction}
 	
+	We draw a simulation of 100 networks with $n = 100$, $ p = 3$, $k = 4$, $a = 2$, $b = 2$, optimized it. We obtain the graph with ranking gap of 2.942666666666666 for a mean of 5 and AE of 0.03798207013695899
+	
+	\begin{figure}
+		\centering
+		%		\textbf{Your title}\par\medskip
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SimulationGapDegreeCorr}
+		\caption{Ranking Gap Degree Correction}
+		\label{label-image14}
+	\end{figure}
+	
+	
+	\section{Model With Covariates}
+	
+	We simulated 100 networks of 100 individuals with the rank model:
+	
+	$y_{i,j} = \beta_{0} + a_{i} + b_{j} + \epsilon_{i,j}$
+	
+	
+	\(
+	\begin{pmatrix}
+	a_{i} \\
+	b_{i}
+	\end{pmatrix}
+	\), i = 1,...,n $\sim $ i.i.d normal(0,$\Sigma_{ab}$)
+	
+	\(
+	\begin{pmatrix}
+	\epsilon_{i,j} \\
+	\epsilon_{j,i}
+	\end{pmatrix}
+	\), i = 1,...,n $\sim $ i.i.d normal(0,$\sigma^{2}$ $\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}$)
 	
 	
 	
