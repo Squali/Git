@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  24 JAN 2019 13:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  24 JAN 2019 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -398,60 +398,64 @@ Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
  [15] [16] [17]
 Chapter 4.
-<./images/LambdaEstimationFixedPrior.png, id=91, 433.62pt x 289.08pt>
+[18
+
+]
+Chapter 5.
+<./images/LambdaEstimationFixedPrior.png, id=94, 433.62pt x 289.08pt>
 File: ./images/LambdaEstimationFixedPrior.png Graphic file (type png)
 <use ./images/LambdaEstimationFixedPrior.png>
 Package pdftex.def Info: ./images/LambdaEstimationFixedPrior.png  used on input
- line 415.
+ line 422.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<./images/OriginalPlotFixedPrior.png, id=92, 602.25pt x 602.25pt>
+<./images/OriginalPlotFixedPrior.png, id=95, 602.25pt x 602.25pt>
 File: ./images/OriginalPlotFixedPrior.png Graphic file (type png)
 <use ./images/OriginalPlotFixedPrior.png>
 Package pdftex.def Info: ./images/OriginalPlotFixedPrior.png  used on input lin
-e 423.
+e 430.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-<./images/OptimizationPlotFixedPrior.png, id=93, 602.25pt x 602.25pt>
+<./images/OptimizationPlotFixedPrior.png, id=96, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotFixedPrior.png Graphic file (type png)
 <use ./images/OptimizationPlotFixedPrior.png>
 Package pdftex.def Info: ./images/OptimizationPlotFixedPrior.png  used on input
- line 431.
+ line 438.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-<./images/SimulationGap.png, id=94, 578.16pt x 433.62pt>
+<./images/SimulationGap.png, id=97, 578.16pt x 433.62pt>
 File: ./images/SimulationGap.png Graphic file (type png)
 <use ./images/SimulationGap.png>
-Package pdftex.def Info: ./images/SimulationGap.png  used on input line 441.
+Package pdftex.def Info: ./images/SimulationGap.png  used on input line 448.
 (pdftex.def)             Requested size: 433.61893pt x 325.2142pt.
-<./images/SimulationGap100.png, id=95, 433.62pt x 289.08pt>
+<./images/SimulationGap100.png, id=98, 433.62pt x 289.08pt>
 File: ./images/SimulationGap100.png Graphic file (type png)
 <use ./images/SimulationGap100.png>
-Package pdftex.def Info: ./images/SimulationGap100.png  used on input line 455.
+Package pdftex.def Info: ./images/SimulationGap100.png  used on input line 462.
 
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<./images/SimulationGapDegreeCorr.png, id=96, 433.62pt x 289.08pt>
+<./images/SimulationGapDegreeCorr.png, id=99, 433.62pt x 289.08pt>
 File: ./images/SimulationGapDegreeCorr.png Graphic file (type png)
 <use ./images/SimulationGapDegreeCorr.png>
 Package pdftex.def Info: ./images/SimulationGapDegreeCorr.png  used on input li
-ne 468.
+ne 475.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-[18
+[19
 
-] [19 <./images/LambdaEstimationFixedPrior.png>] [20 <./images/OriginalPlotFixe
-dPrior.png>] [21 <./images/OptimizationPlotFixedPrior.png>] [22 <./images/Simul
-ationGap.png>] [23 <./images/SimulationGap100.png> <./images/SimulationGapDegre
+] [20 <./images/LambdaEstimationFixedPrior.png>] [21 <./images/OriginalPlotFixe
+dPrior.png>] [22 <./images/OptimizationPlotFixedPrior.png>] [23 <./images/Simul
+ationGap.png>] [24 <./images/SimulationGap100.png> <./images/SimulationGapDegre
 eCorr.png>]
-Chapter 5.
+Chapter 6.
 Missing character: There is no â in font cmbx12!
 Missing character: There is no € in font cmbx12!
 Missing character: There is no ™ in font cmbx12!
-<./images/OptimizationPlotSam.png, id=120, 602.25pt x 602.25pt>
+<./images/OptimizationPlotSam.png, id=123, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotSam.png Graphic file (type png)
 <use ./images/OptimizationPlotSam.png>
 Package pdftex.def Info: ./images/OptimizationPlotSam.png  used on input line 5
-07.
+14.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-[24
+[25
 
-] [25 <./images/OptimizationPlotSam.png>] (./Report.aux) ) 
+] [26 <./images/OptimizationPlotSam.png>] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
  2584 strings out of 494923
  35265 string characters out of 6180741
@@ -477,10 +481,10 @@ e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Report.pdf (25 pages, 1273623 bytes).
+Output written on Report.pdf (26 pages, 1273940 bytes).
 PDF statistics:
- 183 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
+ 186 PDF objects out of 1000 (max. 8388607)
+ 114 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
