@@ -34,40 +34,50 @@
 	\chapter{Introduction}
 	This paper aims at performing inference on social network through partial ranking of the individuals
 	
-	We use the Placket-Luce model: $p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}  } $ where $K$ is the number of ranked individuals.
+	We use the Plackett-Luce model: 
+	\begin{equation}
+		p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}}
+	\end{equation}
+	Where $K$ is the number of ranked individuals. This model is equivalent to successively choose our favorite individual by pondering our strength of affiliation with each person, and take randomly the best remaining by taking into account the proportion of this strength among the other, which is a conceivable model.
 	
-	The first thing to do is to prove that Plackett-Luce is well defined as a probability distribution. It is easy to prove it by induction over $K \leq n$.
+	The first thing to do is to prove that Plackett-Luce is well defined as a probability distribution. It is easy to prove it by induction over $K \leq n$. We denote $\Omega_{K,n} := \{ \rho : \{1,...,K\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}  \}$. For $K = 1 :$
 	
-	We denote $\Omega_{K,n} = \{ \rho : \{1,...,k\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}  \}$ 
+	\begin{equation}
+	\sum_{\rho \in \Omega_{1,n} }p(\rho | (\lambda)) = \sum_{k \neq i}\frac{\lambda_{i,k}}{\sum_{j \neq i}\lambda_{i,j}} = 1
+	\end{equation}
 	
-	For $K = 1 :$
+	If the result is true for $K - 1 < n$ then, with $\forall j \neq i, \Omega_{K,n,j} = \{ \rho : \{1,...,K\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}, \rho(1) = j\}$ and $\hat{(\lambda)}_{j}$ the matrix without column $j$:
+	\begin{equation}
+	\sum_{\rho \in \Omega_{K,n} }p(\rho | (\lambda)) = \sum_{j = 1}^{n} \sum_{\rho \in \Omega_{K,n,j}}p(\rho | (\lambda))
+	\end{equation}
 	
-	$\sum_{\rho \in \Omega_{1,n} }p(\rho | (\lambda)) = \sum_{k \neq i}\frac{\lambda_{i,k}}{\sum_{j \neq i}\lambda_{i,j}} = 1$
+	\begin{equation}
+	= \sum_{j = 1}^{n} \frac{\lambda_{i,j}}{\sum_{l \neq i}\lambda_{i,l}} \underbrace{\sum_{\rho \in \Omega_{K-1,n-1}}p(\rho | \hat{(\lambda)}_{j})}_\text{= 1 by induction} = 1
+	\end{equation}
 	
 	
 	\chapter{Community representation}
 	\section{Mathematic Formulation}
 	Here we suppose that the strength between individuals are characterized by their similitude to certain communities.
 	
-	We introduce $p$ the number of communities and $(w_{i,k})$ the strength of affiliation of the individual $i$ to the community $p$.
-	
-	$\lambda_{i,j} = \sum_{k = 1}^{p} w_{i,k} w_{j,k}$
+	We introduce $p$ the number of communities and $(w_{i,k})_{1 \leq i \leq n,1 \leq k \leq p }$ the strength of affiliation of the individual $i$ to the community $p$.
+	\begin{equation}
+	\lambda_{i,j} = \sum_{k = 1}^{p} w_{i,k} w_{j,k}
+	\end{equation}
 	
 	This formulation is equivalent to the rank matrix approximation often encountered in the literature where we assume that:
 	
-	$(\lambda) = WW^{T}$ where $W$ is the matrix of the $(w_{i,k})$
+	\begin{equation}
+	(\lambda) = WW^{T}
+	\end{equation} where $W$ is the matrix of the $(w_{i,k})$
 	
 	We suppose here that the strength of the relations are only determined by the proximity with a certain community hence that the relations are reciprocal.
-	
 	From the reordering inequality, we can observe that $\lambda_{i,j}$ is maximized when both $i$ and $j$ have the same community ranking preferences.
-	
 	We can interpret the formula $\lambda_{i,j} = \sum_{k = 1}^{p} w_{i,k} w_{j,k}$ also as a scalar product in the p-dimensional space of communities. In this space, each individual is a point represented by a vector $w_{i} \in (\mathbb{R}^{+})^{p} $ the strength of affiliation is also computed by $\lambda_{i,j} = ||w_{i}||.||w_{j}||.cos(\theta)$ we can interpret the norm of the vector as the individual global influence or sociability, and the $\theta$ as the divergence in personality. Hence a given individual will appreciate another individual with great sociability but different personality or views as much as a low sociability individual with the same mindset.
-	
 	In this interpretation, the prior function attributed to the $w_{i,k}$ is equivalent to putting a topography on the space, allowing points to lie more likely in a certain area.
+	This is illustrated in the Figure \ref{label-image7}
 	
-	In this \ref{label-image7}
-	
-	The main issue regarding this geometric approach is that having a bigger affiliation means that the community points have a greater scalar product, but doesn't mean those points are nearer. If we wanted to use a clustering approach to this problem, we should build a space in which the mapping to this space make it equivalent having great scalar product in the input space and being near in the output space
+	The main issue regarding this geometric approach is that having a bigger affiliation means that the community points have a greater scalar product, but doesn't mean those points are nearer. If we wanted to use a clustering approach to this problem, we should build a space in which the mapping to this space make it equivalent having great scalar product in the input space and being near in the output space.
 	\begin{figure}
 		\centering
 		\begin{minipage}{0.45\textwidth}
@@ -87,23 +97,22 @@
 
 	\section{Computation of the posterior}
 	Let's define the log-posterior of the community representation. Which is the sum of the log priors of the parameters and the log-likelihood. 
-	
-	$l((w);D) = \sum_{i = 1}^{n} \sum_{k = 1}^{p} (\alpha - 1)ln(w_{i,k}) - \beta w_{i,k} + \sum_{i = 1}^{n} \sum_{j = 1}^{K} ln(\lambda_{i,\rho_{j}}) - ln(\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j-1} \lambda_{i,\rho_{l}})$
+	\begin{equation}
+	l((w);D) = \sum_{i = 1}^{n} \sum_{k = 1}^{p} (\alpha - 1)ln(w_{i,k}) - \beta w_{i,k} + \sum_{i = 1}^{n} \sum_{j = 1}^{K} ln(\lambda_{i,\rho_{j}}) - ln(\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j-1} \lambda_{i,\rho_{l}})
+	\end{equation}
 	
 	To make the optimization easier, we can compute the gradient of the posterior according to the parameter $w_{r,s}$
 	
-	With $\frac{\partial \lambda_{i,j}}{\partial w_{r,s}} = 1_{i = r} w_{j,s} + 1_{j = r} w_{i,s}$
-	
+	With 
+	\begin{equation}
+	\frac{\partial \lambda_{i,j}}{\partial w_{r,s}} = 1_{i = r} w_{j,s} + 1_{j = r} w_{i,s}
+	\end{equation}
 	We have :
-	$\frac{\partial l((w);D)}{\partial w_{r,s}} = \frac{a-1}{w_{r,s}} - b 
-	+ \sum_{j = 1}^{K} \frac{1}{\lambda_{r,\rho^{(r)}_{j}}} w_{\rho^{(r)}_{j},s} 
-	+ \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\lambda_{i,r}} w_{i,s} 1_{\rho^{(r)}_{j} = r}
-	- \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{j \neq r} w_{j,s}
-	- \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} w_{i,s}$
 	
-	$ + \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{l = 1}^{j-1} w_{\rho^{(r)}_{l},s}
-	+ \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} \sum_{l = 1}^{j - 1} 1_{\rho^{(i)}_{l} = r} w_{i,s}$
-	
+	\begin{multline}
+	\frac{\partial l((w);D)}{\partial w_{r,s}} = \frac{a-1}{w_{r,s}} - b + \sum_{j = 1}^{K} \frac{1}{\lambda_{r,\rho^{(r)}_{j}}} w_{\rho^{(r)}_{j},s} + \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\lambda_{i,r}} w_{i,s} 1_{\rho^{(r)}_{j} = r} - \\ \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{j \neq r} w_{j,s} - \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} w_{i,s} + \\ \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{l = 1}^{j-1} w_{\rho^{(r)}_{l},s} + \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} \sum_{l = 1}^{j - 1} 1_{\rho^{(i)}_{l} = r} w_{i,s}	
+	\end{multline}
+
 	\begin{figure}
 		\centering
 		%		\textbf{Your title}\par\medskip
@@ -219,7 +228,9 @@
 	\section{ERGM model}
 	In the ERGM model (exponential-family random graph models), the distribution of $\textbf{Y}$ can be parameterized in the form:
 	
-	\resizebox{7cm}{!}{$P_{\theta}(Y = y) = \frac{exp((\eta(\theta)) ^{T}*z(x))}{\chi(\theta)}, y \in \mathcal{Y}$}
+	\begin{equation}
+	P_{\theta}(Y = y) = \frac{exp((\eta(\theta)) ^{T}*z(x))}{\chi(\theta)}, y \in \mathcal{Y}
+	\end{equation}
 	
 	where $\theta$ is a q-vector of model parameters, which are mapped to a p-vector of natural parameters
 	by $\eta(.)$, and $g(.)$ is a p-vector of sufficient statistics, which capture network features of interest. These sufficient statistics typically embody the
@@ -234,7 +245,9 @@
 	The $p_{1}$ model is the first to propose log-linear models for social
 	networks. Suppose that we take $\mathcal{Y}$ to be the set of all directed graphs, with independent dyads [i.e., the pairs ($Y_{i,j}$ , $Y_{j,i}$ ) are independent for different choices of $\{i, j\}$] and the following model for tie probabilities:
 	
-	\resizebox{15cm}{!}{$P(Y_{i,j} = y_{1}, Y_{j,i} = y_{2}) = exp \{ y_{1}(\mu + \alpha_{i} + \beta_{j}) + y_{2}(\mu + \alpha_{j} + \beta_{i}) + y_{1}y_{2} \rho\} \backslash k_{ij}  $} with $y_{1}, y_{2} = 0,1 ; i,j = 1,...,n; i \neq j $
+	\begin{multline}
+	P(Y_{i,j} = y_{1}, Y_{j,i} = y_{2}) = exp \{ y_{1}(\mu + \alpha_{i} + \beta_{j}) + y_{2}(\mu + \alpha_{j} + \beta_{i}) + y_{1}y_{2} \rho\} \backslash k_{ij} \\  y_{1}, y_{2} = 0,1 ; i,j = 1,...,n; i \neq j 
+	\end{multline}
 	
 	In this model, we can interpret $\mu$ as a density parameter, constituting an overall mean, $\alpha_{i}$ as a productivity parameter, characterizing i as a sender, $\beta_{j}$ as an attractiveness parameter, characterizing j as a receiver, and $\rho$ as a parameter indicating the force of reciprocation.
 	
@@ -244,13 +257,16 @@
 	Models based on independence conditional on latent variables: random effects models and mixed effects models and extensions; stochastic block models and extensions, including mixed membership models; and latent space models and extensions.
 	
 	The aim of the $p_{2}$ model is to relate binary network data to covariates while taking into account the specific network structure. This requires a kind of bivariate logistic regression model capable of handling the dependence of network data.
-	The $p_{2}$ model is based on the same formula. The density and reciprocity parameters, however, are allowed to vary over dyads, and are therefore denoted $μ_{ij} $ and $\rho_{ij}$. Moreover, parameters $\alpha_{i}$ , $\beta_{j}$ , $\mu_{ij}$ , and $\rho_{ij}$ are further modelled using covariates.
+	The $p_{2}$ model is based on the same formula. The density and reciprocity parameters, however, are allowed to vary over dyads, and are therefore denoted $\mu_{ij} $ and $\rho_{ij}$. Moreover, parameters $\alpha_{i}$ , $\beta_{j}$ , $\mu_{ij}$ , and $\rho_{ij}$ are further modelled using covariates.
 	We first consider the node-specific parameters $\alpha_{i}$ and $\beta_{j}$. Covariates and random effects are included in a linear regression model for the productivity and attractiveness parameters.
 	
-	$\alpha = X_{1} \gamma_{1} + A$
-	
-	$\beta = X_{2} \gamma_{2} + B$
-	
+	\begin{equation}
+	\begin{cases}
+	\alpha = X_{1} \gamma_{1} + A \\
+	\beta = X_{2} \gamma_{2} + B
+	\end{cases}
+	\end{equation}
+
 	This formulation expresses the plausible idea that attractiveness (or popularity) and productivity (or sociability) depend on actor attributes (denoted by $X_{1}$ and $X_{2}$ , respectively, where the same or different attributes may be used for attractiveness and productivity) with corresponding weights $\gamma_{1}$ and $\gamma_{1}$ . Naturally, the attributes do not explain all variation in attractiveness and productivity parameters, as is represented by the residual terms A and B, n $\times$ 1 vectors with components $A_{i}$ and $B_{i}$ . The residuals are modeled as normally distributed random variables with expectation 0 and variances $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ , respectively. Parameters $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ can be interpreted as unexplained variance, that is, the variance of the $\alpha$’s and $\beta$’s that is left after taking into account the effect of the covariates $X_{1}$ and $X_{2}$ . The productivity and attractiveness parameters of the same node
 	are correlated:$\forall i,  cov(A_{i} , B_{i} ) = \sigma_{AB}$. Independence is assumed for parameters of different actors by setting $cov(A_{i} , A_{j} )=cov(B_{i} , B_{j} )=cov(A_{i} , B_{j} ) = 0$ for
 	$i \neq j$ (cf. Wong, 1987).
