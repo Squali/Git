@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  25 JAN 2019 18:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  26 JAN 2019 00:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -128,35 +128,64 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 (Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 )
-(./Report.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen114
+\captionmargin@=\dimen115
+\captionwidth=\dimen116
+\caption@tempdima=\dimen117
+\caption@indent=\dimen118
+\caption@parindent=\dimen119
+\caption@hangindent=\dimen120
+)
+\c@ContinuedFloat=\count100
+)
+\c@subfigure=\count101
+\c@subtable=\count102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count103
+\float@exts=\toks21
+\float@box=\box28
+\@float@everytoks=\toks22
+\@floatcapt=\box29
+) (./Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count100
-\scratchdimen=\dimen114
-\scratchbox=\box28
-\nofMPsegments=\count101
-\nofMParguments=\count102
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count103
-\MPscratchDim=\dimen115
-\MPnumerator=\count104
-\makeMPintoPDFobject=\count105
-\everyMPtoPDFconversion=\toks22
+\scratchcounter=\count104
+\scratchdimen=\dimen121
+\scratchbox=\box30
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen122
+\MPnumerator=\count108
+\makeMPintoPDFobject=\count109
+\everyMPtoPDFconversion=\toks24
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -213,6 +242,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
 Package epstopdf Info: Source file: <oxlogo.eps>
 (epstopdf)                    date: 2008-04-08 12:42:23
 (epstopdf)                    size: 513488 bytes
@@ -221,12 +253,12 @@ Package epstopdf Info: Source file: <oxlogo.eps>
 (epstopdf)                    size: 354881 bytes
 (epstopdf)             Command: <repstopdf --outfile=oxlogo-eps-converted-to.pd
 f oxlogo.eps>
-(epstopdf)             \includegraphics on input line 28.
+(epstopdf)             \includegraphics on input line 30.
 Package epstopdf Info: Output file is already uptodate.
 <oxlogo-eps-converted-to.pdf, id=1, 284.06125pt x 284.06125pt>
 File: oxlogo-eps-converted-to.pdf Graphic file (type pdf)
 <use oxlogo-eps-converted-to.pdf>
-Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 28.
+Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 30.
 (pdftex.def)             Requested size: 91.04881pt x 91.04881pt.
 
 [1
@@ -257,84 +289,70 @@ Chapter 1.
 
 ]
 Chapter 2.
-<./images/heatMap.png, id=31, 433.62pt x 289.08pt>
+<./images/heatMap.png, id=30, 433.62pt x 289.08pt>
 File: ./images/heatMap.png Graphic file (type png)
 <use ./images/heatMap.png>
-Package pdftex.def Info: ./images/heatMap.png  used on input line 102.
+Package pdftex.def Info: ./images/heatMap.png  used on input line 86.
 (pdftex.def)             Requested size: 175.61371pt x 117.07675pt.
-<./images/heatMapCorrection.png, id=33, 433.62pt x 289.08pt>
+<./images/heatMapCorrection.png, id=32, 433.62pt x 289.08pt>
 File: ./images/heatMapCorrection.png Graphic file (type png)
 <use ./images/heatMapCorrection.png>
-Package pdftex.def Info: ./images/heatMapCorrection.png  used on input line 108
-.
+Package pdftex.def Info: ./images/heatMapCorrection.png  used on input line 92.
+
 (pdftex.def)             Requested size: 175.61371pt x 117.07675pt.
 [4
 
 ]
-Overfull \hbox (52.58109pt too wide) detected at line 121
-\OML/cmm/m/it/14.4 l\OT1/cmr/m/n/14.4 ((\OML/cmm/m/it/14.4 w\OT1/cmr/m/n/14.4 )
-; \OML/cmm/m/it/14.4 D\OT1/cmr/m/n/14.4 ) = [] [](\OML/cmm/m/it/14.4  \OMS/cms
-y/m/n/14.4 ^^@ \OT1/cmr/m/n/14.4 1)\OML/cmm/m/it/14.4 ln\OT1/cmr/m/n/14.4 (\OML
-/cmm/m/it/14.4 w[]\OT1/cmr/m/n/14.4 ) \OMS/cmsy/m/n/14.4 ^^@ \OML/cmm/m/it/14.4
- ^^Lw[] \OT1/cmr/m/n/14.4 + [] [] \OML/cmm/m/it/14.4 ln\OT1/cmr/m/n/14.4 (\OML/
-cmm/m/it/14.4 ^^U[]\OT1/cmr/m/n/14.4 ) \OMS/cmsy/m/n/14.4 ^^@ \OML/cmm/m/it/14.
-4 ln\OT1/cmr/m/n/14.4 ([] \OML/cmm/m/it/14.4 ^^U[] \OMS/cmsy/m/n/14.4 ^^@ [] \O
-ML/cmm/m/it/14.4 ^^U[]\OT1/cmr/m/n/14.4 )
+Overfull \hbox (18.04593pt too wide) detected at line 115
+ []$[] [] [] [] \OML/cmm/m/it/12 w[] \OT1/cmr/m/n/12 + [] [] [] [] 1[]\OML/cmm/
+m/it/12 w[]$ []  
  []
 
-
-Overfull \hbox (25.88335pt too wide) detected at line 139
- []$[] [] [] [] \OML/cmm/m/it/14.4 w[] \OMS/cmsy/m/n/14.4 ^^@ [] [] []\OML/cmm/
-m/it/14.4 w[]\OT1/cmr/m/n/14.4 +$ 
- []
-
-
-Overfull \hbox (96.86334pt too wide) detected at line 139
- []$[] [] [] [] \OML/cmm/m/it/14.4 w[] \OT1/cmr/m/n/14.4 + [] [] [] [] 1[]\OML/
-cmm/m/it/14.4 w[]$ []  
- []
-
-[5 <./images/heatMap.png> <./images/heatMapCorrection.png>]
-<./images/CoordinateWiseFunction.png, id=44, 433.62pt x 289.08pt>
+<./images/CoordinateWiseFunction.png, id=37, 433.62pt x 289.08pt>
 File: ./images/CoordinateWiseFunction.png Graphic file (type png)
 <use ./images/CoordinateWiseFunction.png>
 Package pdftex.def Info: ./images/CoordinateWiseFunction.png  used on input lin
-e 145.
+e 120.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
- [6 <./images/CoordinateWiseFunction.png>]
-<./images/LambdaEstimation.png, id=49, 578.16pt x 433.62pt>
+[5 <./images/heatMap.png> <./images/heatMapCorrection.png>]
+<./images/LambdaEstimation.png, id=43, 578.16pt x 433.62pt>
 File: ./images/LambdaEstimation.png Graphic file (type png)
 <use ./images/LambdaEstimation.png>
-Package pdftex.def Info: ./images/LambdaEstimation.png  used on input line 166.
+Package pdftex.def Info: ./images/LambdaEstimation.png  used on input line 133.
 
 (pdftex.def)             Requested size: 433.61893pt x 325.2142pt.
-<./images/OriginalPlot.png, id=50, 602.25pt x 602.25pt>
+<./images/OriginalPlot.png, id=44, 602.25pt x 602.25pt>
 File: ./images/OriginalPlot.png Graphic file (type png)
 <use ./images/OriginalPlot.png>
-Package pdftex.def Info: ./images/OriginalPlot.png  used on input line 186.
-(pdftex.def)             Requested size: 301.12425pt x 301.12425pt.
-<./images/OptimizationPlot.png, id=51, 602.25pt x 602.25pt>
+Package pdftex.def Info: ./images/OriginalPlot.png  used on input line 151.
+(pdftex.def)             Requested size: 175.61371pt x 175.61293pt.
+<./images/OptimizationPlot.png, id=45, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlot.png Graphic file (type png)
 <use ./images/OptimizationPlot.png>
-Package pdftex.def Info: ./images/OptimizationPlot.png  used on input line 194.
+Package pdftex.def Info: ./images/OptimizationPlot.png  used on input line 157.
 
-(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
- [7 <./images/LambdaEstimation.png>] [8 <./images/OriginalPlot.png>] [9 <./imag
-es/OptimizationPlot.png>]
-<./images/OriginalPlotDegreeCorrection.png, id=63, 602.25pt x 602.25pt>
+(pdftex.def)             Requested size: 175.61371pt x 175.61293pt.
+ [6 <./images/CoordinateWiseFunction.png>] [7 <./images/LambdaEstimation.png>]
+<./images/OriginalPlotDegreeCorrection.png, id=55, 602.25pt x 602.25pt>
 File: ./images/OriginalPlotDegreeCorrection.png Graphic file (type png)
 <use ./images/OriginalPlotDegreeCorrection.png>
 Package pdftex.def Info: ./images/OriginalPlotDegreeCorrection.png  used on inp
-ut line 206.
-(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-<./images/OptimizationPlotDegreeCorrection.png, id=64, 602.25pt x 602.25pt>
+ut line 172.
+(pdftex.def)             Requested size: 175.61371pt x 175.61293pt.
+
+Underfull \hbox (badness 1178) in paragraph at lines 173--173
+\OT1/cmr/m/n/12 scrip-tion for the de-gree Cor-rec-tion
+ []
+
+<./images/OptimizationPlotDegreeCorrection.png, id=56, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotDegreeCorrection.png Graphic file (type png)
 <use ./images/OptimizationPlotDegreeCorrection.png>
 Package pdftex.def Info: ./images/OptimizationPlotDegreeCorrection.png  used on
- input line 214.
-(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
- [10] [11 <./images/OriginalPlotDegreeCorrection.png>] [12 <./images/Optimizati
-onPlotDegreeCorrection.png>]
+ input line 178.
+(pdftex.def)             Requested size: 175.61371pt x 175.61293pt.
+[8 <./images/OriginalPlot.png> <./images/OptimizationPlot.png>] [9 <./images/Or
+iginalPlotDegreeCorrection.png> <./images/OptimizationPlotDegreeCorrection.png>
+]
 Chapter 3.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
@@ -357,7 +375,7 @@ Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
-[13
+[10
 
 ]
 Missing character: There is no ‚ in font cmr12!
@@ -372,7 +390,7 @@ Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
- [14]
+ [11]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
@@ -393,29 +411,22 @@ Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
 Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
- [15]
-Missing character: There is no Œ in font cmr12!
-Missing character: There is no ∏ in font cmr12!
-Missing character: There is no Œ in font cmr12!
-Missing character: There is no ∏ in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ì in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no à in font cmr12!
-Missing character: There is no à in font cmr12!
+ [12]
 Missing character: There is no Œ in font cmr12!
 Missing character: There is no º in font cmr12!
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+
+ []
+
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ì in font cmr12!
+[13]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
@@ -425,111 +436,97 @@ Missing character: There is no ô in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
- [16] [17] [18]
+ [14] [15]
 Chapter 4.
-[19
+[16
 
-]
-Overfull \hbox (69.25996pt too wide) detected at line 519
-\OMS/cmsy/m/n/14.4 L\OT1/cmr/m/n/14.4 ((\OML/cmm/m/it/14.4 w\OT1/cmr/m/n/14.4 )
-; \OML/cmm/m/it/14.4 Y; Z; D\OT1/cmr/m/n/14.4 ) = [] [] [] \OMS/cmsy/m/n/14.4 ^
-^@ \OT1/cmr/m/n/14.4 ([] \OML/cmm/m/it/14.4 ^^U[] \OMS/cmsy/m/n/14.4 ^^@ [] \OM
-L/cmm/m/it/14.4 ^^U[]\OT1/cmr/m/n/14.4 )\OML/cmm/m/it/14.4 z[] \OT1/cmr/m/n/14.
-4 + [] \OML/cmm/m/it/14.4 ^^N[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 ln\OT1/cmr
-/m/n/14.4 (\OML/cmm/m/it/14.4 w[] \OT1/cmr/m/n/14.4 + \OML/cmm/m/it/14.4 ln\OT1
-/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 w[]\OT1/cmr/m/n/14.4 )))[]
- []
-
-[20] [21]
+] [17] [18]
 Chapter 5.
-<./images/LambdaEstimationFixedPrior.png, id=109, 433.62pt x 289.08pt>
+<./images/LambdaEstimationFixedPrior.png, id=93, 433.62pt x 289.08pt>
 File: ./images/LambdaEstimationFixedPrior.png Graphic file (type png)
 <use ./images/LambdaEstimationFixedPrior.png>
 Package pdftex.def Info: ./images/LambdaEstimationFixedPrior.png  used on input
- line 568.
+ line 489.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<./images/OriginalPlotFixedPrior.png, id=110, 602.25pt x 602.25pt>
+<./images/OriginalPlotFixedPrior.png, id=94, 602.25pt x 602.25pt>
 File: ./images/OriginalPlotFixedPrior.png Graphic file (type png)
 <use ./images/OriginalPlotFixedPrior.png>
 Package pdftex.def Info: ./images/OriginalPlotFixedPrior.png  used on input lin
-e 576.
-(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-<./images/OptimizationPlotFixedPrior.png, id=111, 602.25pt x 602.25pt>
+e 496.
+(pdftex.def)             Requested size: 238.49231pt x 238.49724pt.
+<./images/OptimizationPlotFixedPrior.png, id=95, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotFixedPrior.png Graphic file (type png)
 <use ./images/OptimizationPlotFixedPrior.png>
 Package pdftex.def Info: ./images/OptimizationPlotFixedPrior.png  used on input
- line 584.
-(pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-<./images/SimulationGap.png, id=112, 578.16pt x 433.62pt>
+ line 502.
+(pdftex.def)             Requested size: 238.49231pt x 238.49724pt.
+[19
+
+ <./images/LambdaEstimationFixedPrior.png>]
+<./images/SimulationGap.png, id=101, 578.16pt x 433.62pt>
 File: ./images/SimulationGap.png Graphic file (type png)
 <use ./images/SimulationGap.png>
-Package pdftex.def Info: ./images/SimulationGap.png  used on input line 594.
-(pdftex.def)             Requested size: 433.61893pt x 325.2142pt.
-<./images/SimulationGap100.png, id=113, 433.62pt x 289.08pt>
+Package pdftex.def Info: ./images/SimulationGap.png  used on input line 518.
+(pdftex.def)             Requested size: 175.61371pt x 131.70804pt.
+<./images/SimulationGap100.png, id=102, 433.62pt x 289.08pt>
 File: ./images/SimulationGap100.png Graphic file (type png)
 <use ./images/SimulationGap100.png>
-Package pdftex.def Info: ./images/SimulationGap100.png  used on input line 608.
+Package pdftex.def Info: ./images/SimulationGap100.png  used on input line 524.
 
-(pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<./images/SimulationGapDegreeCorr.png, id=114, 433.62pt x 289.08pt>
+(pdftex.def)             Requested size: 175.61371pt x 117.07675pt.
+ [20 <./images/OriginalPlotFixedPrior.png> <./images/OptimizationPlotFixedPrior
+.png>]
+<./images/SimulationGapDegreeCorr.png, id=107, 433.62pt x 289.08pt>
 File: ./images/SimulationGapDegreeCorr.png Graphic file (type png)
 <use ./images/SimulationGapDegreeCorr.png>
 Package pdftex.def Info: ./images/SimulationGapDegreeCorr.png  used on input li
-ne 621.
+ne 537.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-[22
-
-] [23 <./images/LambdaEstimationFixedPrior.png>] [24 <./images/OriginalPlotFixe
-dPrior.png>] [25 <./images/OptimizationPlotFixedPrior.png>] [26 <./images/Simul
-ationGap.png>] [27 <./images/SimulationGap100.png> <./images/SimulationGapDegre
-eCorr.png>]
+ [21 <./images/SimulationGap.png> <./images/SimulationGap100.png> <./images/Sim
+ulationGapDegreeCorr.png>]
+[22]
 Chapter 6.
 Missing character: There is no ‚ in font cmbx12!
 Missing character: There is no Ä in font cmbx12!
 Missing character: There is no ô in font cmbx12!
-<./images/OptimizationPlotSam.png, id=138, 602.25pt x 602.25pt>
+<./images/OptimizationPlotSam.png, id=117, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotSam.png Graphic file (type png)
 <use ./images/OptimizationPlotSam.png>
-Package pdftex.def Info: ./images/OptimizationPlotSam.png  used on input line 6
-60.
+Package pdftex.def Info: ./images/OptimizationPlotSam.png  used on input line 5
+76.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-[28
+[23
 
-] [29 <./images/OptimizationPlotSam.png>] (./Report.aux) ) 
+] [24 <./images/OptimizationPlotSam.png>] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 2595 strings out of 494923
- 35406 string characters out of 6180741
- 91309 words of memory out of 5000000
- 5836 multiletter control sequences out of 15000+600000
- 16766 words of font info for 63 fonts, out of 8000000 for 9000
+ 3762 strings out of 494923
+ 56239 string characters out of 6180741
+ 112881 words of memory out of 5000000
+ 6990 multiletter control sequences out of 15000+600000
+ 15173 words of font info for 56 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,11n,26p,1036b,289s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,11n,40p,1020b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
-2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10
-.pfb>
-Output written on Report.pdf (29 pages, 1330750 bytes).
+nts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb>
+Output written on Report.pdf (24 pages, 1288688 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
+ 179 PDF objects out of 1000 (max. 8388607)
+ 109 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

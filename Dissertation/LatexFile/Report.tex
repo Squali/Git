@@ -7,6 +7,8 @@
 \usepackage{amsmath}
 \usepackage{bbm}
 \usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
 \graphicspath{ {./images/} }
 %input macros (i.e. write your own macros file called mymacros.tex 
 %and uncomment the next line)
@@ -36,57 +38,39 @@
 	
 	We use the Plackett-Luce model: 
 	
-	\begingroup
-	\large
 	\begin{equation}
 	p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}}
 	\end{equation}
-	\endgroup
 	Where $K$ is the number of ranked individuals. This model is equivalent to successively choose our favorite individual by pondering our strength of affiliation with each person, and take randomly the best remaining by taking into account the proportion of this strength among the other, which is a conceivable model.
 	
 	The first thing to do is to prove that Plackett-Luce is well defined as a probability distribution. It is easy to prove it by induction over $K \leq n$. \newline
 	We denote $\Omega_{K,n} := \{ \rho : \{1,...,K\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}  \}$. For $K = 1 :$
-	\begingroup
-	\large
 	\begin{equation}
 	\sum_{\rho \in \Omega_{1,n} }p(\rho | (\lambda)) = \sum_{k \neq i}\frac{\lambda_{i,k}}{\sum_{j \neq i}\lambda_{i,j}} = 1
 	\end{equation}
-	\endgroup
 	If the result is true for $K - 1 < n$ then, with \newline 
 	$\forall j \neq i, \Omega_{K,n,j} = \{ \rho : \{1,...,K\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}, \rho(1) = j\}$ and $\hat{(\lambda)}_{j}$ the matrix without column $j$:
-	\begingroup
-	\large
 	\begin{equation}
 	\sum_{\rho \in \Omega_{K,n} }p(\rho | (\lambda)) = \sum_{j = 1}^{n} \sum_{\rho \in \Omega_{K,n,j}}p(\rho | (\lambda))
 	\end{equation}
-	\endgroup
-	\begingroup
-	\large
 	\begin{equation}
 	= \sum_{j = 1}^{n} \frac{\lambda_{i,j}}{\sum_{l \neq i}\lambda_{i,l}} \underbrace{\sum_{\rho \in \Omega_{K-1,n-1}}p(\rho | \hat{(\lambda)}_{j})}_\text{= 1 by induction} = 1
 	\end{equation}
-	\endgroup
 	
 	\chapter{Community representation}
 	\section{Mathematic Formulation}
 	Here we suppose that the strength between individuals are characterized by their similitude to certain communities.
 	
 	We introduce $p$ the number of communities and $(w_{i,k})_{1 \leq i \leq n,1 \leq k \leq p }$ the strength of affiliation of the individual $i$ to the community $p$.
-	\begingroup
-	\large
 	\begin{equation}
 	\lambda_{i,j} = \sum_{k = 1}^{p} w_{i,k} w_{j,k}
 	\end{equation}
-	\endgroup
 	
 	This formulation is equivalent to the rank matrix approximation often encountered in the literature where we assume that:
 	
-	\begingroup
-	\large
 	\begin{equation}
 	(\lambda) = WW^{T}
 	\end{equation} where $W$ is the matrix of the $(w_{i,k})$
-	\endgroup
 	
 	We suppose here that the strength of the relations are only determined by the proximity with a certain community hence that the relations are reciprocal.
 	From the reordering inequality, we can observe that $\lambda_{i,j}$ is maximized when both $i$ and $j$ have the same community ranking preferences.
@@ -114,30 +98,21 @@
 
 	\section{Computation of the posterior}
 	Let's define the log-posterior of the community representation. Which is the sum of the log priors of the parameters and the log-likelihood.
-	\begingroup
-	\large
 	\begin{equation}
 	l((w);D) = \sum_{i = 1}^{n} \sum_{k = 1}^{p} (\alpha - 1)ln(w_{i,k}) - \beta w_{i,k} + \sum_{i = 1}^{n} \sum_{j = 1}^{K} ln(\lambda_{i,\rho_{j}}) - ln(\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j-1} \lambda_{i,\rho_{l}})
 	\end{equation}
-	\endgroup
 	
 	To make the optimization easier, we can compute the gradient of the posterior according to the parameter $w_{r,s}$
 	
 	With 
-	\begingroup
-	\large
 	\begin{equation}
 	\frac{\partial \lambda_{i,j}}{\partial w_{r,s}} = 1_{i = r} w_{j,s} + 1_{j = r} w_{i,s}
 	\end{equation}
-	\endgroup
 	We have :
 	
-	\begingroup
-	\large
 	\begin{multline}
 	\frac{\partial l((w);D)}{\partial w_{r,s}} = \frac{a-1}{w_{r,s}} - b + \sum_{j = 1}^{K} \frac{1}{\lambda_{r,\rho^{(r)}_{j}}} w_{\rho^{(r)}_{j},s} + \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\lambda_{i,r}} w_{i,s} 1_{\rho^{(r)}_{j} = r} - \\ \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{j \neq r} w_{j,s} - \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} w_{i,s} + \\ \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{l = 1}^{j-1} w_{\rho^{(r)}_{l},s} + \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} \sum_{l = 1}^{j - 1} 1_{\rho^{(i)}_{l} = r} w_{i,s}	
 	\end{multline}
-	\endgroup
 
 	\begin{figure}
 		\centering
@@ -151,14 +126,6 @@
 	We derived two optimization algorithm to find the MAP, one based on coordinate-wise optimization, given that for the a and b considered, the log-posterior seems coordinate-wise concave, hence assuring a more stable convergence. The other algorithm is based on the L-BFGS-B algorithm, popular in machine learning optimization.
 	
 	For this simulation we took $a = 2$, $b = 1$ $n = 15$, $p = 3$, $k = 3$ , drew a sample from $w$, computed $\lambda$ and $\rho$. Then we maximized the posterior according to the two methods described above, in order to estimate the community strengths and then the individual mutual strength. 
-%		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{CoordinateWiseFunction}
-
-%	\begin{figure}
-%		\centering
-%%		\textbf{Your title}\par\medskip
-%		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{CoordinateWiseFunction}
-%			\caption{Posterior according to one coordinate}
-%	\end{figure}
 
 	\begin{figure}
 		\centering
@@ -171,51 +138,48 @@
 	In figure \ref{label-image1} we can see that the coordinate and global optimization have converged to the same result. We obtain an absolute error of 0.02. Which is equivalent to 0.3 reported to the number of individual, and a ranking gap (mean absolute ranking error) of 2.13 for this individual.
 	
 	It is interesting to compare the ranking gap to the expected ranking gap from a random permutation. We can manually compute with a tedious calculation that
-	\begingroup
-	\large
 	\begin{equation}
 		\frac{1}{n} \mathbb{E}_{\mathbb{\sigma}_{n}}[ \sum_{k = 1}^{n} |\sigma(k) - k| ] = \frac{n^{2} - 1}{3n}
 	\end{equation}
-	\endgroup
 	
 	For n = 18 we have a random expectation of the ranking gap of 6. Hence the model tends to preserve the "global" social network for each individual.
 	
-	\begin{figure}
+	\begin{figure}[H]
 		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio,scale=0.5]{OriginalPlot}
-		\caption{Original Community description}
-		\label{label-image2}
-	\end{figure}
-
-	\begin{figure}
-		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OptimizationPlot}
-		\caption{Inferred community}
-		\label{label-image3}
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{OriginalPlot} % first figure itself
+			\caption{Original Community description}
+			\label{label-image2}
+		\end{minipage}\hfill
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{OptimizationPlot} % second figure itself
+			\caption{Inferred community}
+			\label{label-image3}
+		\end{minipage}
 	\end{figure}
 	
 	We can see that the inferred communities are quite similar to the original one. The original red and green communities are preserved except for the individual 6 and 5 that has passed from the blue community to the red and green respectively. Here we have assigned an individual to his preferred community, the width of an edge represents the importance the son represents for the father.
 	\subsection{Model with degree-correction}
 	
 	In this subsection, we try to capture the different popularity that a community can have over the other communities. In the previous model, the regularization terms $w_{i,j}$ in the posterior had the same weights, irrespective of the community concerned (Having a too big $w_{i,j}$ was equally improbable regardless of the community). In a model with degree-correction, i.e in which $w_{i,k} \sim  \Gamma(\alpha, \beta_{k})$, we do not prevent the possibility of a popular community in the regularization, which occurs by the emergence of popular individuals.
-	\begin{figure}
-		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OriginalPlotDegreeCorrection}
-		\caption{Original Community description for the degree Correction Model}
-		\label{label-image5}
-	\end{figure}
 	
-	\begin{figure}
+	\begin{figure}[H]
 		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OptimizationPlotDegreeCorrection}
-		\caption{Inferred community for the degree correction Model}
-		\label{label-image6}
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{OriginalPlotDegreeCorrection} % first figure itself
+			\caption{Original Community description for the degree Correction Model}
+			\label{label-image5}
+		\end{minipage}\hfill
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{OptimizationPlotDegreeCorrection} % second figure itself
+			\caption{Inferred community for the degree correction Model}
+			\label{label-image6}
+		\end{minipage}
 	\end{figure}
-	
 	
 	We can see in this example that the green community has been absorbed in an other community by the inference, and that 7 has been replaced by 3 in the other community.
 	
@@ -257,12 +221,9 @@
 	\section{ERGM model}
 	In the ERGM model (exponential-family random graph models), the distribution of $\textbf{Y}$ can be parameterized in the form:
 	
-	\begingroup
-	\large
 	\begin{equation}
 	P_{\theta}(Y = y) = \frac{exp((\eta(\theta)) ^{T}*z(x))}{\chi(\theta)}, y \in \mathcal{Y}
 	\end{equation}
-	\endgroup
 	
 	where $\theta$ is a q-vector of model parameters, which are mapped to a p-vector of natural parameters
 	by $\eta(.)$, and $g(.)$ is a p-vector of sufficient statistics, which capture network features of interest. These sufficient statistics typically embody the
@@ -277,12 +238,9 @@
 	The $p_{1}$ model is the first to propose log-linear models for social
 	networks. Suppose that we take $\mathcal{Y}$ to be the set of all directed graphs, with independent dyads [i.e., the pairs ($Y_{i,j}$ , $Y_{j,i}$ ) are independent for different choices of $\{i, j\}$] and the following model for tie probabilities:
 	
-	\begingroup
-	\large
 	\begin{multline}
 	P(Y_{i,j} = y_{1}, Y_{j,i} = y_{2}) = exp \{ y_{1}(\mu + \alpha_{i} + \beta_{j}) + y_{2}(\mu + \alpha_{j} + \beta_{i}) + y_{1}y_{2} \rho\} \backslash k_{ij} \\  y_{1}, y_{2} = 0,1 ; i,j = 1,...,n; i \neq j 
 	\end{multline}
-	\endgroup
 	
 	In this model, we can interpret $\mu$ as a density parameter, constituting an overall mean, $\alpha_{i}$ as a productivity parameter, characterizing i as a sender, $\beta_{j}$ as an attractiveness parameter, characterizing j as a receiver, and $\rho$ as a parameter indicating the force of reciprocation.
 	
@@ -295,15 +253,12 @@
 	The $p_{2}$ model is based on the same formula. The density and reciprocity parameters, however, are allowed to vary over dyads, and are therefore denoted $\mu_{ij} $ and $\rho_{ij}$. Moreover, parameters $\alpha_{i}$ , $\beta_{j}$ , $\mu_{ij}$ , and $\rho_{ij}$ are further modelled using covariates.
 	We first consider the node-specific parameters $\alpha_{i}$ and $\beta_{j}$. Covariates and random effects are included in a linear regression model for the productivity and attractiveness parameters.
 	
-	\begingroup
-	\large
 	\begin{equation}
 	\begin{cases}
 	\alpha = X_{1} \gamma_{1} + A \\
 	\beta = X_{2} \gamma_{2} + B
 	\end{cases}
 	\end{equation}
-	\endgroup
 
 	This formulation expresses the plausible idea that attractiveness (or popularity) and productivity (or sociability) depend on actor attributes (denoted by $X_{1}$ and $X_{2}$ , respectively, where the same or different attributes may be used for attractiveness and productivity) with corresponding weights $\gamma_{1}$ and $\gamma_{1}$ . Naturally, the attributes do not explain all variation in attractiveness and productivity parameters, as is represented by the residual terms A and B, n $\times$ 1 vectors with components $A_{i}$ and $B_{i}$ . The residuals are modeled as normally distributed random variables with expectation 0 and variances $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ , respectively. Parameters $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ can be interpreted as unexplained variance, that is, the variance of the $\alpha$’s and $\beta$’s that is left after taking into account the effect of the covariates $X_{1}$ and $X_{2}$ . The productivity and attractiveness parameters of the same node
 	are correlated:$\forall i,  cov(A_{i} , B_{i} ) = \sigma_{AB}$. Independence is assumed for parameters of different actors by setting $cov(A_{i} , A_{j} )=cov(B_{i} , B_{j} )=cov(A_{i} , B_{j} ) = 0$ for
@@ -317,130 +272,121 @@
 	ERGM models models work very poorly, the learned parameters do not generate data that resembles the input and tend toward wholly connected or completely empty graphs. Similarly, Since a binary random graph model does not accommodate rank data, analysis of these data with such a model typically begins by reducing all positive ranked relations to “ones,” and all negative ranked relations to “zeros,” leaving unranked relations as zeros as well. Such a data analysis essentially throws away some of the information in the data. Furthermore, the support of most binary random graph models consists of all possible graphs on the node set. In contrast, the data collection scheme used by Sampson (1969) was censored, as no graph with more than three outgoing edges per node could have been observed.
 	
 	We take the same formulation as for the community representation. Latent variable $\textbf{Y}$ representing the strength of affiliation between individuals. And $\textbf{S}$ the sociomatrix given in data. $\textbf{S}$ =
-	$\{ s_{i,j} : i \neq j\}$, coded so that si,j = 0 if j is not nominated by i, si,j = 1 if j is i’s least favored
+	$\{ s_{i,j} : i \neq j\}$, coded so that $s_{i,j} = 0$ if $j$ is not nominated by $i$, $s_{i,j} = 1$ if $j$ is $i^{th}$ least favored
 	nomination, and so on. Under this coding, $s_{i,j}$ > $s_{i,k}$ if $i$ scores $j$ “more highly” than $k$, or if $i$
 	nominates $j$ but not $k$. Letting $a_{i} = \{1, ..., n\} \backslash \{i\}$ be the set of individuals whom person $i$ may potentially nominate, each observed outdegree $d_{i} = \sum_{j \in a_{i}} 1(s_{i,j} > 0)$ satisfies $d_{i} \leq m$.
-	
 	We then write
-	
-	$s_{i,j} = [(m-rank_{i}(y_{i,j} + 1) \wedge 0)] \times 1(y_{i,j} > 0 )$
-	
+	\begin{equation}
+	s_{i,j} = [(m-rank_{i}(y_{i,j} + 1) \wedge 0)] \times 1(y_{i,j} > 0 )
+	\end{equation}
 	and its inverse:
+	\begin{equation}
+	s_{i,j} > 0 \Rightarrow y_{i,j} > 0
+	\end{equation}
+	\begin{equation}
+	s_{i,j} > s_{i,k} \Rightarrow y_{i,j} > y_{i,k}
+	\end{equation}
+	\begin{equation}
+	s_{i,j} = 0 \ \text{and} \ d_{i} < m \Rightarrow y_{i,j} \leq 0
+	\end{equation}
 	
-	$s_{i,j} > 0 \Rightarrow y_{i,j} > 0$
+	Given a statistical model $\{p(Y|\theta) : \theta \in \Theta \}$ for the underlying social relations $Y$, inference for
+	the parameter $\theta$ can be based on a likelihood derived from the observed scores $S$. The likelihood is, as usual, the probability of the observed data $S$ as a function of the parameter $\theta$. To obtain this probability, let $F(S)$ denote the set of $Y$-values that are consistent with $S$ in terms of associations (5)$-$(7) above. Since the entries of $S$ are the observed scores if and only if $Y \in F(S)$, the likelihood is given by
+	\begin{equation}
+	L_{F}(\theta : \textbf{S}) = Pr(Y \in F(S) | \theta) = \int_{F(S)} p(Y|\theta) d\mu(Y)
+	\end{equation}
+	where μ is a measure that dominates the probability densities $\{p(Y|\theta) : \theta \in \Theta \}$.
 	
-	$s_{i,j} > s_{i,k} \Rightarrow y_{i,j} > y_{i,k}$
+	Given current values of $(\theta, Y)$, one step of the Gibbs sampler for the FRN likelihood proceeds by updating the values as follows: \newline
+	\begin{enumerate}
+	\item Simulate $\theta \sim p(Y|\theta)$
+	\item For each $i \neq j$, simulate $y_{i,j} \sim p(y_{i,j}|\theta, Y_{-(i,j)}, Y \in F(S))$ as follows:
+	\begin{enumerate}
 	
-	$s_{i,j} = 0$ and $d_{i} < m \Rightarrow y_{i,j} \leq 0$
-	
-	Given a statistical model $\{p(Y|\theta) : \theta \in \Theta \}$ for the underlying social relations Y, inference for
-	the parameter θ can be based on a likelihood derived from the observed scores S. The
-	likelihood is, as usual, the probability of the observed data S as a function of the parameter
-	θ. To obtain this probability, let F(S) denote the set of Y-values that are consistent with S in
-	terms of associations (2)–(4) above. Since the entries of S are the observed scores if and
-	only if Y ∈ F(S), the likelihood is given by
-	
-	$L_{F}(\theta : \textbf{S}) = Pr(Y \in F(S) | \theta) = \int_{F(S)} p(Y|\theta) d\mu(Y)$ where μ is a measure that dominates the probability densities $\{p(Y|\theta) : \theta \in \Theta \}$.
-	
-	
-	Given current values of $(\theta, Y)$, one step of the Gibbs sampler for the FRN likelihood proceeds by updating the values as follows:
-	
-	1) Simulate $\theta \sim p(Y|\theta)$
-	2) For each $i \neq j$, simulate $y_{i,j} \sim p(y_{i,j}|\theta, Y_{-(i,j)}, Y \in F(S))$ as follows:
-	
-	a) if $s_{i,j} > 0$, simulate
-	
+	\item if $s_{i,j} > 0$, simulate \newline
 	$y_{i,j} \sim p(y_{i,j}| Y_{-(i,j)},\theta) \times 1(max \{ y_{i,k} : s_{i,k} < s_{i,j} \} \leq y_{i,j} \leq min \{ y_{i,k} : s_{i,k} > s_{i,j} \} ); $
 	
-	b)  if $s_{i,j} = 0$, and $d_{i} < m$ simulate $y_{i,j} \sim p(y_{i,j}| Y_{-(i,j)}, \theta) \times 1(y_{i,j} \leq 0)$;
+	\item if $s_{i,j} = 0$, and $d_{i} < m$ simulate $y_{i,j} \sim p(y_{i,j}| Y_{-(i,j)}, \theta) \times 1(y_{i,j} \leq 0)$;
 	
-	c) if $s_{i,j} = 0$, and $d_{i} = m$ simulate $y_{i,j} \sim p(y_{i,j}| Y_{-(i,j)}, \theta) \times 1(y_{i,j} \leq min \{ y_{i,k} : s_{i,k} > 0 \})$;
-	
+	\item if $s_{i,j} = 0$, and $d_{i} = m$ simulate $y_{i,j} \sim p(y_{i,j}| Y_{-(i,j)}, \theta) \times 1(y_{i,j} \leq min \{ y_{i,k} : s_{i,k} > 0 \})$;
+	\end{enumerate}
+	\end{enumerate}
 	In the above steps, $"y \sim f(y)"$ means $"$ simulate $y$ from a distribution with density proportional
-	to $f(y)$.$ " $ For each ordered pair (i, j), step 2 of this algorithm will generate a value of $y_{i,j}$ from
-	its full conditional distribution, constrained so that conditions (2)–(4) that define the FRN likelihood are met.
+	to $f(y)$.$ " $ For each ordered pair $(i, j)$, step 2 of this algorithm will generate a value of $y_{i,j}$ from its full conditional distribution, constrained so that conditions (5)$ – $(7) that define the FRN likelihood are met.
 	
 	To deal with the previous remarks, we apply a model in the case where $\theta$  represents the parameters in the following standard regression model for relational data:
-	
-	$y_{i,j} = $ \boldmath $\beta^{T} {x_{i,j}}$ \unboldmath + $a_{i} + b_{j} + \epsilon_{i,j}$
-	
-	\(
+	\begin{equation}
+	y_{i,j} = \boldsymbol{\beta^{T} {x_{i,j}}} + a_{i} + b_{j} + \epsilon_{i,j}
+	\end{equation}
+	\begin{equation}
 	\begin{pmatrix}
 	a_{i} \\
 	b_{i}
 	\end{pmatrix}
-	\), i = 1,...,n $\sim $ i.i.d normal(0,$\Sigma_{ab}$)
-	
-	\(
+	, i = 1,...,n \sim \text{i.i.d normal}(0,\Sigma_{ab})
+	\end{equation}
+	\begin{equation}
 	\begin{pmatrix}
 	\epsilon_{i,j} \\
 	\epsilon_{j,i}
 	\end{pmatrix}
-	\), i = 1,...,n $\sim $ i.i.d normal(0,$\sigma^{2}$ $\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}$)
-	
+	, i = 1,...,n \sim \text{i.i.d normal}(0,\sigma^{2} \begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix})
+	\end{equation}
 	The additive row effect $a_{i}$ is often interpreted as a measure of person $i$’s "sociability" whereas the additive column effect $b_{i}$ is taken as a measure of $i$’s "popularity.". The parameter $\rho$ represents potential correlation between $y_{i,j} $ and $y_{j,i}$. In a mixed-effects version
 	of this model, the possibility that a person’s sociability $a_{i}$ is correlated with their popularity $b_{i}$ can be represented with a covariance matrix $\Sigma_{ab}$. The covariance among the elements of $Y = {y_{i,j} : i \neq j}$ induced by $\Sigma_{ab}$ and is called the SRM (Warner et al. ,1979).
 	
 	\section{Plackett-Luce Model with Covariates}
 	
-	To adapt a model with covariates to the Bradley-Terry likelihood wi will model the strength matrix as follow:
+	To adapt a model with covariates to the Bradley-Terry likelihood we will model the strength matrix as follow:
 	
-	$log(y_{i,j}) = $ \boldmath $\beta^{T} {x_{i,j}}$ \unboldmath + $a_{i} + b_{j} + \epsilon_{i,j}$
-	
-	\(
+	\begin{equation}
+	ln(y_{i,j}) = \boldsymbol{\beta^{T} {x_{i,j}}} + a_{i} + b_{j} + \epsilon_{i,j}
+	\end{equation}
+	\begin{equation}
 	\begin{pmatrix}
 	\epsilon_{i,j} \\
 	\epsilon_{j,i}
 	\end{pmatrix}
-	\), i = 1,...,n $\sim $ i.i.d normal(0,$\sigma^{2}$ $\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}$)
-	
-	
-	We will treat \boldmath $\beta$ \unboldmath, \boldmath $a$ \unboldmath \boldmath $b$ \unboldmath and $\Sigma_{\epsilon}$ as parameters.
-	
+	, i = 1,...,n \sim \text{i.i.d normal}(0,\sigma^{2} \begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix})
+	\end{equation}
+	We will treat \boldmath $\beta$ \unboldmath, \boldmath $a$ \unboldmath \boldmath $b$ \unboldmath and $\Sigma_{\epsilon}$ as parameters. \newline
 	To perform bayesian inference, we need to compute an integral over a high dimensional, and intractable set of $(\lambda)$.
-	
-	$L(\theta | (\rho)) \propto p(\theta)p((\rho) | \theta) = p(\theta)\int_{(\lambda)}p((\lambda) | \theta)p((\rho) | (\lambda)  $
-	
-	
-	Given the observed ranks $(\rho)$ and a prior distribution $p(\theta)$ over the parameter space, the joint posterior distribution with density $p(\theta, (\lambda)|(\rho)$ can be approximated by generating a Markov chain whose stationary distribution is that of $(\theta, (\lambda)) | (\rho)$. The values of $\theta$ simulated from this chain provide an approximation to the (marginal) posterior distribution of $\theta$ given by the information from $(\rho)$.
-	
-	One such MCMC algorithm is the Metropolis Hasting Algorithm.
-	
+	\begin{equation}
+		L(\theta | (\rho)) \propto p(\theta)p((\rho) | \theta) = p(\theta)\int_{(\lambda)}p((\lambda) | \theta)p((\rho) | (\lambda)
+	\end{equation}
+	Given the observed ranks $(\rho)$ and a prior distribution $p(\theta)$ over the parameter space, the joint posterior distribution with density $p(\theta, (\lambda)|(\rho))$ can be approximated by generating a Markov chain whose stationary distribution is that of $(\theta, (\lambda)) | (\rho)$. The values of $\theta$ simulated from this chain provide an approximation to the (marginal) posterior distribution of $\theta$ given by the information from $(\rho)$. \newline
+	One such MCMC algorithm is the Metropolis Hasting Algorithm: \newline
 	Given current values of $(\theta, Y)$, one step of the Metropolis - Hasting for the Plackett-Luce likelihood proceeds by updating the values as follows:
 	\begin{enumerate}
 	
 	\item Define the target distribution $\pi(.)$. As we sample from the joint distribution, we can take the following target distribution.
-	
-	$p(\theta, (\lambda)|(\rho) \propto p(\theta) \times p((\lambda) | \theta)\times p((\rho)|(\lambda)) = \pi(\theta, (\lambda))$ with :
+	\begin{equation}
+	p(\theta, (\lambda)|(\rho) \propto p(\theta) \times p((\lambda) | \theta)\times p((\rho)|(\lambda)) = \pi(\theta, (\lambda))
+	\end{equation}
+	with:
 	\begin{enumerate}
 	\item $p(\theta)$ prior over the parameters.
-	
-	\item 
-	\(
+	\item
+	\begin{equation}
 	\begin{pmatrix}
 	log(\lambda_{i,j}) \\
 	log(\lambda_{j,i})
 	\end{pmatrix}
-	\) $|\theta$ , $i < j$ $\sim $ i.i.d $\mathcal{N}$($\begin{pmatrix} \beta^{T}x_{i,j} + a_{i} + b_{j} \\  \beta^{T}x_{j,i} + a_{j} + b_{i} \end{pmatrix}$,$\sigma^{2}$ $\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}$)
-	
-	\item $p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{p_{i}}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}  } $
+	|\theta , i < j \sim i.i.d \  \mathcal{N} (\begin{pmatrix} \beta^{T}x_{i,j} + a_{i} + b_{j} \\  \beta^{T}x_{j,i} + a_{j} + b_{i} \end{pmatrix}, \sigma^{2} \begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix})
+	\end{equation}
+	\item 
+	\begin{equation}
+	p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{p_{i}}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}  }
+	\end{equation}
 	\end{enumerate}
-	\item Choose a proposal distribution $q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))$. It needs to be easy to simulate and determine an irreducible chain. We can take a log-normal distribution for each element of $log(\lambda)^{*}$ with median $log(\lambda_{i,j})$. A normal distribution for \boldmath $\beta, a, b$ \unboldmath, and finally $\mathcal{U}[\rho - a, \rho + a]$ and $\mathcal{U}[\sigma - a, \sigma + a]$ for $\rho^{*}$ and $\sigma^{*}$ with $a$ not decided yet but try small as noise.
-	
+	\item Choose a proposal distribution $q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))$. It needs to be easy to simulate and determine an irreducible chain. We can take a log-normal distribution for each element of $log(\lambda)^{*}$ with median $log(\lambda_{i,j})$. A normal distribution for \boldmath $\beta, a, b$ \unboldmath, and finally $\mathcal{U}[\rho - a, \rho + a]$ and $\mathcal{U}[\sigma - a, \sigma + a]$ for $\rho^{*}$ and $\sigma^{*}$ with $a$ likely small.
 	\item Write down the algorithm. Given $(\theta, (\lambda))$ :
 	\begin{enumerate}
 	\item Sample $(\theta^{*}, (\lambda)^{*})$ from the $q(.|\theta, (\lambda))$ previous distribution.
-	
 	\item Sample $u \sim \mathcal{U}[0,1]$
-	
 	\item If $u < \alpha = min\{ 1, \frac{\pi(\theta^{*}, (\lambda)^{*})q(\theta, (\lambda) |\theta^{*}, (\lambda)^{*})}{\pi(\theta, (\lambda))q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))}   \}$ then set $(\theta, (\lambda)) = (\theta^{*}, (\lambda)^{*})$ else keep the same value.
-	
-	
-	
 	\end{enumerate}
-	
 	\end{enumerate}
-	
 	\chapter{EM algorithm with community representation}
 	
 	We have seen that the derivation of the posterior distribution over the $(w)$ derived in equation (2.5) is somewhat very complicated. Hence we try in this chapter to introduce latent variables in order to derive an EM algorithm.
@@ -449,84 +395,60 @@
 	
 	We recall the likelihood of the Plackett-Luce Model:
 	
-	\begingroup
-	\large
 	\begin{equation}
 	p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}}
 	\end{equation}
-	\endgroup
 	Along with its community representation:
-	\begingroup
-	\large
 	\begin{equation}
 	\lambda_{i,j} = \sum_{k = 1}^{p} w_{i,k} w_{j,k}
 	\end{equation}
-	\endgroup
 	With elements of $(\lambda)$ and $(w)$ positive.
 	
 	If we add a latent variable $Z$ with its probability distribution $P(Z | D, \lambda)$ we obtain the following complete data-likelihood:
 	
-	\begingroup
-	\large
 	\begin{equation}
 	L(\lambda,Z) = P(D,Z | \lambda) = (\prod_{i = 1}^{n}\prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}})P(Z | D, \lambda)
 	\end{equation}
-	\endgroup
 	
 	Hence our approach is to find latent variables that would both give sense and a nice posterior distribution over the $(w)$ to derive an EM algorithm.
 	
 	We first introduce:
 	
-	\begingroup
-	\large
 	\begin{equation}
 	V_{i,j,k} \sim \mathcal{E}(w_{i,k}w_{j,k}), \ 1 \leq i \neq j \leq n, \ \ 1 \leq k \leq p
 	\end{equation}
-	\endgroup
-	\begingroup
-	\large
 	\begin{equation}
 	V_{i,j} = min(V_{i,j,1},...,V_{i,j,p}) \sim \mathcal{E}(\lambda_{i,j})
 	\end{equation}
-	\endgroup
 	And
-	\begingroup
-	\large
 	\begin{equation}
 	Z_{i,k} | \rho_{i} = min(V_{i,j})_{j \neq i, \rho_{i}[1],...,\rho_{i}[k-1]} \sim \mathcal{E}(\sum_{j \neq i, \rho_{i}[1],...,\rho_{i}[k-1]}\lambda_{i,j}), 1 \leq k \leq K
 	\end{equation}
-	\endgroup
 	
 	An interpretation of those latent variables is that the next person ranked by an individual is equivalent to the first arrived individual (among those remaining to be ranked) following a waiting time of parameter $\lambda_{i,j}$. The arriving time of this same individual is equivalent to the first arriving time of other individuals following a waiting time of parameter $w_{i,k}w_{j,k}$ which is the contribution of the $k^{th}$ community.
 	
 	This latent variable allows us to suppress the denominator in (4.1). To suppress the nominator we introduce the following latent variables:
 	
-	\begingroup
-	\large
 	\begin{equation}
 	Y_{i,j} \sim \mathcal{B}(\frac{w_{i,1}w_{\rho_{i}[j],1}}{\lambda_{i,j}}, ..., \frac{w_{i,p}w_{\rho_{i}[j],p}}{\lambda_{i,j}}), 1 \leq j \leq K
 	\end{equation}
-	\endgroup
 	
 	This variable can be interpreted as the explanation of the choice of a certain individual in terms of community.
 	
 	We obtain the following log-likelihood distribution.
 	
-	\begingroup
-	\large
 	\begin{equation}
 	\mathcal{L}((w);Y,Z,D) = \sum_{i = 1}^{n} \sum_{k = 1}^{K} \bigg\{ -(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})z_{i,k} + \sum_{p = 1}^{P} \delta_{y_{i,k}, p} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\}
 	\end{equation}
-	\endgroup
 	
 	\section{EM formulation}
 	
 	\underline{E-step}:
 	\begin{multline}
-	\mathbb{E}_{Z,Y | \rho, (w)^{*}}(\mathcal{L}((w);Y,Z,D)) = \\ \sum_{i = 1}^{n} \sum_{k = 1}^{K} \bigg\{ -\frac{(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})}{(\sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k - 1} \lambda^{*}_{i,\rho_{l}})} + \sum_{p = 1}^{P} \frac{w^{*}_{ip}w^{*}_{\rho_{k}p}}{\lambda^{*}_{i\rho_{k}}} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\}
+	\mathbb{E}_{Z,Y | \rho, (w)^{*}}(\mathcal{L}((w);Y,Z,D)) = \\ \sum_{i = 1}^{n} \sum_{k = 1}^{K} \bigg\{ -\frac{(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})}{(\sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k - 1} \lambda^{*}_{i,\rho_{l}})} + \sum_{p = 1}^{P} \frac{w^{*}_{i,p}w^{*}_{\rho_{k},p}}{\lambda^{*}_{i\rho_{k}}} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\}
 	\end{multline} Hence, with a gamma prior on the $(w)$ we obtain:
 	\begin{multline}
-	Q(w|w^{*}) = \sum_{i = 1}^{n} \Bigg[ \sum_{k = 1}^{K} \bigg\{ -\frac{(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})}{(\sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k - 1} \lambda^{*}_{i,\rho_{l}})} + \\ \sum_{p = 1}^{P} \frac{w^{*}_{ip}w^{*}_{\rho_{k}p}}{\lambda^{*}_{i\rho_{k}}} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\} + \sum_{p = 1}^{P} (a-1)ln(w_{ip}) - bw_{ip}  \Bigg]
+	Q(w|w^{*}) = \sum_{i = 1}^{n} \Bigg[ \sum_{k = 1}^{K} \bigg\{ -\frac{(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})}{(\sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k - 1} \lambda^{*}_{i,\rho_{l}})} + \\ \sum_{p = 1}^{P} \frac{w^{*}_{i,p}w^{*}_{\rho_{k},p}}{\lambda^{*}_{i,\rho_{k}}} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\} + \sum_{p = 1}^{P} (a-1)ln(w_{i,p}) - bw_{i,p}  \Bigg]
 	\end{multline}
 	
 	\underline{M-step}: With the same result as in chapter 2 for the full derivation:
@@ -550,7 +472,7 @@
 	\Lambda^{*}(i,k) = \sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k-1} \lambda^{*}_{i,\rho_{l}}
 	\end{equation}
 	
-	We can see that it is difficult to directly derive the maximum arguments for $Q(w|w^{*})$, as putting the gradient to zero require to solve a set of non linear equations. However, we can notice that $A(r,s,w,w^{*})$ does not depend on $w_{r,s}$. Moreover, we can easily check by remounting the equations that $A$ and $C$ are always positive. Hence, as a function of one parameter, Q has one maximum reached by setting the derivative to zero. Hence instead of updating the whole set of variables $w$ directly by maximizing $Q$, we can update the elements one by one and update the set of fixed elements $w^{*}$. As $A$ and $C$ are always positive, doing so will always increase the posterior likelihood. We can update $w_{r,s}$ with
+	We can see that it is difficult to directly derive the maximum arguments for $Q(w|w^{*})$, as putting the gradient to zero require to solve a set of non linear equations. However, we can notice that $A(r,s,w,w^{*})$ does not depend on $w_{r,s}$. Moreover, we can easily check by remounting the equations that $A$ and $C$ are always positive ($C$ might be negative if $a < 1$). Hence, as a function of one parameter, Q has one maximum reached by setting the derivative to zero. Hence instead of updating the whole set of variables $w$ directly by maximizing $Q$, we can update the elements one by one and update the set of fixed elements $w^{*}$. As $A$ and $C$ are always positive, doing so will always increase the posterior likelihood. We can update $w_{r,s}$ with
 	\begin{equation}
 	w^{(t)}_{r,s} = \frac{C(r,s,w^{(t-1)})}{A(r,s,w^{(t-1)})}
 	\end{equation}
@@ -561,61 +483,55 @@
 	\section{Fixed Community representation}
 	
 	We draw a simulation of a network with $n = 25$, $ p = 3$, $k = 4$, $a = 2$, $b = 2$, optimized it. We obtain the graph with ranking gap of 5.83 for a mean of 8.32 and AE of 0.013
-		
-	\begin{figure}
+	\begin{figure}[H]
 		\centering
 		%		\textbf{Your title}\par\medskip
 		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{LambdaEstimationFixedPrior}
 		\caption{Lambda Estimation Fixed Prior}
 		\label{label-image9}
 	\end{figure}
-	
-	\begin{figure}
+	\begin{figure}[H]
 		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OriginalPlotFixedPrior}
-		\caption{Original Graph}
-		\label{label-image10}
+		\begin{subfigure}[b]{0.55\textwidth}
+			\includegraphics[width=1\linewidth]{OriginalPlotFixedPrior}
+			\caption{}
+			\label{fig:Ng1} 
+		\end{subfigure}
+		
+		\begin{subfigure}[b]{0.55\textwidth}
+			\includegraphics[width=1\linewidth]{OptimizationPlotFixedPrior}
+			\caption{}
+			\label{fig:Ng2}
+		\end{subfigure}
+		
+		\caption[Two graphs]{(a) Original Graph. (b) Inferred Graph}
 	\end{figure}
-	
-	\begin{figure}
-		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OptimizationPlotFixedPrior}
-		\caption{Inferred Graph}
-		\label{label-image11}
-	\end{figure}
-	
 	Now we made a simulation of 10 networks and measured the mean Absolute Error and Ranking Gap.
-	
-	\begin{figure}
-		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SimulationGap}
-		\caption{Inferred Graph}
-		\label{label-image12}
-	\end{figure}
-	
 	We have a mean ranking gap of $2.8871111111111114$ compared to a mean of 5. A a mean AE of $0.022484955968703896$
-	
 	
 	We run for 100 networks with the same parameters.
 	We have mean ranking gap of 2.9304888888888896 and mean AE of 0.02122157183931606
-	
-	\begin{figure}
+	\begin{figure}[H]
 		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SimulationGap100}
-		\caption{Ranking Gap Community Representation}
-		\label{label-image13}
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{SimulationGap} % first figure itself
+			\caption{Ranking Gap Community Representation for $10$ networks}
+			\label{label-image12}
+		\end{minipage}\hfill
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{SimulationGap100} % second figure itself
+			\caption{Ranking Gap Community Representation for $100$ networks}
+			\label{label-image13}
+		\end{minipage}
 	\end{figure}
-	
 	
 	\section{Model With Degree Correction}
 	
 	We draw a simulation of 100 networks with $n = 100$, $ p = 3$, $k = 4$, $a = 2$, $b = 2$, optimized it. We obtain the graph with ranking gap of 2.942666666666666 for a mean of 5 and AE of 0.03798207013695899
 	
-	\begin{figure}
+	\begin{figure}[H]
 		\centering
 		%		\textbf{Your title}\par\medskip
 		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SimulationGapDegreeCorr}
@@ -649,7 +565,7 @@
 	
 	
 	\chapter{Simulations on the Sampson’s monk dataset}
-	In this part we use the The data set collected by Sampson (1968) this is a classic data set in social network analysis. The data set summarizes relationships, observed at three distinct time points, among 18 monks who were about to enter a monastery when a conflict erupted. We use here the directed network where $y_{i,j} = 1$ denotes that monk i ranked monk j among his top three preferred individuals and $y_{i,j} = 0$ otherwise. The directed network is shown in Figure \ref{label-image4} , where circles represent monks and directed edges are oriented from i to j whenever $y_{i,j} = 1$. The monks are divided by Sampson into three groups: Loyal Opposition, Turks, and Outcasts.
+	In this part we use the The data set collected by Sampson (1968) this is a classic data set in social network analysis. The data set summarizes relationships, observed at three distinct time points, among 18 monks who were about to enter a monastery when a conflict erupted. We use here the directed network where $y_{i,j} = 1$ denotes that monk $i$ ranked monk $j$ among his top three preferred individuals and $y_{i,j} = 0$ otherwise. The directed network is shown in Figure \ref{label-image4} , where circles represent monks and directed edges are oriented from $i$ to $j$ whenever $y_{i,j} = 1$. The monks are divided by Sampson into three groups: Loyal Opposition, Turks, and Outcasts.
 	
 	We applied the same method as for the simulated data and obtained the following community. We can observe that our model identifies exactly the same clustering of communities as the ones observed by Sampson. Namely the Loyal Opposition (Red community), Turks (Green Community), and Outcasts (Blue Community). In this graph the individuals are labeled according to their number provided with their names in the data set package and not according to their rank in the data-frame.
 	
