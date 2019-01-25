@@ -15,8 +15,9 @@
 \contentsline {section}{\numberline {3.6}Plackett-Luce Model with Covariates}{17}
 \contentsline {chapter}{\numberline {4}EM algorithm with community representation}{19}
 \contentsline {section}{\numberline {4.1}Mathematical formulation}{19}
-\contentsline {chapter}{\numberline {5}Test on simulated Data}{21}
-\contentsline {section}{\numberline {5.1}Fixed Community representation}{21}
-\contentsline {section}{\numberline {5.2}Model With Degree Correction}{21}
-\contentsline {section}{\numberline {5.3}Model With Covariates}{21}
-\contentsline {chapter}{\numberline {6}Simulations on the Sampson’s monk dataset}{27}
+\contentsline {section}{\numberline {4.2}EM formulation}{20}
+\contentsline {chapter}{\numberline {5}Test on simulated Data}{22}
+\contentsline {section}{\numberline {5.1}Fixed Community representation}{22}
+\contentsline {section}{\numberline {5.2}Model With Degree Correction}{22}
+\contentsline {section}{\numberline {5.3}Model With Covariates}{22}
+\contentsline {chapter}{\numberline {6}Simulations on the Sampson’s monk dataset}{28}

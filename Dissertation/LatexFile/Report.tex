@@ -22,54 +22,71 @@
 \degree{MSc in Mathematical Sciences}     %the degree
 \degreedate{Trinity 2018}         %the degree date
 
+
 %end the preamble and start the document
-\begin{document}
-	
-	
+\begin{document}	
 	\maketitle                  % create a title page from the preamble info
 	\tableofcontents
 	
 	
 	%now include the files of latex for each of the chapters etc
 	\chapter{Introduction}
+	
 	This paper aims at performing inference on social network through partial ranking of the individuals
 	
 	We use the Plackett-Luce model: 
+	
+	\begingroup
+	\large
 	\begin{equation}
-		p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}}
+	p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}}
 	\end{equation}
+	\endgroup
 	Where $K$ is the number of ranked individuals. This model is equivalent to successively choose our favorite individual by pondering our strength of affiliation with each person, and take randomly the best remaining by taking into account the proportion of this strength among the other, which is a conceivable model.
 	
-	The first thing to do is to prove that Plackett-Luce is well defined as a probability distribution. It is easy to prove it by induction over $K \leq n$. We denote $\Omega_{K,n} := \{ \rho : \{1,...,K\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}  \}$. For $K = 1 :$
-	
+	The first thing to do is to prove that Plackett-Luce is well defined as a probability distribution. It is easy to prove it by induction over $K \leq n$. \newline
+	We denote $\Omega_{K,n} := \{ \rho : \{1,...,K\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}  \}$. For $K = 1 :$
+	\begingroup
+	\large
 	\begin{equation}
 	\sum_{\rho \in \Omega_{1,n} }p(\rho | (\lambda)) = \sum_{k \neq i}\frac{\lambda_{i,k}}{\sum_{j \neq i}\lambda_{i,j}} = 1
 	\end{equation}
-	
-	If the result is true for $K - 1 < n$ then, with $\forall j \neq i, \Omega_{K,n,j} = \{ \rho : \{1,...,K\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}, \rho(1) = j\}$ and $\hat{(\lambda)}_{j}$ the matrix without column $j$:
+	\endgroup
+	If the result is true for $K - 1 < n$ then, with \newline 
+	$\forall j \neq i, \Omega_{K,n,j} = \{ \rho : \{1,...,K\} \rightarrow I_{K} \ bijective, I_{K} \in [n]^{(K)}, \rho(1) = j\}$ and $\hat{(\lambda)}_{j}$ the matrix without column $j$:
+	\begingroup
+	\large
 	\begin{equation}
 	\sum_{\rho \in \Omega_{K,n} }p(\rho | (\lambda)) = \sum_{j = 1}^{n} \sum_{\rho \in \Omega_{K,n,j}}p(\rho | (\lambda))
 	\end{equation}
-	
+	\endgroup
+	\begingroup
+	\large
 	\begin{equation}
 	= \sum_{j = 1}^{n} \frac{\lambda_{i,j}}{\sum_{l \neq i}\lambda_{i,l}} \underbrace{\sum_{\rho \in \Omega_{K-1,n-1}}p(\rho | \hat{(\lambda)}_{j})}_\text{= 1 by induction} = 1
 	\end{equation}
-	
+	\endgroup
 	
 	\chapter{Community representation}
 	\section{Mathematic Formulation}
 	Here we suppose that the strength between individuals are characterized by their similitude to certain communities.
 	
 	We introduce $p$ the number of communities and $(w_{i,k})_{1 \leq i \leq n,1 \leq k \leq p }$ the strength of affiliation of the individual $i$ to the community $p$.
+	\begingroup
+	\large
 	\begin{equation}
 	\lambda_{i,j} = \sum_{k = 1}^{p} w_{i,k} w_{j,k}
 	\end{equation}
+	\endgroup
 	
 	This formulation is equivalent to the rank matrix approximation often encountered in the literature where we assume that:
 	
+	\begingroup
+	\large
 	\begin{equation}
 	(\lambda) = WW^{T}
 	\end{equation} where $W$ is the matrix of the $(w_{i,k})$
+	\endgroup
 	
 	We suppose here that the strength of the relations are only determined by the proximity with a certain community hence that the relations are reciprocal.
 	From the reordering inequality, we can observe that $\lambda_{i,j}$ is maximized when both $i$ and $j$ have the same community ranking preferences.
@@ -96,22 +113,31 @@
 
 
 	\section{Computation of the posterior}
-	Let's define the log-posterior of the community representation. Which is the sum of the log priors of the parameters and the log-likelihood. 
+	Let's define the log-posterior of the community representation. Which is the sum of the log priors of the parameters and the log-likelihood.
+	\begingroup
+	\large
 	\begin{equation}
 	l((w);D) = \sum_{i = 1}^{n} \sum_{k = 1}^{p} (\alpha - 1)ln(w_{i,k}) - \beta w_{i,k} + \sum_{i = 1}^{n} \sum_{j = 1}^{K} ln(\lambda_{i,\rho_{j}}) - ln(\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j-1} \lambda_{i,\rho_{l}})
 	\end{equation}
+	\endgroup
 	
 	To make the optimization easier, we can compute the gradient of the posterior according to the parameter $w_{r,s}$
 	
 	With 
+	\begingroup
+	\large
 	\begin{equation}
 	\frac{\partial \lambda_{i,j}}{\partial w_{r,s}} = 1_{i = r} w_{j,s} + 1_{j = r} w_{i,s}
 	\end{equation}
+	\endgroup
 	We have :
 	
+	\begingroup
+	\large
 	\begin{multline}
 	\frac{\partial l((w);D)}{\partial w_{r,s}} = \frac{a-1}{w_{r,s}} - b + \sum_{j = 1}^{K} \frac{1}{\lambda_{r,\rho^{(r)}_{j}}} w_{\rho^{(r)}_{j},s} + \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\lambda_{i,r}} w_{i,s} 1_{\rho^{(r)}_{j} = r} - \\ \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{j \neq r} w_{j,s} - \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} w_{i,s} + \\ \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq r} \lambda_{r,j} - \sum_{l = 1}^{j - 1} \lambda_{r,\rho^{(r)}_{l}}} \sum_{l = 1}^{j-1} w_{\rho^{(r)}_{l},s} + \sum_{i = 1; i \neq r}^{n} \sum_{j = 1}^{K} \frac{1}{\sum_{j \neq i} \lambda_{i,j} - \sum_{l = 1}^{j - 1} \lambda_{i,\rho^{(i)}_{l}}} \sum_{l = 1}^{j - 1} 1_{\rho^{(i)}_{l} = r} w_{i,s}	
 	\end{multline}
+	\endgroup
 
 	\begin{figure}
 		\centering
@@ -145,9 +171,12 @@
 	In figure \ref{label-image1} we can see that the coordinate and global optimization have converged to the same result. We obtain an absolute error of 0.02. Which is equivalent to 0.3 reported to the number of individual, and a ranking gap (mean absolute ranking error) of 2.13 for this individual.
 	
 	It is interesting to compare the ranking gap to the expected ranking gap from a random permutation. We can manually compute with a tedious calculation that
-	\begin{center}
-		\resizebox{8cm}{!}{$ \frac{1}{n} \mathbb{E}_{\mathbb{\sigma}_{n}}[ \sum_{k = 1}^{n} |\sigma(k) - k| ] = \frac{n^{2} - 1}{3n} $}
-	\end{center}
+	\begingroup
+	\large
+	\begin{equation}
+		\frac{1}{n} \mathbb{E}_{\mathbb{\sigma}_{n}}[ \sum_{k = 1}^{n} |\sigma(k) - k| ] = \frac{n^{2} - 1}{3n}
+	\end{equation}
+	\endgroup
 	
 	For n = 18 we have a random expectation of the ranking gap of 6. Hence the model tends to preserve the "global" social network for each individual.
 	
@@ -228,9 +257,12 @@
 	\section{ERGM model}
 	In the ERGM model (exponential-family random graph models), the distribution of $\textbf{Y}$ can be parameterized in the form:
 	
+	\begingroup
+	\large
 	\begin{equation}
 	P_{\theta}(Y = y) = \frac{exp((\eta(\theta)) ^{T}*z(x))}{\chi(\theta)}, y \in \mathcal{Y}
 	\end{equation}
+	\endgroup
 	
 	where $\theta$ is a q-vector of model parameters, which are mapped to a p-vector of natural parameters
 	by $\eta(.)$, and $g(.)$ is a p-vector of sufficient statistics, which capture network features of interest. These sufficient statistics typically embody the
@@ -245,9 +277,12 @@
 	The $p_{1}$ model is the first to propose log-linear models for social
 	networks. Suppose that we take $\mathcal{Y}$ to be the set of all directed graphs, with independent dyads [i.e., the pairs ($Y_{i,j}$ , $Y_{j,i}$ ) are independent for different choices of $\{i, j\}$] and the following model for tie probabilities:
 	
+	\begingroup
+	\large
 	\begin{multline}
 	P(Y_{i,j} = y_{1}, Y_{j,i} = y_{2}) = exp \{ y_{1}(\mu + \alpha_{i} + \beta_{j}) + y_{2}(\mu + \alpha_{j} + \beta_{i}) + y_{1}y_{2} \rho\} \backslash k_{ij} \\  y_{1}, y_{2} = 0,1 ; i,j = 1,...,n; i \neq j 
 	\end{multline}
+	\endgroup
 	
 	In this model, we can interpret $\mu$ as a density parameter, constituting an overall mean, $\alpha_{i}$ as a productivity parameter, characterizing i as a sender, $\beta_{j}$ as an attractiveness parameter, characterizing j as a receiver, and $\rho$ as a parameter indicating the force of reciprocation.
 	
@@ -260,12 +295,15 @@
 	The $p_{2}$ model is based on the same formula. The density and reciprocity parameters, however, are allowed to vary over dyads, and are therefore denoted $\mu_{ij} $ and $\rho_{ij}$. Moreover, parameters $\alpha_{i}$ , $\beta_{j}$ , $\mu_{ij}$ , and $\rho_{ij}$ are further modelled using covariates.
 	We first consider the node-specific parameters $\alpha_{i}$ and $\beta_{j}$. Covariates and random effects are included in a linear regression model for the productivity and attractiveness parameters.
 	
+	\begingroup
+	\large
 	\begin{equation}
 	\begin{cases}
 	\alpha = X_{1} \gamma_{1} + A \\
 	\beta = X_{2} \gamma_{2} + B
 	\end{cases}
 	\end{equation}
+	\endgroup
 
 	This formulation expresses the plausible idea that attractiveness (or popularity) and productivity (or sociability) depend on actor attributes (denoted by $X_{1}$ and $X_{2}$ , respectively, where the same or different attributes may be used for attractiveness and productivity) with corresponding weights $\gamma_{1}$ and $\gamma_{1}$ . Naturally, the attributes do not explain all variation in attractiveness and productivity parameters, as is represented by the residual terms A and B, n $\times$ 1 vectors with components $A_{i}$ and $B_{i}$ . The residuals are modeled as normally distributed random variables with expectation 0 and variances $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ , respectively. Parameters $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ can be interpreted as unexplained variance, that is, the variance of the $\alpha$’s and $\beta$’s that is left after taking into account the effect of the covariates $X_{1}$ and $X_{2}$ . The productivity and attractiveness parameters of the same node
 	are correlated:$\forall i,  cov(A_{i} , B_{i} ) = \sigma_{AB}$. Independence is assumed for parameters of different actors by setting $cov(A_{i} , A_{j} )=cov(B_{i} , B_{j} )=cov(A_{i} , B_{j} ) = 0$ for
@@ -411,50 +449,77 @@
 	
 	We recall the likelihood of the Plackett-Luce Model:
 	
+	\begingroup
+	\large
 	\begin{equation}
 	p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}}
 	\end{equation}
+	\endgroup
 	Along with its community representation:
+	\begingroup
+	\large
 	\begin{equation}
 	\lambda_{i,j} = \sum_{k = 1}^{p} w_{i,k} w_{j,k}
 	\end{equation}
+	\endgroup
 	With elements of $(\lambda)$ and $(w)$ positive.
 	
 	If we add a latent variable $Z$ with its probability distribution $P(Z | D, \lambda)$ we obtain the following complete data-likelihood:
 	
+	\begingroup
+	\large
 	\begin{equation}
 	L(\lambda,Z) = P(D,Z | \lambda) = (\prod_{i = 1}^{n}\prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}})P(Z | D, \lambda)
 	\end{equation}
+	\endgroup
 	
 	Hence our approach is to find latent variables that would both give sense and a nice posterior distribution over the $(w)$ to derive an EM algorithm.
 	
 	We first introduce:
 	
+	\begingroup
+	\large
 	\begin{equation}
 	V_{i,j,k} \sim \mathcal{E}(w_{i,k}w_{j,k}), \ 1 \leq i \neq j \leq n, \ \ 1 \leq k \leq p
 	\end{equation}
+	\endgroup
+	\begingroup
+	\large
 	\begin{equation}
 	V_{i,j} = min(V_{i,j,1},...,V_{i,j,p}) \sim \mathcal{E}(\lambda_{i,j})
-	\end{equation} And
+	\end{equation}
+	\endgroup
+	And
+	\begingroup
+	\large
 	\begin{equation}
 	Z_{i,k} | \rho_{i} = min(V_{i,j})_{j \neq i, \rho_{i}[1],...,\rho_{i}[k-1]} \sim \mathcal{E}(\sum_{j \neq i, \rho_{i}[1],...,\rho_{i}[k-1]}\lambda_{i,j}), 1 \leq k \leq K
 	\end{equation}
+	\endgroup
 	
 	An interpretation of those latent variables is that the next person ranked by an individual is equivalent to the first arrived individual (among those remaining to be ranked) following a waiting time of parameter $\lambda_{i,j}$. The arriving time of this same individual is equivalent to the first arriving time of other individuals following a waiting time of parameter $w_{i,k}w_{j,k}$ which is the contribution of the $k^{th}$ community.
 	
 	This latent variable allows us to suppress the denominator in (4.1). To suppress the nominator we introduce the following latent variables:
 	
+	\begingroup
+	\large
 	\begin{equation}
 	Y_{i,j} \sim \mathcal{B}(\frac{w_{i,1}w_{\rho_{i}[j],1}}{\lambda_{i,j}}, ..., \frac{w_{i,p}w_{\rho_{i}[j],p}}{\lambda_{i,j}}), 1 \leq j \leq K
 	\end{equation}
+	\endgroup
 	
 	This variable can be interpreted as the explanation of the choice of a certain individual in terms of community.
 	
 	We obtain the following log-likelihood distribution.
 	
+	\begingroup
+	\large
 	\begin{equation}
 	\mathcal{L}((w);Y,Z,D) = \sum_{i = 1}^{n} \sum_{k = 1}^{K} \bigg\{ -(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})z_{i,k} + \sum_{p = 1}^{P} \delta_{y_{i,k}, p} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\}
 	\end{equation}
+	\endgroup
+	
+	\section{EM formulation}
 	
 	\underline{E-step}:
 	\begin{multline}
@@ -471,8 +536,25 @@
 	We obtain this time, after computation:
 	
 	\begin{equation}
-	w_{r,s} \frac{\partial Q}{\partial w_{r,s}} = C(r,s,w^{*}) - A
+	w_{r,s} \frac{\partial Q}{\partial w_{r,s}} = C(r,s,w^{*}) - A(r,s,w,w^{*})w_{r,s}
 	\end{equation}
+	With
+	
+	\begin{equation}
+	C(r,s,w^{*}) = a - 1 + \sum_{k = 1}^{K}\frac{w^{*}_{r,s}w^{*}_{\rho_{r}[k],s}}{\lambda^{*}_{r,\rho_{r}[k]}} + \sum_{i \neq r} \frac{w^{*}_{i,s}w^{*}_{r,s}}{\lambda^{*}_{i,r}} \mathbb{I}(r \in \rho_{i})
+	\end{equation} and
+	\begin{multline}
+	A(r,s,w,w^{*}) = b \ + \ \bigg( \sum_{k = 1}^{K} \frac{1}{\Lambda^{*}(r,k)} \bigg) \bigg( \sum_{l \neq r} w_{l,s} \bigg) + \sum_{i \neq r} w_{i,s} \bigg( \sum_{k = 1}^{K} \frac{1}{\Lambda^{*}(i,k)} \bigg) - \\ \sum_{l = 1}^{K-1} w_{\rho_{r}(l), s} \bigg( \sum_{k = l+1}^{K} \frac{1}{\Lambda^{*}(r,k)} \bigg) - \sum_{i \neq r} \bigg( \sum_{k > rank_{\rho_{i}}(r)}^{K} \frac{1}{\Lambda^{*}(i,k)} \bigg)\mathbb{I}(r \in \rho_{i})
+	\end{multline} where
+	\begin{equation}
+	\Lambda^{*}(i,k) = \sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k-1} \lambda^{*}_{i,\rho_{l}}
+	\end{equation}
+	
+	We can see that it is difficult to directly derive the maximum arguments for $Q(w|w^{*})$, as putting the gradient to zero require to solve a set of non linear equations. However, we can notice that $A(r,s,w,w^{*})$ does not depend on $w_{r,s}$. Moreover, we can easily check by remounting the equations that $A$ and $C$ are always positive. Hence, as a function of one parameter, Q has one maximum reached by setting the derivative to zero. Hence instead of updating the whole set of variables $w$ directly by maximizing $Q$, we can update the elements one by one and update the set of fixed elements $w^{*}$. As $A$ and $C$ are always positive, doing so will always increase the posterior likelihood. We can update $w_{r,s}$ with
+	\begin{equation}
+	w^{(t)}_{r,s} = \frac{C(r,s,w^{(t-1)})}{A(r,s,w^{(t-1)})}
+	\end{equation}
+	This process will converge to (at least) a local minima.
 	
 	\chapter{Test on simulated Data}
 	
