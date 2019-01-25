@@ -1,2 +1,22 @@
-\contentsline {section}{\numberline {0.1}Introduction}{1}
-\contentsline {chapter}{Bibliography}{2}
+\contentsline {chapter}{\numberline {1}Introduction}{3}
+\contentsline {chapter}{\numberline {2}Community representation}{4}
+\contentsline {section}{\numberline {2.1}Mathematic Formulation}{4}
+\contentsline {section}{\numberline {2.2}Computation of the posterior}{5}
+\contentsline {section}{\numberline {2.3}Simulations on simulated Data}{6}
+\contentsline {subsection}{\numberline {2.3.1}Fixed parameters for the prior}{6}
+\contentsline {subsection}{\numberline {2.3.2}Model with degree-correction}{10}
+\contentsline {subsection}{\numberline {2.3.3}Performance Comparison}{10}
+\contentsline {chapter}{\numberline {3}Model with Covariates}{13}
+\contentsline {section}{\numberline {3.1}Notation}{13}
+\contentsline {section}{\numberline {3.2}ERGM model}{14}
+\contentsline {section}{\numberline {3.3}The $p1$ Model}{14}
+\contentsline {section}{\numberline {3.4}The $p2$ Model}{14}
+\contentsline {section}{\numberline {3.5}The SRM Model}{15}
+\contentsline {section}{\numberline {3.6}Plackett-Luce Model with Covariates}{17}
+\contentsline {chapter}{\numberline {4}EM algorithm with community representation}{19}
+\contentsline {section}{\numberline {4.1}Mathematical formulation}{19}
+\contentsline {chapter}{\numberline {5}Test on simulated Data}{21}
+\contentsline {section}{\numberline {5.1}Fixed Community representation}{21}
+\contentsline {section}{\numberline {5.2}Model With Degree Correction}{21}
+\contentsline {section}{\numberline {5.3}Model With Covariates}{21}
+\contentsline {chapter}{\numberline {6}Simulations on the Sampson’s monk dataset}{27}

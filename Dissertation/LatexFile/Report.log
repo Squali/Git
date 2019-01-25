@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  24 JAN 2019 16:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  25 JAN 2019 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -233,32 +233,42 @@ Package pdftex.def Info: oxlogo-eps-converted-to.pdf  used on input line 29.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./oxlogo-eps-converted-to.
-pdf>]
-Chapter 1.
-LaTeX Font Info:    Try loading font information for U+msa on input line 38.
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+pdf>] (./Report.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 3.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 38.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+LaTeX Font Info:    Try loading font information for U+msb on input line 3.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [2
+)
+Missing character: There is no ‚ in font cmbx12!
+Missing character: There is no Ä in font cmbx12!
+Missing character: There is no ô in font cmbx12!
+)
+\tf@toc=\write3
+\openout3 = `Report.toc'.
+
+ [2
+
+]
+Chapter 1.
+[3
 
 ]
 Chapter 2.
-<./images/heatMap.png, id=27, 433.62pt x 289.08pt>
+<./images/heatMap.png, id=30, 433.62pt x 289.08pt>
 File: ./images/heatMap.png Graphic file (type png)
 <use ./images/heatMap.png>
 Package pdftex.def Info: ./images/heatMap.png  used on input line 85.
 (pdftex.def)             Requested size: 175.61371pt x 117.07675pt.
-<./images/heatMapCorrection.png, id=29, 433.62pt x 289.08pt>
+<./images/heatMapCorrection.png, id=32, 433.62pt x 289.08pt>
 File: ./images/heatMapCorrection.png Graphic file (type png)
 <use ./images/heatMapCorrection.png>
 Package pdftex.def Info: ./images/heatMapCorrection.png  used on input line 91.
 
 (pdftex.def)             Requested size: 175.61371pt x 117.07675pt.
-[3
+[4
 
 ]
 Overfull \hbox (18.04593pt too wide) detected at line 114
@@ -266,46 +276,46 @@ Overfull \hbox (18.04593pt too wide) detected at line 114
 m/it/12 w[]$ []  
  []
 
-<./images/CoordinateWiseFunction.png, id=34, 433.62pt x 289.08pt>
+<./images/CoordinateWiseFunction.png, id=37, 433.62pt x 289.08pt>
 File: ./images/CoordinateWiseFunction.png Graphic file (type png)
 <use ./images/CoordinateWiseFunction.png>
 Package pdftex.def Info: ./images/CoordinateWiseFunction.png  used on input lin
 e 119.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-[4 <./images/heatMap.png> <./images/heatMapCorrection.png>]
-<./images/LambdaEstimation.png, id=40, 578.16pt x 433.62pt>
+[5 <./images/heatMap.png> <./images/heatMapCorrection.png>]
+<./images/LambdaEstimation.png, id=43, 578.16pt x 433.62pt>
 File: ./images/LambdaEstimation.png Graphic file (type png)
 <use ./images/LambdaEstimation.png>
 Package pdftex.def Info: ./images/LambdaEstimation.png  used on input line 140.
 
 (pdftex.def)             Requested size: 433.61893pt x 325.2142pt.
-<./images/OriginalPlot.png, id=41, 602.25pt x 602.25pt>
+<./images/OriginalPlot.png, id=44, 602.25pt x 602.25pt>
 File: ./images/OriginalPlot.png Graphic file (type png)
 <use ./images/OriginalPlot.png>
 Package pdftex.def Info: ./images/OriginalPlot.png  used on input line 157.
 (pdftex.def)             Requested size: 301.12425pt x 301.12425pt.
-<./images/OptimizationPlot.png, id=42, 602.25pt x 602.25pt>
+<./images/OptimizationPlot.png, id=45, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlot.png Graphic file (type png)
 <use ./images/OptimizationPlot.png>
 Package pdftex.def Info: ./images/OptimizationPlot.png  used on input line 165.
 
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
- [5 <./images/CoordinateWiseFunction.png>] [6 <./images/LambdaEstimation.png>] 
-[7 <./images/OriginalPlot.png>] [8 <./images/OptimizationPlot.png>]
-<./images/OriginalPlotDegreeCorrection.png, id=58, 602.25pt x 602.25pt>
+ [6 <./images/CoordinateWiseFunction.png>] [7 <./images/LambdaEstimation.png>] 
+[8 <./images/OriginalPlot.png>] [9 <./images/OptimizationPlot.png>]
+<./images/OriginalPlotDegreeCorrection.png, id=61, 602.25pt x 602.25pt>
 File: ./images/OriginalPlotDegreeCorrection.png Graphic file (type png)
 <use ./images/OriginalPlotDegreeCorrection.png>
 Package pdftex.def Info: ./images/OriginalPlotDegreeCorrection.png  used on inp
 ut line 177.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-<./images/OptimizationPlotDegreeCorrection.png, id=59, 602.25pt x 602.25pt>
+<./images/OptimizationPlotDegreeCorrection.png, id=62, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotDegreeCorrection.png Graphic file (type png)
 <use ./images/OptimizationPlotDegreeCorrection.png>
 Package pdftex.def Info: ./images/OptimizationPlotDegreeCorrection.png  used on
  input line 185.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
- [9] [10 <./images/OriginalPlotDegreeCorrection.png>] [11 <./images/Optimizatio
-nPlotDegreeCorrection.png>]
+ [10] [11 <./images/OriginalPlotDegreeCorrection.png>] [12 <./images/Optimizati
+onPlotDegreeCorrection.png>]
 Chapter 3.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
@@ -328,7 +338,7 @@ Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
-[12
+[13
 
 ]
 Missing character: There is no ‚ in font cmr12!
@@ -343,35 +353,35 @@ Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
- [13]
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ú in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ù in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ú in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ù in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ú in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ù in font cmr12!
  [14]
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+ [15]
 Missing character: There is no Œ in font cmr12!
 Missing character: There is no ∏ in font cmr12!
 Missing character: There is no Œ in font cmr12!
@@ -396,74 +406,74 @@ Missing character: There is no ô in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
- [15] [16] [17]
+ [16] [17] [18]
 Chapter 4.
-[18
+[19
 
-]
+] [20]
 Chapter 5.
-<./images/LambdaEstimationFixedPrior.png, id=94, 433.62pt x 289.08pt>
+<./images/LambdaEstimationFixedPrior.png, id=101, 433.62pt x 289.08pt>
 File: ./images/LambdaEstimationFixedPrior.png Graphic file (type png)
 <use ./images/LambdaEstimationFixedPrior.png>
 Package pdftex.def Info: ./images/LambdaEstimationFixedPrior.png  used on input
- line 422.
+ line 486.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<./images/OriginalPlotFixedPrior.png, id=95, 602.25pt x 602.25pt>
+<./images/OriginalPlotFixedPrior.png, id=102, 602.25pt x 602.25pt>
 File: ./images/OriginalPlotFixedPrior.png Graphic file (type png)
 <use ./images/OriginalPlotFixedPrior.png>
 Package pdftex.def Info: ./images/OriginalPlotFixedPrior.png  used on input lin
-e 430.
+e 494.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-<./images/OptimizationPlotFixedPrior.png, id=96, 602.25pt x 602.25pt>
+<./images/OptimizationPlotFixedPrior.png, id=103, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotFixedPrior.png Graphic file (type png)
 <use ./images/OptimizationPlotFixedPrior.png>
 Package pdftex.def Info: ./images/OptimizationPlotFixedPrior.png  used on input
- line 438.
+ line 502.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-<./images/SimulationGap.png, id=97, 578.16pt x 433.62pt>
+<./images/SimulationGap.png, id=104, 578.16pt x 433.62pt>
 File: ./images/SimulationGap.png Graphic file (type png)
 <use ./images/SimulationGap.png>
-Package pdftex.def Info: ./images/SimulationGap.png  used on input line 448.
+Package pdftex.def Info: ./images/SimulationGap.png  used on input line 512.
 (pdftex.def)             Requested size: 433.61893pt x 325.2142pt.
-<./images/SimulationGap100.png, id=98, 433.62pt x 289.08pt>
+<./images/SimulationGap100.png, id=105, 433.62pt x 289.08pt>
 File: ./images/SimulationGap100.png Graphic file (type png)
 <use ./images/SimulationGap100.png>
-Package pdftex.def Info: ./images/SimulationGap100.png  used on input line 462.
+Package pdftex.def Info: ./images/SimulationGap100.png  used on input line 526.
 
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<./images/SimulationGapDegreeCorr.png, id=99, 433.62pt x 289.08pt>
+<./images/SimulationGapDegreeCorr.png, id=106, 433.62pt x 289.08pt>
 File: ./images/SimulationGapDegreeCorr.png Graphic file (type png)
 <use ./images/SimulationGapDegreeCorr.png>
 Package pdftex.def Info: ./images/SimulationGapDegreeCorr.png  used on input li
-ne 475.
+ne 539.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-[19
+[21
 
-] [20 <./images/LambdaEstimationFixedPrior.png>] [21 <./images/OriginalPlotFixe
-dPrior.png>] [22 <./images/OptimizationPlotFixedPrior.png>] [23 <./images/Simul
-ationGap.png>] [24 <./images/SimulationGap100.png> <./images/SimulationGapDegre
+] [22 <./images/LambdaEstimationFixedPrior.png>] [23 <./images/OriginalPlotFixe
+dPrior.png>] [24 <./images/OptimizationPlotFixedPrior.png>] [25 <./images/Simul
+ationGap.png>] [26 <./images/SimulationGap100.png> <./images/SimulationGapDegre
 eCorr.png>]
 Chapter 6.
 Missing character: There is no ‚ in font cmbx12!
 Missing character: There is no Ä in font cmbx12!
 Missing character: There is no ô in font cmbx12!
-<./images/OptimizationPlotSam.png, id=123, 602.25pt x 602.25pt>
+<./images/OptimizationPlotSam.png, id=130, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotSam.png Graphic file (type png)
 <use ./images/OptimizationPlotSam.png>
 Package pdftex.def Info: ./images/OptimizationPlotSam.png  used on input line 5
-14.
+78.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-[25
+[27
 
-] [26 <./images/OptimizationPlotSam.png>] (./Report.aux) ) 
+] [28 <./images/OptimizationPlotSam.png>] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 2584 strings out of 494923
- 35265 string characters out of 6180741
+ 2587 strings out of 494923
+ 35291 string characters out of 6180741
  91309 words of memory out of 5000000
  5828 multiletter control sequences out of 15000+600000
  14873 words of font info for 55 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,9n,26p,1020b,289s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,26p,1020b,289s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
@@ -481,10 +491,10 @@ e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Report.pdf (26 pages, 1273940 bytes).
+Output written on Report.pdf (28 pages, 1284506 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 114 compressed objects within 2 object streams
+ 192 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

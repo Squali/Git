@@ -27,7 +27,7 @@
 	
 	
 	\maketitle                  % create a title page from the preamble info
-	
+	\tableofcontents
 	
 	
 	%now include the files of latex for each of the chapters etc
@@ -322,7 +322,7 @@
 	to $f(y)$.$ " $ For each ordered pair (i, j), step 2 of this algorithm will generate a value of $y_{i,j}$ from
 	its full conditional distribution, constrained so that conditions (2)–(4) that define the FRN likelihood are met.
 	
-	TO deal with the previous remarks, we apply a model in the case where $\theta$  represents the parameters in the following standard regression model for relational data:
+	To deal with the previous remarks, we apply a model in the case where $\theta$  represents the parameters in the following standard regression model for relational data:
 	
 	$y_{i,j} = $ \boldmath $\beta^{T} {x_{i,j}}$ \unboldmath + $a_{i} + b_{j} + \epsilon_{i,j}$
 	
@@ -403,14 +403,76 @@
 	
 	\end{enumerate}
 	
-	\chapter{EM algorithm}
+	\chapter{EM algorithm with community representation}
 	
-	We have seen that the derivation of the posterior distribution over the $(w)$ derived in equation (2.5) is somewhat very complicated. Hence we try in this chapter to introduce latent variable in order to derive an EM algorithm.
+	We have seen that the derivation of the posterior distribution over the $(w)$ derived in equation (2.5) is somewhat very complicated. Hence we try in this chapter to introduce latent variables in order to derive an EM algorithm.
 	
 	\section{Mathematical formulation}
 	
+	We recall the likelihood of the Plackett-Luce Model:
 	
+	\begin{equation}
+	p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}}
+	\end{equation}
+	Along with its community representation:
+	\begin{equation}
+	\lambda_{i,j} = \sum_{k = 1}^{p} w_{i,k} w_{j,k}
+	\end{equation}
+	With elements of $(\lambda)$ and $(w)$ positive.
 	
+	If we add a latent variable $Z$ with its probability distribution $P(Z | D, \lambda)$ we obtain the following complete data-likelihood:
+	
+	\begin{equation}
+	L(\lambda,Z) = P(D,Z | \lambda) = (\prod_{i = 1}^{n}\prod_{k = 1}^{K}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}})P(Z | D, \lambda)
+	\end{equation}
+	
+	Hence our approach is to find latent variables that would both give sense and a nice posterior distribution over the $(w)$ to derive an EM algorithm.
+	
+	We first introduce:
+	
+	\begin{equation}
+	V_{i,j,k} \sim \mathcal{E}(w_{i,k}w_{j,k}), \ 1 \leq i \neq j \leq n, \ \ 1 \leq k \leq p
+	\end{equation}
+	\begin{equation}
+	V_{i,j} = min(V_{i,j,1},...,V_{i,j,p}) \sim \mathcal{E}(\lambda_{i,j})
+	\end{equation} And
+	\begin{equation}
+	Z_{i,k} | \rho_{i} = min(V_{i,j})_{j \neq i, \rho_{i}[1],...,\rho_{i}[k-1]} \sim \mathcal{E}(\sum_{j \neq i, \rho_{i}[1],...,\rho_{i}[k-1]}\lambda_{i,j}), 1 \leq k \leq K
+	\end{equation}
+	
+	An interpretation of those latent variables is that the next person ranked by an individual is equivalent to the first arrived individual (among those remaining to be ranked) following a waiting time of parameter $\lambda_{i,j}$. The arriving time of this same individual is equivalent to the first arriving time of other individuals following a waiting time of parameter $w_{i,k}w_{j,k}$ which is the contribution of the $k^{th}$ community.
+	
+	This latent variable allows us to suppress the denominator in (4.1). To suppress the nominator we introduce the following latent variables:
+	
+	\begin{equation}
+	Y_{i,j} \sim \mathcal{B}(\frac{w_{i,1}w_{\rho_{i}[j],1}}{\lambda_{i,j}}, ..., \frac{w_{i,p}w_{\rho_{i}[j],p}}{\lambda_{i,j}}), 1 \leq j \leq K
+	\end{equation}
+	
+	This variable can be interpreted as the explanation of the choice of a certain individual in terms of community.
+	
+	We obtain the following log-likelihood distribution.
+	
+	\begin{equation}
+	\mathcal{L}((w);Y,Z,D) = \sum_{i = 1}^{n} \sum_{k = 1}^{K} \bigg\{ -(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})z_{i,k} + \sum_{p = 1}^{P} \delta_{y_{i,k}, p} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\}
+	\end{equation}
+	
+	\underline{E-step}:
+	\begin{multline}
+	\mathbb{E}_{Z,Y | \rho, (w)^{*}}(\mathcal{L}((w);Y,Z,D)) = \\ \sum_{i = 1}^{n} \sum_{k = 1}^{K} \bigg\{ -\frac{(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})}{(\sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k - 1} \lambda^{*}_{i,\rho_{l}})} + \sum_{p = 1}^{P} \frac{w^{*}_{ip}w^{*}_{\rho_{k}p}}{\lambda^{*}_{i\rho_{k}}} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\}
+	\end{multline} Hence, with a gamma prior on the $(w)$ we obtain:
+	\begin{multline}
+	Q(w|w^{*}) = \sum_{i = 1}^{n} \Bigg[ \sum_{k = 1}^{K} \bigg\{ -\frac{(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})}{(\sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k - 1} \lambda^{*}_{i,\rho_{l}})} + \\ \sum_{p = 1}^{P} \frac{w^{*}_{ip}w^{*}_{\rho_{k}p}}{\lambda^{*}_{i\rho_{k}}} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\} + \sum_{p = 1}^{P} (a-1)ln(w_{ip}) - bw_{ip}  \Bigg]
+	\end{multline}
+	
+	\underline{M-step}: With the same result as in chapter 2 for the full derivation:
+	\begin{equation}
+	\frac{\partial \lambda_{i,j}}{\partial w_{r,s}} = 1_{i = r} w_{j,s} + 1_{j = r} w_{i,s}
+	\end{equation}
+	We obtain this time, after computation:
+	
+	\begin{equation}
+	w_{r,s} \frac{\partial Q}{\partial w_{r,s}} = C(r,s,w^{*}) - A
+	\end{equation}
 	
 	\chapter{Test on simulated Data}
 	
