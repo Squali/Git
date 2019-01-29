@@ -8,16 +8,19 @@
 \contentsline {subsection}{\numberline {2.3.3}Performance Comparison}{9}
 \contentsline {chapter}{\numberline {3}Model with Covariates}{10}
 \contentsline {section}{\numberline {3.1}Notation}{10}
-\contentsline {section}{\numberline {3.2}ERGM model}{11}
-\contentsline {section}{\numberline {3.3}The $p1$ Model}{11}
-\contentsline {section}{\numberline {3.4}The $p2$ Model}{11}
-\contentsline {section}{\numberline {3.5}The SRM Model}{12}
-\contentsline {section}{\numberline {3.6}Plackett-Luce Model with Covariates}{14}
+\contentsline {section}{\numberline {3.2}Classic Graphical Models}{11}
+\contentsline {subsection}{\numberline {3.2.1}ERGM model}{11}
+\contentsline {subsection}{\numberline {3.2.2}The $p1$ Model}{11}
+\contentsline {subsection}{\numberline {3.2.3}The $p2$ Model}{11}
+\contentsline {subsection}{\numberline {3.2.4}The SRM Model}{12}
+\contentsline {section}{\numberline {3.3}Plackett-Luce Model with Covariates}{14}
 \contentsline {chapter}{\numberline {4}EM algorithm with community representation}{16}
 \contentsline {section}{\numberline {4.1}Mathematical formulation}{16}
 \contentsline {section}{\numberline {4.2}EM formulation}{17}
-\contentsline {chapter}{\numberline {5}Test on simulated Data}{19}
-\contentsline {section}{\numberline {5.1}Fixed Community representation}{19}
-\contentsline {section}{\numberline {5.2}Model With Degree Correction}{21}
-\contentsline {section}{\numberline {5.3}Model With Covariates}{22}
-\contentsline {chapter}{\numberline {6}Simulations on the Sampson’s monk dataset}{23}
+\contentsline {section}{\numberline {4.3}Simulation}{19}
+\contentsline {subsection}{\numberline {4.3.1}Toy Example}{19}
+\contentsline {chapter}{\numberline {5}Test on simulated Data}{20}
+\contentsline {section}{\numberline {5.1}Fixed Community representation}{20}
+\contentsline {section}{\numberline {5.2}Model With Degree Correction}{22}
+\contentsline {section}{\numberline {5.3}Model With Covariates}{23}
+\contentsline {chapter}{\numberline {6}Simulations on the Sampson’s monk dataset}{24}

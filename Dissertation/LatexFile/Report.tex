@@ -190,69 +190,35 @@
 	\chapter{Model with Covariates}
 	
 	The purpose of ERGMs, in a nutshell, is to describe parsimoniously the local selection forces
-	that shape the global structure of a network. To this end, a network dataset, like those
-	depicted in Figure 1, may be considered like the response in a regression model, where the
-	predictors are things like “propensity for individuals of the same sex to form partnerships” or
-	“propensity for individuals to form triangles of partnerships”. In Figure 1(b), for example, it
-	is evident that the individual nodes appear to cluster in groups of the same numerical labels
-	(which turn out to be students’ grades, 7 through 12); thus, an ERGM can help us quantify
-	the strength of this intra-group effect. The information gleaned from use of an ERGM may
-	then be used to understand a particular phenomenon or to simulate new random realizations
-	of networks that retain the essential properties of the original. Handcock, Hunter, Butts,
-	Goodreau, and Morris (2008) say more about the purpose of modeling with ERGMs; yet in
-	this article, we focus primarily on technical details.
+	that shape the global structure of a network. To this end, a network dataset may be considered like the response in a regression model, where the predictors are things like “propensity for individuals of the same sex to form partnerships” or “propensity for individuals to form triangles of partnerships”. Thus, an ERGM can help us quantify the strength of this intra-group effect. The information gleaned from use of an ERGM may then be used to understand a particular phenomenon or to simulate new random realizations of networks that retain the essential properties of the original. Handcock, Hunter, Butts, Goodreau, and Morris (2008) say more about the purpose of modeling with ERGMs; yet in this article, we focus primarily on technical details.
 	
 	\section{Notation}
-	Let $N$ be the set of nodes in the network of interest, indexed $\{ 1,...,n\}$ The relationships in
-	the network may be directed (e.g., friendship nominations, messages) or undirected (e.g., sexual
-	partnerships, conversations). In the former case, we define the set of dyads (here used to refer
-	to potential relationships) $\mathbb{Y}$ to be a subset of $N \times N$, the set of ordered pairs of nodes; in the
-	latter case, it is a subset of $\{ \{i, j\} : (i, j) \in N \times N\}$, the unordered pairs of nodes. (We will also
-	use u($\mathbb{Y}$) to refer to an “unordered” version of $\mathbb{Y}$, i.e., u($\mathbb{Y}$) $\equiv$ $\{\{i, j\} : (i, j) \in Y \}$.) Usually, $\mathbb{Y}$ is
-	further constrained in that in most social networks studied, a node cannot have a relationship of
-	interest with itself, excluding pairs of the form $(i, i)$.
-	For binary networks, in which the relationship of interest must be either present or absent,
-	we use $\mathcal{Y}$ $\in$ $2^{\mathbb{Y}}$
-	, the set of subsets of $\mathbb{Y}$, to refer to the set of possible networks of interest, which may be further constrained (that is, $\mathbb{Y}$ may be a proper subset of $2^{\mathbb{Y}}$). We will use $\textbf{Y}$ to refer to
-	network random variables and $y$ $\in$ $\mathcal{Y}$ to refer to their realizations, and $y_{i,j}$ be an 0 - 1 indicator of
-	whether a relationship of interest is present between i and j in a binary network context.
 	
+	Let $N$ be the set of nodes in the network of interest, indexed $\{ 1,...,n\}$ The relationships in the network may be directed (e.g., friendship nominations, messages) or undirected (e.g., sexual partnerships, conversations). In the former case, we define the set of dyads (here used to refer to potential relationships) $\mathbb{Y}$ to be a subset of $N \times N$, the set of ordered pairs of nodes; in the latter case, it is a subset of $\{ \{i, j\} : (i, j) \in N \times N\}$, the unordered pairs of nodes. (We will also use u($\mathbb{Y}$) to refer to an “unordered” version of $\mathbb{Y}$, i.e., u($\mathbb{Y}$) $\equiv$ $\{\{i, j\} : (i, j) \in Y \}$.) Usually, $\mathbb{Y}$ is further constrained in that in most social networks studied, a node cannot have a relationship of interest with itself, excluding pairs of the form $(i, i)$. For binary networks, in which the relationship of interest must be either present or absent, we use $\mathcal{Y}$ $\in$ $2^{\mathbb{Y}}$, the set of subsets of $\mathbb{Y}$, to refer to the set of possible networks of interest, which may be further constrained (that is, $\mathbb{Y}$ may be a proper subset of $2^{\mathbb{Y}}$). We will use $\textbf{Y}$ to refer to network random variables and $y$ $\in$ $\mathcal{Y}$ to refer to their realizations, and $y_{i,j}$ be an 0 - 1 indicator of whether a relationship of interest is present between i and j in a binary network context.
 	
-	\section{ERGM model}
+	\section{Classic Graphical Models}
+	
+	\subsection{ERGM model}
 	In the ERGM model (exponential-family random graph models), the distribution of $\textbf{Y}$ can be parameterized in the form:
-	
 	\begin{equation}
 	P_{\theta}(Y = y) = \frac{exp((\eta(\theta)) ^{T}*z(x))}{\chi(\theta)}, y \in \mathcal{Y}
 	\end{equation}
+	where $\theta$ is a q-vector of model parameters, which are mapped to a p-vector of natural parameters by $\eta(.)$, and $g(.)$ is a p-vector of sufficient statistics, which capture network features of interest. These sufficient statistics typically embody the features of the network of interest that are believed to be significant to the social process which had produced it, such as degree distribution (e.g., propensity towards monogamy in sexual partnership networks), homophily (i.e., “birds of a feather flock together”), and triad-closure bias (i.e., “a friend of a friend is a friend”) . (Morris, Handcock and Hunter, 2008)
 	
-	where $\theta$ is a q-vector of model parameters, which are mapped to a p-vector of natural parameters
-	by $\eta(.)$, and $g(.)$ is a p-vector of sufficient statistics, which capture network features of interest. These sufficient statistics typically embody the
-	features of the network of interest that are believed to be significant to the social
-	process which had produced it, such as degree distribution (e.g., propensity
-	towards monogamy in sexual partnership networks), homophily (i.e., “birds of
-	a feather flock together”), and triad-closure bias (i.e., “a friend of a friend is a
-	friend”) . (Morris, Handcock and Hunter, 2008)
+	\subsection{The $p1$ Model}
 	
-	\section{The $p1$ Model}
-	
-	The $p_{1}$ model is the first to propose log-linear models for social
-	networks. Suppose that we take $\mathcal{Y}$ to be the set of all directed graphs, with independent dyads [i.e., the pairs ($Y_{i,j}$ , $Y_{j,i}$ ) are independent for different choices of $\{i, j\}$] and the following model for tie probabilities:
-	
+	The $p_{1}$ model is the first to propose log-linear models for social networks. Suppose that we take $\mathcal{Y}$ to be the set of all directed graphs, with independent dyads [i.e., the pairs ($Y_{i,j}$ , $Y_{j,i}$ ) are independent for different choices of $\{i, j\}$] and the following model for tie probabilities:
 	\begin{multline}
 	P(Y_{i,j} = y_{1}, Y_{j,i} = y_{2}) = exp \{ y_{1}(\mu + \alpha_{i} + \beta_{j}) + y_{2}(\mu + \alpha_{j} + \beta_{i}) + y_{1}y_{2} \rho\} \backslash k_{ij} \\  y_{1}, y_{2} = 0,1 ; i,j = 1,...,n; i \neq j 
 	\end{multline}
-	
 	In this model, we can interpret $\mu$ as a density parameter, constituting an overall mean, $\alpha_{i}$ as a productivity parameter, characterizing i as a sender, $\beta_{j}$ as an attractiveness parameter, characterizing j as a receiver, and $\rho$ as a parameter indicating the force of reciprocation.
 	
-	\section{The $p2$ Model}
+	\subsection{The $p2$ Model}
 	
 	While ERGMs are useful for modeling global network characteristics, models based on conditional independence (given latent variables) are useful for multiple reasons. First, ERGMs are not well understood and sometimes possess undesirable properties, e.g., model degeneracy. Second, the likelihood function of ERGMs is intractable, complicating statistical computing. Third, there may be unobserved heterogeneity or unobserved structure.
 	Models based on independence conditional on latent variables: random effects models and mixed effects models and extensions; stochastic block models and extensions, including mixed membership models; and latent space models and extensions.
 	
-	The aim of the $p_{2}$ model is to relate binary network data to covariates while taking into account the specific network structure. This requires a kind of bivariate logistic regression model capable of handling the dependence of network data.
-	The $p_{2}$ model is based on the same formula. The density and reciprocity parameters, however, are allowed to vary over dyads, and are therefore denoted $\mu_{ij} $ and $\rho_{ij}$. Moreover, parameters $\alpha_{i}$ , $\beta_{j}$ , $\mu_{ij}$ , and $\rho_{ij}$ are further modelled using covariates.
-	We first consider the node-specific parameters $\alpha_{i}$ and $\beta_{j}$. Covariates and random effects are included in a linear regression model for the productivity and attractiveness parameters.
-	
+	The aim of the $p_{2}$ model is to relate binary network data to covariates while taking into account the specific network structure. This requires a kind of bivariate logistic regression model capable of handling the dependence of network data. The $p_{2}$ model is based on the same formula. The density and reciprocity parameters, however, are allowed to vary over dyads, and are therefore denoted $\mu_{ij} $ and $\rho_{ij}$. Moreover, parameters $\alpha_{i}$ , $\beta_{j}$ , $\mu_{ij}$ , and $\rho_{ij}$ are further modelled using covariates. We first consider the node-specific parameters $\alpha_{i}$ and $\beta_{j}$. Covariates and random effects are included in a linear regression model for the productivity and attractiveness parameters.
 	\begin{equation}
 	\begin{cases}
 	\alpha = X_{1} \gamma_{1} + A \\
@@ -260,14 +226,10 @@
 	\end{cases}
 	\end{equation}
 
-	This formulation expresses the plausible idea that attractiveness (or popularity) and productivity (or sociability) depend on actor attributes (denoted by $X_{1}$ and $X_{2}$ , respectively, where the same or different attributes may be used for attractiveness and productivity) with corresponding weights $\gamma_{1}$ and $\gamma_{1}$ . Naturally, the attributes do not explain all variation in attractiveness and productivity parameters, as is represented by the residual terms A and B, n $\times$ 1 vectors with components $A_{i}$ and $B_{i}$ . The residuals are modeled as normally distributed random variables with expectation 0 and variances $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ , respectively. Parameters $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ can be interpreted as unexplained variance, that is, the variance of the $\alpha$’s and $\beta$’s that is left after taking into account the effect of the covariates $X_{1}$ and $X_{2}$ . The productivity and attractiveness parameters of the same node
-	are correlated:$\forall i,  cov(A_{i} , B_{i} ) = \sigma_{AB}$. Independence is assumed for parameters of different actors by setting $cov(A_{i} , A_{j} )=cov(B_{i} , B_{j} )=cov(A_{i} , B_{j} ) = 0$ for
-	$i \neq j$ (cf. Wong, 1987).
-	If no external information on actors is available, the terms $X_{1} \gamma_{1}$ and $X_{2} \gamma_{2}$ vanish and $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ denote the variances of the $\alpha$ and $\beta$ parameters, respectively. Then a pure random effects model results with, apart from the density and reciprocity parameters, only two variance parameters and one covariance parameter. Thus, the $p_{2}$ model without covariates is a more parsimonious model than the $p_{1}$ model with well-interpretable parameters. Obviously, the fit of $p_{1}$
-	will be better than the fit of $p_{2}$ without covariates.
+	This formulation expresses the plausible idea that attractiveness (or popularity) and productivity (or sociability) depend on actor attributes (denoted by $X_{1}$ and $X_{2}$ , respectively, where the same or different attributes may be used for attractiveness and productivity) with corresponding weights $\gamma_{1}$ and $\gamma_{1}$ . Naturally, the attributes do not explain all variation in attractiveness and productivity parameters, as is represented by the residual terms A and B, n $\times$ 1 vectors with components $A_{i}$ and $B_{i}$ . The residuals are modeled as normally distributed random variables with expectation 0 and variances $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ , respectively. Parameters $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ can be interpreted as unexplained variance, that is, the variance of the $\alpha '$s and $\beta '$s that is left after taking into account the effect of the covariates $X_{1}$ and $X_{2}$ . The productivity and attractiveness parameters of the same node are correlated:$\forall i,  cov(A_{i} , B_{i} ) = \sigma_{AB}$. Independence is assumed for parameters of different actors by setting $cov(A_{i} , A_{j} )=cov(B_{i} , B_{j} )=cov(A_{i} , B_{j} ) = 0$ for $i \neq j$ (cf. Wong, 1987). If no external information on actors is available, the terms $X_{1} \gamma_{1}$ and $X_{2} \gamma_{2}$ vanish and $\sigma_{A}^{2}$ and $\sigma_{B}^{2}$ denote the variances of the $\alpha$ and $\beta$ parameters, respectively. Then a pure random effects model results with, apart from the density and reciprocity parameters, only two variance parameters and one covariance parameter. Thus, the $p_{2}$ model without covariates is a more parsimonious model than the $p_{1}$ model with well-interpretable parameters. Obviously, the fit of $p_{1}$ will be better than the fit of $p_{2}$ without covariates.
 	
 	
-	\section{The SRM Model}
+	\subsection{The SRM Model}
 	
 	ERGM models models work very poorly, the learned parameters do not generate data that resembles the input and tend toward wholly connected or completely empty graphs. Similarly, Since a binary random graph model does not accommodate rank data, analysis of these data with such a model typically begins by reducing all positive ranked relations to “ones,” and all negative ranked relations to “zeros,” leaving unranked relations as zeros as well. Such a data analysis essentially throws away some of the information in the data. Furthermore, the support of most binary random graph models consists of all possible graphs on the node set. In contrast, the data collection scheme used by Sampson (1969) was censored, as no graph with more than three outgoing edges per node could have been observed.
 	
@@ -466,10 +428,10 @@
 	C(r,s,w^{*}) = a - 1 + \sum_{k = 1}^{K}\frac{w^{*}_{r,s}w^{*}_{\rho_{r}[k],s}}{\lambda^{*}_{r,\rho_{r}[k]}} + \sum_{i \neq r} \frac{w^{*}_{i,s}w^{*}_{r,s}}{\lambda^{*}_{i,r}} \mathbb{I}(r \in \rho_{i})
 	\end{equation} and
 	\begin{multline}
-	A(r,s,w,w^{*}) = b \ + \ \bigg( \sum_{k = 1}^{K} \frac{1}{\Lambda^{*}(r,k)} \bigg) \bigg( \sum_{l \neq r} w_{l,s} \bigg) + \sum_{i \neq r} w_{i,s} \bigg( \sum_{k = 1}^{K} \frac{1}{\Lambda^{*}(i,k)} \bigg) - \\ \sum_{l = 1}^{K-1} w_{\rho_{r}(l), s} \bigg( \sum_{k = l+1}^{K} \frac{1}{\Lambda^{*}(r,k)} \bigg) - \sum_{i \neq r} \bigg( \sum_{k > rank_{\rho_{i}}(r)}^{K} \frac{1}{\Lambda^{*}(i,k)} \bigg)\mathbb{I}(r \in \rho_{i})
+	A(r,s,w,w^{*}) = b \ + \ \bigg( \sum_{k = 1}^{K} \frac{1}{\Lambda^{*}(r,k)} \bigg) \bigg( \sum_{l \neq r} w_{l,s} \bigg) + \sum_{i \neq r} w_{i,s} \bigg( \sum_{k = 1}^{K} \frac{1}{\Lambda^{*}(i,k)} \bigg) - \\ \sum_{l = 1}^{K-1} w_{\rho_{r}(l), s} \bigg( \sum_{k = l+1}^{K} \frac{1}{\Lambda^{*}(r,k)} \bigg) - \sum_{i \neq r} w_{i,s} \bigg( \sum_{k > rank_{\rho_{i}}(r)}^{K} \frac{1}{\Lambda^{*}(i,k)} \bigg)\mathbb{I}(r \in \rho_{i})
 	\end{multline} where
 	\begin{equation}
-	\Lambda^{*}(i,k) = \sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k-1} \lambda^{*}_{i,\rho_{l}}
+	\Lambda^{*}(i,k) = \sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k-1} \lambda^{*}_{i,\rho_{i}[l]}
 	\end{equation}
 	
 	We can see that it is difficult to directly derive the maximum arguments for $Q(w|w^{*})$, as putting the gradient to zero require to solve a set of non linear equations. However, we can notice that $A(r,s,w,w^{*})$ does not depend on $w_{r,s}$. Moreover, we can easily check by remounting the equations that $A$ and $C$ are always positive ($C$ might be negative if $a < 1$). Hence, as a function of one parameter, Q has one maximum reached by setting the derivative to zero. Hence instead of updating the whole set of variables $w$ directly by maximizing $Q$, we can update the elements one by one and update the set of fixed elements $w^{*}$. As $A$ and $C$ are always positive, doing so will always increase the posterior likelihood. We can update $w_{r,s}$ with
@@ -477,6 +439,40 @@
 	w^{(t)}_{r,s} = \frac{C(r,s,w^{(t-1)})}{A(r,s,w^{(t-1)})}
 	\end{equation}
 	This process will converge to (at least) a local minima.
+	\newpage
+	\section{Simulation}
+	
+	\subsection{Toy Example}
+	
+	We drew a first simple example with a clear clustering into two groups of individuals as in figure (4.1). Running the EM algorithm implemented in R is instantaneous and return the following matrix for $W$:
+	\begin{equation}
+	W = 
+	\begin{pmatrix}
+	0.1294021 & 1.0349799 \\
+	0.1228317 & 0.8720837 \\
+	0.1187870 & 0.7219490 \\
+	1.0349782 & 0.1294015 \\
+	0.8720818 & 0.1228311 \\
+	0.7219470 & 0.1187863 \\
+	\end{pmatrix}
+	\end{equation} which show a clear differentiation between two groups as illustrated in figure (4.2). Furthermore, we can see that the greatest values for $w_{i,j}$ in the respective communities are assigned to the most appreciated individuals in each group (denoted by bold arrows), which is consistent with what we would expect.
+	
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{PlotToyExample} % first figure itself
+			\caption{Initial Network with two independent group of individuals}
+			\label{label-image15}
+		\end{minipage}\hfill
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{PlotToyExampleFinal} % second figure itself
+			\caption{Inferred communities}
+			\label{label-image16}
+		\end{minipage}
+	\end{figure}
 	
 	\chapter{Test on simulated Data}
 	
