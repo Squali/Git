@@ -17,10 +17,12 @@
 \contentsline {chapter}{\numberline {4}EM algorithm with community representation}{16}
 \contentsline {section}{\numberline {4.1}Mathematical formulation}{16}
 \contentsline {section}{\numberline {4.2}EM formulation}{17}
-\contentsline {section}{\numberline {4.3}Simulation}{19}
-\contentsline {subsection}{\numberline {4.3.1}Toy Example}{19}
-\contentsline {chapter}{\numberline {5}Test on simulated Data}{20}
-\contentsline {section}{\numberline {5.1}Fixed Community representation}{20}
-\contentsline {section}{\numberline {5.2}Model With Degree Correction}{22}
-\contentsline {section}{\numberline {5.3}Model With Covariates}{23}
-\contentsline {chapter}{\numberline {6}Simulations on the Sampson’s monk dataset}{24}
+\contentsline {section}{\numberline {4.3}EM formulation with variable ranks}{19}
+\contentsline {section}{\numberline {4.4}Simulation}{20}
+\contentsline {subsection}{\numberline {4.4.1}Toy Example}{20}
+\contentsline {subsection}{\numberline {4.4.2}Performance Evaluation}{20}
+\contentsline {chapter}{\numberline {5}Test on simulated Data}{22}
+\contentsline {section}{\numberline {5.1}Fixed Community representation}{22}
+\contentsline {section}{\numberline {5.2}Model With Degree Correction}{24}
+\contentsline {section}{\numberline {5.3}Model With Covariates}{25}
+\contentsline {chapter}{\numberline {6}Simulations on the Sampson’s monk dataset}{26}

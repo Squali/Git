@@ -440,6 +440,30 @@
 	\end{equation}
 	This process will converge to (at least) a local minima.
 	\newpage
+	
+	\section{EM formulation with variable ranks}
+	
+	In this section we suppose that $K$ depends on the individual $i$ i.e we allows the indiduals to rank as many people as they want. The resulting model is the same, with only replacing $K$ with $K_{i}$.
+	We obtain the following log-likelihood distribution.
+	\begin{equation}
+	\mathcal{L}((w);Y,Z,D) = \sum_{i = 1}^{n} \sum_{k = 1}^{K_{i}} \bigg\{ -(\sum_{l \neq i} \lambda_{i,l} - \sum_{l = 1}^{k - 1} \lambda_{i,\rho_{l}})z_{i,k} + \sum_{p = 1}^{P} \delta_{y_{i,k}, p} (ln(w_{i,p} + ln(w_{\rho_{k},p}))) \bigg\}
+	\end{equation}
+	
+	We proceed the same way as the previous section, and we obtain the same formulations by allowing different lengths for the rows of $\rho$. In particular, we obtain the following EM algorithm for inference on the $w$:
+	\begin{equation}
+	w^{(t)}_{r,s} = \frac{C(r,s,w^{(t-1)})}{A(r,s,w^{(t-1)})}
+	\end{equation} with
+	\begin{equation}
+	C(r,s,w^{*}) = a - 1 + \sum_{k = 1}^{K_{r}}\frac{w^{*}_{r,s}w^{*}_{\rho_{r}[k],s}}{\lambda^{*}_{r,\rho_{r}[k]}} + \sum_{i \neq r} \frac{w^{*}_{i,s}w^{*}_{r,s}}{\lambda^{*}_{i,r}} \mathbb{I}(r \in \rho_{i})
+	\end{equation} and
+	\begin{multline}
+	A(r,s,w,w^{*}) = b \ + \ \bigg( \sum_{k = 1}^{K_{r}} \frac{1}{\Lambda^{*}(r,k)} \bigg) \bigg( \sum_{l \neq r} w_{l,s} \bigg) + \sum_{i \neq r} w_{i,s} \bigg( \sum_{k = 1}^{K_{i}} \frac{1}{\Lambda^{*}(i,k)} \bigg) - \\ \sum_{l = 1}^{K_{r}-1} w_{\rho_{r}(l), s} \bigg( \sum_{k = l+1}^{K_{r}} \frac{1}{\Lambda^{*}(r,k)} \bigg) - \sum_{i \neq r} w_{i,s} \bigg( \sum_{k > rank_{\rho_{i}}(r)}^{K_{i}} \frac{1}{\Lambda^{*}(i,k)} \bigg)\mathbb{I}(r \in \rho_{i})
+	\end{multline} where
+	\begin{equation}
+	\Lambda^{*}(i,k) = \sum_{l \neq i} \lambda^{*}_{i,l} - \sum_{l = 1}^{k-1} \lambda^{*}_{i,\rho_{i}[l]}
+	\end{equation}
+	
+	\newpage
 	\section{Simulation}
 	
 	\subsection{Toy Example}
@@ -473,6 +497,28 @@
 			\label{label-image16}
 		\end{minipage}
 	\end{figure}
+	
+	\subsection{Performance Evaluation}
+	
+	In this subsection we tested our EM algorithm on simulated random networks of size $n = 20, K = 5, p = 4, a = 2, b = 2$ and plotted the log posterior for each update in the matrix $(w)$, one epoch being one full update of the matrix. We also performed the EM algorithm on the same network with different initial values of $(w)$.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{RplotEMAlgo1} % first figure itself
+			\caption{Performance on the first 4 epochs}
+			\label{label-image17}
+		\end{minipage}\hfill
+		\begin{minipage}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{RplotEMalgo2} % second figure itself
+			\caption{Performance on 30 epochs}
+			\label{label-image18}
+		\end{minipage}
+	\end{figure}
+	
+	We can see that the algorithm performs quite well, with three updates for each parameters $w_{i,j}$ we have a very good estimation of the maximum a posteriori.
 	
 	\chapter{Test on simulated Data}
 	

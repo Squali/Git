@@ -16,6 +16,11 @@ PosteriorLike <- function(W, a, b, rho){
     lambda[i,i] <- 0
   }
   Delta <- matrix(rowSums(lambda), n, K)
+  for (i in 1:n){
+    for (j in 2:K){
+      Delta[i,j] <- Delta[i,j-1] - lambda[i, rho[i,j-1]]
+    }
+  }
   interm <- matrix(0,n,K)
   for (i in 1:n){
     for(j in 1:K){
@@ -49,6 +54,7 @@ EMInference <- function(rho, p, a, b, W = FALSE, tol = 0.1) {
   K <- shape[2]
   remove(shape)
 
+  lPost <- c()
   maxCurrentEpoch <- tol + tol/1000
   security <- 0
   maxSecurity <- 5000
@@ -78,9 +84,10 @@ EMInference <- function(rho, p, a, b, W = FALSE, tol = 0.1) {
         res <- update_rs(r, s, rho, n, p, K, W, a, b, lambda, invDelta)
         maxCurrentEpoch <- max(maxCurrentEpoch, res[["amplitude"]])
         W <- res[["W"]]
+        lPost <- c(lPost, PosteriorLike(W, a, b, rho))
       }
     }
     print(maxCurrentEpoch)
   }
-  return(W)
+  return(list("W" = W, "postList" = lPost))
 }
