@@ -41,7 +41,7 @@ EMInference <- function(rho, p, a, b, W = FALSE, tol = 0.1) {
     l <- 1:n
     l <- l[-r]
     C <- a - 1 + W[r,s] * sum(W[rho[r,], s] /  lambda[r,rho[r,]]) +  W[r,s] * (W[l,s] %*% (apply(rho[l,], 1, (function(x) as.integer(r %in% x)) ) / lambda[l,r]  ))
-    A <- b + (sum(invDelta[r,])) * (sum(W[l,s])) + (W[l,s] %*% rowSums(invDelta[l,])) - (W[rho[r, 1:(K-1)] ,s] %*% sapply(1:(K-1), (function(i) sum(invDelta[r, (i+1):K])))) - (W[l,s] %*% sapply(l, (function(i) if (r %in% rho[i, 1:(K-1)]) (sum(invDelta[i, (which(r %in% rho[i, ]) + 1):K])) else 0 )))
+    A <- b + (sum(invDelta[r,])) * (sum(W[l,s])) + (W[l,s] %*% rowSums(invDelta[l,])) - (W[rho[r, 1:(K-1)] ,s] %*% sapply(1:(K-1), (function(i) sum(invDelta[r, (i+1):K])))) - (W[l,s] %*% sapply(l, (function(i) if (r %in% rho[i, 1:(K-1)]) (sum(invDelta[i, (match(r, rho[i, ]) + 1):K])) else 0 )))
     newVal <- C / A
     change_rs <- abs(W[r,s]  - newVal)
     W[r,s] <- newVal
@@ -59,7 +59,7 @@ EMInference <- function(rho, p, a, b, W = FALSE, tol = 0.1) {
   security <- 0
   maxSecurity <- 5000
   
-  if (W == FALSE){
+  if (is.numeric(W) == FALSE){
     W <- matrix(rgamma(n*p, a, rate = b), n, p)
   }
   
@@ -80,7 +80,7 @@ EMInference <- function(rho, p, a, b, W = FALSE, tol = 0.1) {
             Delta[i,j] <- Delta[i,j-1] - lambda[i, rho[i,j-1]]
           }
         }
-        invDelta = 1 / Delta
+        invDelta <- 1 / Delta
         res <- update_rs(r, s, rho, n, p, K, W, a, b, lambda, invDelta)
         maxCurrentEpoch <- max(maxCurrentEpoch, res[["amplitude"]])
         W <- res[["W"]]

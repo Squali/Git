@@ -1,9 +1,12 @@
 ## Main Script
 source("/home/pierre/Git/Dissertation/Rfiles/Utils.R")
 source("/home/pierre/Git/Dissertation/Rfiles/EM_Algorithm.R")
+source("/home/pierre/Git/Dissertation/Rfiles/EM_VariableK.R")
+library("lda")
 data("sampson")
 n <- 18
-mat <- sampson[["SAMPLK1"]]
+mat <- sampson[["SAMPLK1"]] + sampson[["SAMPLK2"]] + sampson[["SAMPLK3"]]
+
 print(mat)
 mat["ALBERT_16", "AMAND_13"] <- 3
 mat["ALBERT_16", "ROMUL_10"] <- 0

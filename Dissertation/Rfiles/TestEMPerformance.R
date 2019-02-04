@@ -2,25 +2,31 @@
 source("/home/pierre/Git/Dissertation/Rfiles/Utils.R")
 source("/home/pierre/Git/Dissertation/Rfiles/EM_Algorithm.R")
 source("/home/pierre/Git/Dissertation/Rfiles/EM_VariableK.R")
-n <- 20
-K <- 5
-p <- 4
+n <- 8
+K <- 4
+p <- 3
 a <- 2
 b <- 2
+lK <- rep(c(K), times = n)
 rho <- generateNetwork(n,a,b,p,K)
 rhoV <- as.vector(t(rho))
 print(rho)
 print(rhoV)
-lK <- rep(c(K), times = n)
-fit <- EMInference(rho,p,a,b, tol = 0.1)
-fitV <- EMInferenceV(rho, lK, p,a,b, tol = 0.1)
+w <- matrix(rgamma(n*p, a, rate = b), n, p)
+fit <- EMInference(rho,p,a,b, W = w, tol = 0.01)
+fitV <- EMInferenceV(rhoV, lK, p, a, b, W = w, tol = 0.01)
 lPost <- fit[["postList"]]
 lPostV <- fitV[["postList"]]
 plot((1:length(lPost))/100, lPost, type="l", xlab="Number of epochs", ylab="Log Posterior")
-lines((1:length(lPostV))/100, lPostV, type="l", xlab="Number of epochs", ylab="Log Posterior")
+lines((1:length(lPostV))/100, lPostV, type="l", xlab="Number of epochs", ylab="Log Posterior", col = "red")
 
-# for (i in 1:100){
-#   fit <- EMInference(rho,p,a,b, tol = 0.1)
-#   lPost <- fit[["postList"]]
-#   lines((1:length(lPost))/100, lPost)
-# }
+for (i in 1:20){
+  fit <- EMInference(rho,p,a,b, tol = 0.01)
+  lPost <- fit[["postList"]]
+  lines((1:length(lPost))/100, lPost)
+}
+for (i in 1:20){
+  fit <- EMInferenceV(rhoV, lK,p,a,b, tol = 0.01)
+  lPost <- fit[["postList"]]
+  lines((1:length(lPost))/100, lPost,  col = "red")
+}

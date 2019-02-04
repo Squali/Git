@@ -63,10 +63,8 @@ EMInferenceV <- function(rho,lK, p, a, b, W = FALSE, tol = 0.1) {
       indexLineR <- (sum(lK[1:(r-1)]) + 1):(sum(lK[1:r]))
     }
     C <- a - 1 + W[r,s] * sum(W[rho[indexLineR], s] /  lambda[r,rho[indexLineR]]) +  W[r,s] * ((W[l,s] / lambda[l,r] ) %*% (sapply(l, (function (x) (if (x == 1) {as.numeric(r %in% rho[1:lK[1]])} else {as.numeric(r %in% rho[(sum(lK[1:(x-1)]) + 1):(sum(lK[1:x]))])}) ) ) ))
-    A <- b + (sum(invDelta[indexLineR])) * (sum(W[l,s])) + (W[l,s] %*% sapply(l, (function(x) (sum(invDelta[lineR(x)]) ) ) )) - (W[rho[head(indexLineR, -1)] ,s] %*% sapply(1:(lK[r] - 1), (function(i) sum(invDelta[if (r == 1) {(1 + i):lK[1]} else {(sum(lK[1:(r-1)]) + 1 + i):(sum(lK[1:r]))}])))) - (W[l,s] %*% sapply(l, (function(i) if (r %in% rho[lineR(i)]) {(sum(invDelta[if (i == 1) {(which(r %in% rho[lineR(i)]) + 1):lK[1]} else {(sum(lK[1:(i-1)]) + 1 + which(r %in% rho[lineR(i)])):(sum(lK[1:i]))}]))} else {0} )))
+    A <- b + (sum(invDelta[indexLineR])) * (sum(W[l,s])) + (W[l,s] %*% sapply(l, (function(x) (sum(invDelta[lineR(x)]) ) ) )) - (W[rho[head(indexLineR, -1)] ,s] %*% sapply(1:(lK[r] - 1), (function(i) sum(invDelta[if (r == 1) {(1 + i):lK[1]} else {(sum(lK[1:(r-1)]) + 1 + i):(sum(lK[1:r]))}])))) - (W[l,s] %*% sapply(l, (function(i) if (r %in% head(rho[lineR(i)], -1)) {(sum(invDelta[if (i == 1) {(match(r, rho[lineR(i)]) + 1):lK[1]} else {(sum(lK[1:(i-1)]) + 1 + match(r, rho[lineR(i)])):(sum(lK[1:i]))}]))} else {0} )))
     newVal <- C / A
-    print("C:")
-    print((rho[indexLineR]))
     change_rs <- abs(W[r,s]  - newVal)
     W[r,s] <- newVal
     return(list("W" = W, "amplitude" = change_rs))
@@ -80,7 +78,7 @@ EMInferenceV <- function(rho,lK, p, a, b, W = FALSE, tol = 0.1) {
   security <- 0
   maxSecurity <- 5000
   
-  if (W == FALSE){
+  if (is.numeric(W) == FALSE){
     W <- matrix(rgamma(n*p, a, rate = b), n, p)
   }
   while (maxCurrentEpoch > tol & security < maxSecurity)
