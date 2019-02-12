@@ -34,3 +34,7 @@ generateNetwork <- function(n,a,b,p,K){
   return(t(rho))
 }
 
+plotResult <- function(res) {
+  lPost <- res[["postList"]]
+  plot((1:length(lPost))/100, lPost, type="l", xlab="Number of epochs", ylab="Log Posterior")
+}

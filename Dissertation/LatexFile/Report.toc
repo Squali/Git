@@ -21,6 +21,7 @@
 \contentsline {section}{\numberline {4.4}Simulation}{20}
 \contentsline {subsection}{\numberline {4.4.1}Toy Example}{20}
 \contentsline {subsection}{\numberline {4.4.2}Performance Evaluation}{20}
+\contentsline {subsection}{\numberline {4.4.3}Sampson Dataset}{21}
 \contentsline {chapter}{\numberline {5}Test on simulated Data}{22}
 \contentsline {section}{\numberline {5.1}Fixed Community representation}{22}
 \contentsline {section}{\numberline {5.2}Model With Degree Correction}{24}

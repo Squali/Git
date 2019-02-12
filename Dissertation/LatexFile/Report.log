@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  4 FEB 2019 10:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  12 FEB 2019 13:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -435,66 +435,89 @@ Chapter 4.
 <./images/PlotToyExample.png, id=97, 602.25pt x 602.25pt>
 File: ./images/PlotToyExample.png Graphic file (type png)
 <use ./images/PlotToyExample.png>
-Package pdftex.def Info: ./images/PlotToyExample.png  used on input line 489.
+Package pdftex.def Info: ./images/PlotToyExample.png  used on input line 494.
 (pdftex.def)             Requested size: 175.61371pt x 175.61293pt.
 <./images/PlotToyExampleFinal.png, id=98, 602.25pt x 602.25pt>
 File: ./images/PlotToyExampleFinal.png Graphic file (type png)
 <use ./images/PlotToyExampleFinal.png>
-Package pdftex.def Info: ./images/PlotToyExampleFinal.png  used on input line 4
-95.
+Package pdftex.def Info: ./images/PlotToyExampleFinal.png  used on input line 5
+00.
 (pdftex.def)             Requested size: 175.61371pt x 175.61293pt.
 <./images/RplotEMAlgo1.jpeg, id=99, 629.35126pt x 423.83344pt>
 File: ./images/RplotEMAlgo1.jpeg Graphic file (type jpg)
 <use ./images/RplotEMAlgo1.jpeg>
-Package pdftex.def Info: ./images/RplotEMAlgo1.jpeg  used on input line 509.
+Package pdftex.def Info: ./images/RplotEMAlgo1.jpeg  used on input line 514.
 (pdftex.def)             Requested size: 175.61371pt x 118.2651pt.
 <./images/RplotEMalgo2.jpeg, id=100, 629.35126pt x 423.83344pt>
 File: ./images/RplotEMalgo2.jpeg Graphic file (type jpg)
 <use ./images/RplotEMalgo2.jpeg>
-Package pdftex.def Info: ./images/RplotEMalgo2.jpeg  used on input line 515.
+Package pdftex.def Info: ./images/RplotEMalgo2.jpeg  used on input line 520.
 (pdftex.def)             Requested size: 175.61371pt x 118.2651pt.
- [20 <./images/PlotToyExample.png> <./images/PlotToyExampleFinal.png>] [21 <./i
-mages/RplotEMAlgo1.jpeg> <./images/RplotEMalgo2.jpeg>]
+ [20 <./images/PlotToyExample.png> <./images/PlotToyExampleFinal.png>]
+<./images/SampsonEM1.jpeg, id=104, 542.025pt x 423.83344pt>
+File: ./images/SampsonEM1.jpeg Graphic file (type jpg)
+<use ./images/SampsonEM1.jpeg>
+Package pdftex.def Info: ./images/SampsonEM1.jpeg  used on input line 534.
+(pdftex.def)             Requested size: 175.61371pt x 137.31738pt.
+<./images/sampsonEM2.jpeg, id=105, 542.025pt x 423.83344pt>
+File: ./images/sampsonEM2.jpeg Graphic file (type jpg)
+<use ./images/sampsonEM2.jpeg>
+Package pdftex.def Info: ./images/sampsonEM2.jpeg  used on input line 540.
+(pdftex.def)             Requested size: 175.61371pt x 137.31738pt.
+<./images/sampsonEM3.jpeg, id=106, 542.025pt x 423.83344pt>
+File: ./images/sampsonEM3.jpeg Graphic file (type jpg)
+<use ./images/sampsonEM3.jpeg>
+Package pdftex.def Info: ./images/sampsonEM3.jpeg  used on input line 549.
+(pdftex.def)             Requested size: 175.61371pt x 137.31738pt.
+<./images/posteriorSampson.jpeg, id=107, 542.025pt x 423.83344pt>
+File: ./images/posteriorSampson.jpeg Graphic file (type jpg)
+<use ./images/posteriorSampson.jpeg>
+Package pdftex.def Info: ./images/posteriorSampson.jpeg  used on input line 555
+.
+(pdftex.def)             Requested size: 175.61371pt x 137.31738pt.
+ [21 <./images/RplotEMAlgo1.jpeg> <./images/RplotEMalgo2.jpeg> <./images/Sampso
+nEM1.jpeg> <./images/sampsonEM2.jpeg> <./images/sampsonEM3.jpeg> <./images/post
+eriorSampson.jpeg>]
 Chapter 5.
-<./images/LambdaEstimationFixedPrior.png, id=107, 433.62pt x 289.08pt>
+<./images/LambdaEstimationFixedPrior.png, id=111, 433.62pt x 289.08pt>
 File: ./images/LambdaEstimationFixedPrior.png Graphic file (type png)
 <use ./images/LambdaEstimationFixedPrior.png>
 Package pdftex.def Info: ./images/LambdaEstimationFixedPrior.png  used on input
- line 531.
+ line 569.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<./images/OriginalPlotFixedPrior.png, id=108, 602.25pt x 602.25pt>
+<./images/OriginalPlotFixedPrior.png, id=112, 602.25pt x 602.25pt>
 File: ./images/OriginalPlotFixedPrior.png Graphic file (type png)
 <use ./images/OriginalPlotFixedPrior.png>
 Package pdftex.def Info: ./images/OriginalPlotFixedPrior.png  used on input lin
-e 538.
+e 576.
 (pdftex.def)             Requested size: 238.49231pt x 238.49724pt.
-<./images/OptimizationPlotFixedPrior.png, id=109, 602.25pt x 602.25pt>
+<./images/OptimizationPlotFixedPrior.png, id=113, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotFixedPrior.png Graphic file (type png)
 <use ./images/OptimizationPlotFixedPrior.png>
 Package pdftex.def Info: ./images/OptimizationPlotFixedPrior.png  used on input
- line 544.
+ line 582.
 (pdftex.def)             Requested size: 238.49231pt x 238.49724pt.
 [22
 
  <./images/LambdaEstimationFixedPrior.png>]
-<./images/SimulationGap.png, id=114, 578.16pt x 433.62pt>
+<./images/SimulationGap.png, id=118, 578.16pt x 433.62pt>
 File: ./images/SimulationGap.png Graphic file (type png)
 <use ./images/SimulationGap.png>
-Package pdftex.def Info: ./images/SimulationGap.png  used on input line 560.
+Package pdftex.def Info: ./images/SimulationGap.png  used on input line 598.
 (pdftex.def)             Requested size: 175.61371pt x 131.70804pt.
-<./images/SimulationGap100.png, id=115, 433.62pt x 289.08pt>
+<./images/SimulationGap100.png, id=119, 433.62pt x 289.08pt>
 File: ./images/SimulationGap100.png Graphic file (type png)
 <use ./images/SimulationGap100.png>
-Package pdftex.def Info: ./images/SimulationGap100.png  used on input line 566.
+Package pdftex.def Info: ./images/SimulationGap100.png  used on input line 604.
 
 (pdftex.def)             Requested size: 175.61371pt x 117.07675pt.
  [23 <./images/OriginalPlotFixedPrior.png> <./images/OptimizationPlotFixedPrior
 .png>]
-<./images/SimulationGapDegreeCorr.png, id=120, 433.62pt x 289.08pt>
+<./images/SimulationGapDegreeCorr.png, id=124, 433.62pt x 289.08pt>
 File: ./images/SimulationGapDegreeCorr.png Graphic file (type png)
 <use ./images/SimulationGapDegreeCorr.png>
 Package pdftex.def Info: ./images/SimulationGapDegreeCorr.png  used on input li
-ne 579.
+ne 617.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
  [24 <./images/SimulationGap.png> <./images/SimulationGap100.png> <./images/Sim
 ulationGapDegreeCorr.png>]
@@ -503,20 +526,20 @@ Chapter 6.
 Missing character: There is no â in font cmbx12!
 Missing character: There is no € in font cmbx12!
 Missing character: There is no ™ in font cmbx12!
-<./images/OptimizationPlotSam.png, id=131, 602.25pt x 602.25pt>
+<./images/OptimizationPlotSam.png, id=135, 602.25pt x 602.25pt>
 File: ./images/OptimizationPlotSam.png Graphic file (type png)
 <use ./images/OptimizationPlotSam.png>
 Package pdftex.def Info: ./images/OptimizationPlotSam.png  used on input line 6
-18.
+56.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
 [26
 
 ] [27 <./images/OptimizationPlotSam.png>] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 3789 strings out of 494923
- 56923 string characters out of 6180741
- 113925 words of memory out of 5000000
- 7013 multiletter control sequences out of 15000+600000
+ 3813 strings out of 494923
+ 57529 string characters out of 6180741
+ 113969 words of memory out of 5000000
+ 7033 multiletter control sequences out of 15000+600000
  15819 words of font info for 59 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,11n,40p,1855b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -537,10 +560,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/symbols/msbm10.pfb>
-Output written on Report.pdf (27 pages, 1476166 bytes).
+Output written on Report.pdf (27 pages, 1716689 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
+ 197 PDF objects out of 1000 (max. 8388607)
  116 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
