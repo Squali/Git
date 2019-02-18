@@ -331,6 +331,7 @@
 	We will take the following priors:
 	\begin{enumerate}
 		\item $\beta_{i}, a_{i}, b_{i} \sim \mathcal{N}(0, 10^{5})$
+		\item $\sigma \sim InvGamma(0.01,0.01)$, $\rho \sim \mathcal{U}(0,1)$
 		\item $\Sigma_{\epsilon} \sim \mathcal{I}\mathcal{W}(\begin{pmatrix} 10^{5} & 0 \\ 0 & 10^{5} \end{pmatrix}, 2)$
 	\end{enumerate}
 	\item
@@ -346,7 +347,7 @@
 	p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{p_{i}}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}  }
 	\end{equation}
 	\end{enumerate}
-	\item Choose a proposal distribution $q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))$. It needs to be easy to simulate and determine an irreducible chain. We can take a log-normal distribution for each element of $log(\lambda)^{*}$ with median $log(\lambda_{i,j})$. A normal distribution for \boldmath $\beta, a, b$ \unboldmath, and finally $\mathcal{U}[\rho - a, \rho + a]$ and $\mathcal{U}[\sigma - a, \sigma + a]$ for $\rho^{*}$ and $\sigma^{*}$ with $a$ likely small.
+	\item Choose a proposal distribution $q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))$. It needs to be easy to simulate and determine an irreducible chain. We can take a log-normal distribution for each element of $log(\lambda)^{*}$ with median $log(\lambda_{i,j})$. A normal distribution for \boldmath $\beta, a, b$ \unboldmath, and finally a normal distribution for $\sigma$ and $\mathcal{U}[0, 1]$ for $\rho$.
 	\item Write down the algorithm. Given $(\theta, (\lambda))$ :
 	\begin{enumerate}
 	\item Sample $(\theta^{*}, (\lambda)^{*})$ from the $q(.|\theta, (\lambda))$ previous distribution.
@@ -354,6 +355,13 @@
 	\item If $u < \alpha = min\{ 1, \frac{\pi(\theta^{*}, (\lambda)^{*})q(\theta, (\lambda) |\theta^{*}, (\lambda)^{*})}{\pi(\theta, (\lambda))q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))}   \}$ then set $(\theta, (\lambda)) = (\theta^{*}, (\lambda)^{*})$ else keep the same value.
 	\end{enumerate}
 	\end{enumerate}
+	
+	\section{Simulation}
+	
+	
+	
+	
+	
 	\chapter{EM algorithm with community representation}
 	
 	We have seen that the derivation of the posterior distribution over the $(w)$ derived in equation (2.5) is somewhat very complicated. Hence we try in this chapter to introduce latent variables in order to derive an EM algorithm.
