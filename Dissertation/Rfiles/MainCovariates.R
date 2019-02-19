@@ -7,7 +7,7 @@ K <- 3
 p <- 2
 a <- 2
 b <- 2
-nbIterations <- 2000
+nbIterations <- 50000
 rho <- generateNetwork(n,a,b,p,K)
 a <- runif(n, min = -1, max = 1)
 b <- runif(n, min = -1, max = 1)
@@ -16,30 +16,21 @@ r <- 0.5
 lambda <- rnorm(n*(n-1), mean = 0, sd = 1)
 vectParam <- c(a, b, sig, r, lambda)
 print(vectParam)
-targetdistrib(vectParam, rho = rho)
 
-
-chain <- run_metropolis_MCMC(vectParam, nbIterations, rho)
-
-burnIn = 100
+lK <- rep(K, n)
+rho <- as.vector(t(rho))
+chain <- run_metropolis_MCMC(vectParam, nbIterations, rho, lK)
+targetdistrib(vectParam, rho = rho, lK = lK)
+burnIn = 5000
 acceptance = 1-mean(duplicated(chain[-(1:burnIn),]))
 
 par(mfrow = c(2,3))
-hist(chain[-(1:burnIn),1],nclass=30, , main="Posterior of a", xlab="True value = red line" )
-abline(v = mean(chain[-(1:burnIn),1]))
-abline(v = trueA, col="red" )
+hist(chain[-(1:burnIn),1],nclass=30,main="Posterior of a", xlab="True value = red line" )
+abline(v = mean(chain[-(1:burnIn),1]), col = "red")
 hist(chain[-(1:burnIn),2],nclass=30, main="Posterior of b", xlab="True value = red line")
-abline(v = mean(chain[-(1:burnIn),2]))
-abline(v = trueB, col="red" )
+abline(v = mean(chain[-(1:burnIn),2]), col = "red")
 hist(chain[-(1:burnIn),3],nclass=30, main="Posterior of sd", xlab="True value = red line")
-abline(v = mean(chain[-(1:burnIn),3]) )
-abline(v = trueSd, col="red" )
-plot(chain[-(1:burnIn),1], type = "l", xlab="True value = red line" , main = "Chain values of a", )
-abline(h = trueA, col="red" )
-plot(chain[-(1:burnIn),2], type = "l", xlab="True value = red line" , main = "Chain values of b", )
-abline(h = trueB, col="red" )
-plot(chain[-(1:burnIn),3], type = "l", xlab="True value = red line" , main = "Chain values of sd", )
-abline(h = trueSd, col="red" )
-
-# for comparison:
-summary(lm(y~x))
+abline(v = mean(chain[-(1:burnIn),3]), col = "red")
+plot(chain[-(1:burnIn),1], type = "l", xlab="True value = red line" , main = "Chain values of a")
+plot(chain[-(1:burnIn),2], type = "l", xlab="True value = red line" , main = "Chain values of b")
+plot(chain[-(1:burnIn),3], type = "l", xlab="True value = red line" , main = "Chain values of sd")

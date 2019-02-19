@@ -4,7 +4,7 @@ source("/home/pierre/Git/Dissertation/Rfiles/EM_Algorithm.R")
 source("/home/pierre/Git/Dissertation/Rfiles/EM_VariableK.R")
 source("/home/pierre/Git/Dissertation/Rfiles/GraphModule.R")
 library("lda")
-data("sampson")
+data(sampson)
 df <- sampson[["SAMPLK1"]]
 n <- dim(df)[1]
 

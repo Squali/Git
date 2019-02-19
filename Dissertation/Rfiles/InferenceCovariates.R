@@ -24,24 +24,22 @@ loglikelihood <- function(lambda, rho) {
     }
   L <- sum(sum(log(Delta)) + sum(log(interm)))
 }
-data <- function(){
-  n <- 6
+dataFunction <- function(){
+  n <- 18
   priorParam <- 10**(5)
-  priorSigma <- 0.01
-  priorParamWi <- 10**(5)
+  priorSigmaAlpha <- 1
+  priorSigmaBeta <-0.01
   lengthCov <- 0
-  return(list("n" = n, "priorParam" = priorParam, "priorParamWi" = priorParamWi, "lengthCov" = lengthCov, "priorSigma" = priorSigma))
+  return(list("n" = n, "priorParam" = priorParam, "lengthCov" = lengthCov, "priorSigmaAlpha" = priorSigmaAlpha, "priorSigmaBeta" = priorSigmaBeta))
 }
 
 #vecParam = [a, b, sigma, rho, lambda, beta] Here lambda are log(lambda) and without the diagonal and sigma and rho are the log of the real parameters
-targetdistrib <- function(vecParam, rho = rho) {
-  shape <- dim(rho)
-  K <- shape[2]
-  dat <- data()
-  n <- shape[1]
+targetdistrib <- function(vecParam, rho = rho, lK = lK) {
+  dat <- dataFunction()
+  n <- dat[["n"]]
   pr <- dat[["priorParam"]]
-  prwi <- dat[["priorParamWi"]]
-  prSigma <- dat[["priorSigma"]]
+  prSigmaAlpha <- dat[["priorSigmaAlpha"]]
+  prSigmaBeta <- dat[["priorSigmaBeta"]]
   lengthCov <- dat[["lengthCov"]]
   a <- vecParam[1:n]
   b <- vecParam[(n+1):(2*n)]
@@ -61,76 +59,102 @@ targetdistrib <- function(vecParam, rho = rho) {
   }
   
   #Computation prio
-  print(condBeta)
-  prior <- -sum((a**2)/(2*(pr**2))) - sum((b**2)/(2*(pr**2))) + condBeta - 1.01*sig - 1.01/realSigma
-  #-10*(realSigma) - (5/2)*log(1-(realr)**2) - (prwi/((realSigma**2)*(1-r**2))) - r**2/(2*((prSigma)**2)) -sig**2/(2*((prSigma)**2))
-  print("prior")
-  print(prior)
-  # Computation 2nd term
+  prior <- -sum((a**2)/(2*(pr**2))) - sum((b**2)/(2*(pr**2))) + condBeta - (prSigmaAlpha - 1)*sig - (prSigmaBeta)*realSigma
+  
+  #Computation snd term
   summation <- 0
   for (i in (1:(n-1))) {
     for (j in (i+1):n) {
       summation <- summation + dmvnorm(c(lambda[i,j], lambda[j,i]), mean = c(a[i] + b[j], a[j] + b[i]),sigma= matrix(c(realSigma**2, (realSigma**2)*realr, (realSigma**2)*realr, realSigma**2), 2,2), log=TRUE)
     }
   }
-  print("2nd term")
-  print(summation)
+  
   
   #Computation 3nd term
   lambdaExp <- exp(lambda)
-  Delta <- matrix(rowSums(lambdaExp), n, K)
+  Delta <- rep(rowSums(lambdaExp), times = lK)
   for (i in 1:n){
-    for (j in 2:K){
-      Delta[i,j] <- Delta[i,j-1] - lambdaExp[i, rho[i,j-1]]
+    if (i == 1) {
+      if(lK[i] > 1){
+        for (j in 2:lK[i]){
+          Delta[j] <- Delta[j-1] - lambdaExp[i, rho[j-1]]
+        }
+      }
+    } else {
+      if (lK[i] > 1){
+        for (j in 2:lK[i]){
+          Delta[sum(lK[1:(i-1)]) + j] <- Delta[sum(lK[1:(i-1)]) + j - 1] - lambdaExp[i, rho[sum(lK[1:(i-1)]) + j - 1]]
+        }
+      }
     }
   }
   
-  interm <- matrix(0,n,K)
-  for (i in 1:n){
-    for(j in 1:K){
-      interm[i,j] <- lambda[i,rho[i,j]]
+  interm <- c()
+  for (j in 1:(lK[1])){
+    interm <- c(interm, lambdaExp[1, rho[j]])
+  }
+  for (i in 2:n){
+    for(j in 1:(lK[i])){
+      interm <- c(interm, lambdaExp[i,rho[(sum(lK[1:(i-1)]) + j)]])
     }
   }
-  thirdTerm <- -sum(log(Delta)) + sum(interm)
-  print(thirdTerm)
-  print("result target")
-  print(prior + summation + thirdTerm)
+  
+  
+  
+  
+  
+  # Delta <- matrix(rowSums(lambdaExp), n, K)
+  # for (i in 1:n){
+  #   for (j in 2:K){
+  #     Delta[i,j] <- Delta[i,j-1] - lambdaExp[i, rho[i,j-1]]
+  #   }
+  # }
+  # 
+  # interm <- matrix(0,n,K)
+  # for (i in 1:n){
+  #   for(j in 1:K){
+  #     interm[i,j] <- lambda[i,rho[i,j]]
+  #   }
+  # }
+  
+  thirdTerm <- -sum(log(Delta)) + sum(log(interm))
   return(prior + summation + thirdTerm)
 }
 
 
 proposalfunction <- function(vecParam){
-  dat <- data()
+  dat <- dataFunction()
   n <- dat[["n"]]
-  pr <- dat[["priorParam"]]
-  prwi <- dat[["priorParamWi"]]
-  prSigma <- dat[["priorSigma"]]
   lengthCov <- dat[["lengthCov"]]
-  a <- vecParam[1:n]
-  b <- vecParam[(n+1):(2*n)]
-  l1 = vecParam[1:(2*n)]
-  l = rnorm(2*n, mean = l1, sd = rep(1, 2*n))
-  l2 = rinvgamma(1, shape = prSigma, rate = prSigma)
-  l3 = runif(1)
-  return(c(l,l2,l3))
+  if (runif(1) < 0.1){
+    l1 = rnorm(2*n + 1, mean = rep(0, 2*n + 1), sd = rep(5, 2*n + 1))
+    l2 = runif(1)
+    l3 = rnorm(n*(n-1), mean = rep(0, n*(n-1)), sd = rep(5,n*(n-1)))
+    return(c(l1,l2,l3))
+  }
+  r = vecParam[(2*n + 2)]
+  lambdavec <- matrix(vecParam[(2*n + 3):(2*n + 2 + n*(n-1))], n, (n-1), byrow = TRUE)
+  l1 = rnorm(2*n + 1, mean = vecParam[1:(2*n + 1)], sd = rep(0.125, 2*n + 1))
+  l2 = runif(1, min = max(r - 0.075, 0), max = min(1, r + 0.075))
+  l3 = rnorm(n*(n-1), mean = vecParam[(2*n + 3):(2*n + 2 + n*(n-1))], sd = rep(0.125,n*(n-1)))
+  return(c(l1,l2,l3))
 }
 
-run_metropolis_MCMC <- function(startvalue, iterations, rho){
+run_metropolis_MCMC <- function(startvalue, iterations, rho, lK){
   d <- length(startvalue)
   chain = array(dim = c(iterations+1,d))
   chain[1,] = startvalue
   for (i in 1:iterations){
     proposal = proposalfunction(chain[i,])
-    
-    probab = exp(targetdistrib(proposal, rho = rho) - targetdistrib(chain[i,], rho = rho))
-    print(targetdistrib(proposal, rho = rho))
+    probab = exp(targetdistrib(proposal, rho = rho, lK = lK) - targetdistrib(chain[i,], rho = rho, lK = lK))
     if (runif(1) < probab){
       chain[i+1,] = proposal
     }else{
       chain[i+1,] = chain[i,]
     }
+    if (i == iterations/2){
+      print("50%")
+    }
   }
   return(chain)
 }
-
-s

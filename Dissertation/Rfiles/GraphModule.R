@@ -15,3 +15,12 @@ visualizeGraph <- function(result, rho, lK) {
   print("Colour capout")
   plot(g)
 }
+
+visualizeSimpleGraph <- function(rho, lK) {
+  n <- length(lK)
+  listInd <- rep(1:n, times = lK)
+  N <- length(listInd)
+  listEdges <- t(matrix(c(listInd, rho), 2,N, byrow = TRUE))
+  g <- graph_from_edgelist(listEdges, directed = TRUE)
+  plot(g)
+}

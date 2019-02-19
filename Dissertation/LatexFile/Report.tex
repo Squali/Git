@@ -331,8 +331,7 @@
 	We will take the following priors:
 	\begin{enumerate}
 		\item $\beta_{i}, a_{i}, b_{i} \sim \mathcal{N}(0, 10^{5})$
-		\item $\sigma \sim InvGamma(0.01,0.01)$, $\rho \sim \mathcal{U}(0,1)$
-		\item $\Sigma_{\epsilon} \sim \mathcal{I}\mathcal{W}(\begin{pmatrix} 10^{5} & 0 \\ 0 & 10^{5} \end{pmatrix}, 2)$
+		\item $\sigma \sim Gamma(1,0.01)$, $\rho \sim \mathcal{U}(0,1)$
 	\end{enumerate}
 	\item
 	\begin{equation}
@@ -347,8 +346,9 @@
 	p(\rho_{i} | (\lambda)) = \prod_{k = 1}^{p_{i}}\frac{\lambda_{i\rho_{k}}}{\sum_{j \neq i}\lambda_{i,j} - \sum_{l = 1}^{k - 1}\lambda_{i,\rho_{l}}  }
 	\end{equation}
 	\end{enumerate}
-	\item Choose a proposal distribution $q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))$. It needs to be easy to simulate and determine an irreducible chain. We can take a log-normal distribution for each element of $log(\lambda)^{*}$ with median $log(\lambda_{i,j})$. A normal distribution for \boldmath $\beta, a, b$ \unboldmath, and finally a normal distribution for $\sigma$ and $\mathcal{U}[0, 1]$ for $\rho$.
-	\item Write down the algorithm. Given $(\theta, (\lambda))$ :
+	\item Choose a proposal distribution $q(\theta^{*}, (\lambda)^{*} |\theta, (\lambda))$. It needs to be easy to simulate and determine an irreducible chain. Here we have calibrated the proposal with random simulation in order to reach an acceptance ratio of approximately $25\%$, as the litterature suggests. To do so we have chosen a proposal distribution for the $log(\lambda)$ and \boldmath $\beta, a, b$ \unboldmath of a normal distribution with standard deviation $0.125$ and a uniform of amplitude $0.075$ for $\rho$ and of mean the precedent state of the Markov Chain. To reduce the possibility to be trapped in a local minima, we also added a probability of $10\%$ that the proposal follows the prior distribution of those parameters. We calibrated all those values on random simulations to obtain an average of $25\%$ of acceptance ratio.
+	
+	\item Derive a Metropolis-Hasting Algorithm:
 	\begin{enumerate}
 	\item Sample $(\theta^{*}, (\lambda)^{*})$ from the $q(.|\theta, (\lambda))$ previous distribution.
 	\item Sample $u \sim \mathcal{U}[0,1]$
@@ -358,8 +358,59 @@
 	
 	\section{Simulation}
 	
+	\subsection{Toy Example}
 	
+	We first ran the algorithm on a toy example of size $n = 10$, with a clear separation between a node very "Popular", that is to say a node appreciated by all the other node, but liking only one individual, and an other node that, on the contrary, likes everyone but nobody likes him. This node can be considered "Sociable" but not popular.
 	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{GraphCovariate1} % first figure itself
+			\caption{Graph Network Example}
+			\label{label-image10}
+		\end{minipage}\hfill
+		\begin{minipage}{\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{SimulationCovariates2} % second figure itself
+			\caption{Node $1$ and $2$ popularity and sociability}
+			\label{label-image11}
+		\end{minipage}
+	\end{figure} Here we can see node $1$ popularity skyrockets compared to its sociability and both node $2$ sociability and popularity.
+
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{GraphCovariates2} % first figure itself
+			\caption{Graph Network Example}
+			\label{label-image23}
+		\end{minipage}\hfill
+		\begin{minipage}{\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{PlotCovariates3} % second figure itself
+			\caption{Node $1$ and $2$ popularity and sociability}
+			\label{label-image24}
+		\end{minipage}
+	\end{figure} Here we can see node $1$ sociability is higher than its popularity and both node $2$ sociability and popularity.
+	
+	\subsection{Sampson dataset}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{GraphSampsonCovariates} % first figure itself
+			\caption{Graph Network Example}
+			\label{label-image25}
+		\end{minipage}\hfill
+		\begin{minipage}{\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{CovariatesSampsonPLot} % second figure itself
+			\caption{Markov Chains}
+			\label{label-image26}
+		\end{minipage}
+	\end{figure} Node $1$ is appreciated by half the monks and has a high popularity. The two others are only appreciated by one other monks and have negative popularity.
 	
 	
 	\chapter{EM algorithm with community representation}
@@ -566,105 +617,20 @@
 		\end{minipage}
 	\end{figure}
 	
-	\chapter{Test on simulated Data}
+	\chapter{Model Test}
 	
-	\section{Fixed Community representation}
+	\section{Test on simulated Data}
 	
-	We draw a simulation of a network with $n = 25$, $ p = 3$, $k = 4$, $a = 2$, $b = 2$, optimized it. We obtain the graph with ranking gap of 5.83 for a mean of 8.32 and AE of 0.013
+	\subsection{Comparison EM algorithm and optimisation algorithm}
+	
+	In this subsection we randomly drew graphs of size $n = 20$ and performed the EM algorithm as well as the L-BFGS-B optimization algorithm in order to compare their performances, we took the same random initialization each time. We computed the resulting posterior likelihood of the $W$ resulting from the algorithms. And we plotted them in the same graph.
 	\begin{figure}[H]
 		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{LambdaEstimationFixedPrior}
-		\caption{Lambda Estimation Fixed Prior}
-		\label{label-image9}
-	\end{figure}
-	\begin{figure}[H]
-		\centering
-		\begin{subfigure}[b]{0.55\textwidth}
-			\includegraphics[width=1\linewidth]{OriginalPlotFixedPrior}
-			\caption{}
-			\label{fig:Ng1} 
-		\end{subfigure}
-		
-		\begin{subfigure}[b]{0.55\textwidth}
-			\includegraphics[width=1\linewidth]{OptimizationPlotFixedPrior}
-			\caption{}
-			\label{fig:Ng2}
-		\end{subfigure}
-		
-		\caption[Two graphs]{(a) Original Graph. (b) Inferred Graph}
-	\end{figure}
-	Now we made a simulation of 10 networks and measured the mean Absolute Error and Ranking Gap.
-	We have a mean ranking gap of $2.8871111111111114$ compared to a mean of 5. A a mean AE of $0.022484955968703896$
-	
-	We run for 100 networks with the same parameters.
-	We have mean ranking gap of 2.9304888888888896 and mean AE of 0.02122157183931606
-	\begin{figure}[H]
-		\centering
-		\begin{minipage}{0.45\textwidth}
-			\centering
-			\includegraphics[width=0.9\textwidth]{SimulationGap} % first figure itself
-			\caption{Ranking Gap Community Representation for $10$ networks}
-			\label{label-image12}
-		\end{minipage}\hfill
-		\begin{minipage}{0.45\textwidth}
-			\centering
-			\includegraphics[width=0.9\textwidth]{SimulationGap100} % second figure itself
-			\caption{Ranking Gap Community Representation for $100$ networks}
-			\label{label-image13}
-		\end{minipage}
+		\includegraphics[scale=0.70]{PosteriorCOmparisonEMOpt} %
+		\caption{Performance Comparison between the EM and L-BFGS-B algorithm}.
 	\end{figure}
 	
-	\section{Model With Degree Correction}
+	\subsection{Comparison EM algorithm and optimisation algorithm and Covariates Method}
 	
-	We draw a simulation of 100 networks with $n = 100$, $ p = 3$, $k = 4$, $a = 2$, $b = 2$, optimized it. We obtain the graph with ranking gap of 2.942666666666666 for a mean of 5 and AE of 0.03798207013695899
-	
-	\begin{figure}[H]
-		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SimulationGapDegreeCorr}
-		\caption{Ranking Gap Degree Correction}
-		\label{label-image14}
-	\end{figure}
-	
-	
-	\section{Model With Covariates}
-	
-	We simulated 100 networks of 100 individuals with the rank model:
-	
-	$y_{i,j} = \beta_{0} + a_{i} + b_{j} + \epsilon_{i,j}$
-	
-	
-	\(
-	\begin{pmatrix}
-	a_{i} \\
-	b_{i}
-	\end{pmatrix}
-	\), i = 1,...,n $\sim $ i.i.d normal(0,$\Sigma_{ab}$)
-	
-	\(
-	\begin{pmatrix}
-	\epsilon_{i,j} \\
-	\epsilon_{j,i}
-	\end{pmatrix}
-	\), i = 1,...,n $\sim $ i.i.d normal(0,$\sigma^{2}$ $\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}$)
-	
-	
-	
-	
-	\chapter{Simulations on the Sampson’s monk dataset}
-	In this part we use the The data set collected by Sampson (1968) this is a classic data set in social network analysis. The data set summarizes relationships, observed at three distinct time points, among 18 monks who were about to enter a monastery when a conflict erupted. We use here the directed network where $y_{i,j} = 1$ denotes that monk $i$ ranked monk $j$ among his top three preferred individuals and $y_{i,j} = 0$ otherwise. The directed network is shown in Figure \ref{label-image4} , where circles represent monks and directed edges are oriented from $i$ to $j$ whenever $y_{i,j} = 1$. The monks are divided by Sampson into three groups: Loyal Opposition, Turks, and Outcasts.
-	
-	We applied the same method as for the simulated data and obtained the following community. We can observe that our model identifies exactly the same clustering of communities as the ones observed by Sampson. Namely the Loyal Opposition (Red community), Turks (Green Community), and Outcasts (Blue Community). In this graph the individuals are labeled according to their number provided with their names in the data set package and not according to their rank in the data-frame.
-	
-	
-	\begin{figure}
-		\centering
-		%		\textbf{Your title}\par\medskip
-		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{OptimizationPlotSam}
-		\caption{Inferred community for the Sampson DataSet}
-		\label{label-image4}
-	\end{figure}
-	
-	
+	In this subsection we will compare the recovering of the lambda parameters 
 \end{document}
