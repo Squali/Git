@@ -4,19 +4,20 @@ source("/home/pierre/Git/Dissertation/Rfiles/GraphModule.R")
 library("mcmc")
 
 n <- 10
-nbIterations <- 50000
-rho <- c(2,3,4,5,6,7,8,9,10,3,4,5,6,7,8,9,10,2)
-lK <- c(9,1,1,1,1,1,1,1,1,1)
+nbIterations <- 1000000
+step <- 10
+rho <- c(3,1,1,1,1,1,1,1,1,1)
+lK <- c(1,1,1,1,1,1,1,1,1,1)
 a <- runif(n, min = -1, max = 1)
 b <- runif(n, min = -1, max = 1)
 sig <- 0
 r <- 0.5
 lambda <- rnorm(n*(n-1), mean = 0, sd = 1)
+print(lambda)
 vectParam <- c(a, b, sig, r, lambda)
-print(vectParam)
 
-chain <- run_metropolis_MCMC(vectParam, nbIterations, rho, lK)
-burnIn = 5000
+chain <- run_metropolis_MCMC(vectParam, nbIterations, rho, lK, step)
+burnIn = 10000
 acceptance = 1-mean(duplicated(chain[-(1:burnIn),]))
 
 par(mfrow = c(2,4))

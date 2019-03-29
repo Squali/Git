@@ -2,9 +2,9 @@
 source("/home/pierre/Git/Dissertation/Rfiles/Utils.R")
 source("/home/pierre/Git/Dissertation/Rfiles/EM_Algorithm.R")
 source("/home/pierre/Git/Dissertation/Rfiles/EM_VariableK.R")
-n <- 8
-K <- 4
-p <- 3
+n <- 20
+K <- 5
+p <- 4
 a <- 2
 b <- 2
 lK <- rep(c(K), times = n)

@@ -1,6 +1,7 @@
 library("MASS", lib.loc="/usr/lib/R/library")
 library("mvtnorm", lib.loc="~/R/x86_64-pc-linux-gnu-library/3.5")
 library("invgamma")
+library("progress")
 ## First, there will be no covariates beta = 0
 
 # s = prior in beta, a, b. r = prior in the inverse wishart
@@ -25,7 +26,7 @@ loglikelihood <- function(lambda, rho) {
   L <- sum(sum(log(Delta)) + sum(log(interm)))
 }
 dataFunction <- function(){
-  n <- 18
+  n <- 10
   priorParam <- 10**(5)
   priorSigmaAlpha <- 1
   priorSigmaBeta <-0.01
@@ -140,21 +141,28 @@ proposalfunction <- function(vecParam){
   return(c(l1,l2,l3))
 }
 
-run_metropolis_MCMC <- function(startvalue, iterations, rho, lK){
+run_metropolis_MCMC <- function(startvalue, iterations, rho, lK, step = 1){
+  pb <- progress_bar$new(total = iterations)
   d <- length(startvalue)
-  chain = array(dim = c(iterations+1,d))
+  chain = array(dim = c((iterations/10)+1,d))
   chain[1,] = startvalue
+  currentPoint = startvalue
   for (i in 1:iterations){
-    proposal = proposalfunction(chain[i,])
-    probab = exp(targetdistrib(proposal, rho = rho, lK = lK) - targetdistrib(chain[i,], rho = rho, lK = lK))
+    #proposal = proposalfunction(chain[i,])
+    #probab = exp(targetdistrib(proposal, rho = rho, lK = lK) - targetdistrib(chain[i,], rho = rho, lK = lK))
+    proposal = proposalfunction(currentPoint)
+    probab = exp(targetdistrib(proposal, rho = rho, lK = lK) - targetdistrib(currentPoint, rho = rho, lK = lK))
     if (runif(1) < probab){
-      chain[i+1,] = proposal
-    }else{
-      chain[i+1,] = chain[i,]
+      #chain[i+1,] = proposal
+      currentPoint <- proposal
     }
-    if (i == iterations/2){
-      print("50%")
+    #else{
+      #chain[i+1,] = chain[i,]
+    #}
+    if (i %% step == 0){
+      chain[(i %/% step) + 1,] = proposal
     }
+    pb$tick()
   }
   return(chain)
 }

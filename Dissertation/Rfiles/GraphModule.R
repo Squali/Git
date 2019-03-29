@@ -13,6 +13,7 @@ visualizeGraph <- function(result, rho, lK) {
   print("Here is colour")
   V(g)$color <- listCom
   print("Colour capout")
+  add_vertices(g, sum(lK == 0))
   plot(g)
 }
 
@@ -22,5 +23,6 @@ visualizeSimpleGraph <- function(rho, lK) {
   N <- length(listInd)
   listEdges <- t(matrix(c(listInd, rho), 2,N, byrow = TRUE))
   g <- graph_from_edgelist(listEdges, directed = TRUE)
+  g <- add_vertices(g, sum(lK == 0))
   plot(g)
 }
