@@ -45,8 +45,6 @@ PosteriorLikeV <- function(W, a, b, rho, lK){
   }
   
   L <- sum( (a-1) * (log(W)) - b * W ) - sum(log(Delta)) + sum(log(interm))
-  print("Log Posterior")
-  print(L)
   return(L)
 }
 
@@ -84,8 +82,6 @@ EMInferenceV <- function(rho,lK, p, a, b, W = FALSE, tol = 0.1) {
     newVal <- C / A
     change_rs <- abs(W[r,s]  - newVal)
     W[r,s] <- newVal
-    print("newVal")
-    print(newVal)
     return(list("W" = W, "amplitude" = change_rs))
   }
   
@@ -134,7 +130,6 @@ EMInferenceV <- function(rho,lK, p, a, b, W = FALSE, tol = 0.1) {
         lPost <- c(lPost, PosteriorLikeV(W, a, b, rho, lK))
       }
     }
-    print(maxCurrentEpoch)
   }
   return(list("W" = W, "postList" = lPost))
 }

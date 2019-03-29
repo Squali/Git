@@ -25,4 +25,4 @@ for (i in 1:n){
 }
 print(lambda)
 
-visualizeSimpleGraph(rho, lK)
+#visualizeSimpleGraph(rho, lK)
